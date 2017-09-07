@@ -1,0 +1,189 @@
+{% load static %}
+{% load i18n %}
+        
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% trans 'startpage' %}</title>
+        {% include "fh/includes/head.html" %} 
+
+        <style>
+            .carousel 
+            {
+                border-radius: 10px 10px 10px 10px;
+                overflow: hidden;
+            }
+            
+            #map {
+              height: 325px;
+              width:  100%;
+            }
+
+        </style>        
+    </head>
+    <body>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGqJazDaAYPXovs-mb3HBeL1eAX7i5rE&amp;callback=initMap"
+            async defer>     
+        </script>
+        <script>
+     
+            var map;     
+          
+            function initMap() 
+            {
+                map = new google.maps.Map(document.getElementById('map'), 
+                {
+                    center: {lat: comma_point(50,8833), lng:  comma_point(5,9833)},
+                    zoom: 8
+                });              
+            }       
+            
+             $(document).ready(function()
+             {       
+                var i = 0;
+                var cnt =  {{rnd_hw|length }};
+                $(document).ready(function()
+                {   
+                    $('#images').carousel(
+                    {
+                        interval: 4000
+                    });
+                    
+                    $('#images').bind('slide.bs.carousel', function (e) 
+                    {
+                        i = (i + 1) % cnt;
+                        updateInfos();
+                        
+                    });
+                    
+                    
+                    $('#myCarousel').bind('slid.bs.carousel', function (e) 
+                    {
+                        //console.log('after');
+                    });
+                    
+                    var rnd_hw = [];
+                    {% for img in rnd_hw %}
+                        rnd_hw.push({
+                            entry_id:  '{{img.entry.pk}}',
+                            entry_desc:  '{{img.entry.description}}', 
+                            entry_img:  '{{img.entry.image}}',
+                            img_label:  '{{img.title}}',
+                            death_lng:  '{{img.entry.place_of_death.lng}}',
+                            death_lat:  '{{img.entry.place_of_death.lat}}',
+                            death_label:'{{img.entry.place_of_death.label}}' ,
+                            birth_lng:  '{{img.entry.place_of_birth.lng}}',
+                            birth_lat:  '{{img.entry.place_of_birth.lat}}',
+                            birth_label:'{{img.entry.place_of_birth.label}}' 
+                        });
+                    {% endfor %}
+                    
+                    function updateInfos()
+                    {
+                        $('#entry_desc').html('<a target="_blank" href="/detail?id=' + rnd_hw[i].entry_id + '">' + rnd_hw[i].entry_desc + '</a>');
+                        $('#entry_img').attr("src", rnd_hw[i].entry_img);
+                        
+                         map = new google.maps.Map(document.getElementById('map'), {
+                            center: {lat: comma_point(rnd_hw[i].birth_lng), lng:  comma_point(rnd_hw[i].birth_lat)},
+                            zoom: 8
+                        }); 
+                        
+                        google.maps.event.addListener(map, 'click', function(event) 
+                        {
+                            var lat = event.latLng.lat();
+                            var lng = event.latLng.lng();
+                            window.location.href = '/maps?lat=' + lat + '&lng=' + lng; 
+                        });
+                                                                             
+                        var birth_label = "{% trans 'birth' %} : " + rnd_hw[i].birth_label;                                         
+                        var mark_born = new google.maps.Marker({
+                            position: {lat: comma_point(rnd_hw[i].birth_lng), lng:  comma_point(rnd_hw[i].birth_lat)},
+                            map: map,
+                            title: birth_label,
+                            icon: "/static/fh/img/born.png"
+                        });
+                        
+                        google.maps.event.addListener(mark_born, 'click', function () 
+                        {
+                            var lat = this.getPosition().lat();
+                            var lng = this.getPosition().lng();
+                            window.location.href = '/maps?lat=' + lat + '&lng=' + lng; 
+                        });  
+                        
+                        //All markers should be visible
+                        var bounds = new google.maps.LatLngBounds();
+                        bounds.extend(mark_born.getPosition());
+                        
+                        if (!!rnd_hw[i].death_label)
+                        {
+                            var death_label = "{% trans 'death' %} : " + rnd_hw[i].death_label;
+                            
+                            var mark_death = new google.maps.Marker({
+                                position: {lat:  comma_point(rnd_hw[i].death_lng), lng:  comma_point(rnd_hw[i].death_lat)},
+                                map: map,
+                                title: death_label,
+                                icon: "/static/fh/img/died.jpeg"
+                            });
+                            
+                            google.maps.event.addListener(mark_death, 'click', function () 
+                            {
+                                var lat = this.getPosition().lat();
+                                var lng = this.getPosition().lng();
+                                window.location.href = '/maps?lat=' + lat + '&lng=' + lng; 
+                            });
+                            
+                            //Only necessary for at least two points    
+                            bounds.extend(mark_death.getPosition());
+                            map.setCenter(bounds.getCenter());                
+                            map.fitBounds(bounds);
+                        }               
+                    }
+                   updateInfos();
+                });
+            });       
+        </script>
+        <div class="container">
+            {% include "fh/includes/navbar.html" %} 
+            <div class="row">
+                <div class="col-sm-7">
+                     <div id="images" class="carousel slide img-rounded" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for img in rnd_hw %}
+                                <div class="item imgs_car_size {{forloop.first|yesno:'active,,'}}">
+                                    <img src="/static/fh/img/upload/{{img.link}}" alt="{{img.title}}">
+                                    <div class="carousel-caption">
+                                        <a href="detail?id={{img.entry.id}}">{{img.title}}</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#images" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">{% trans 'previous' %}</span>
+                        </a>
+                        <a class="right carousel-control" href="#images" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">{% trans 'next' %}</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div id ="info">
+                        <h4>
+                            <img height="50"  class ="img-circle" id="entry_img" src="/static/fh/img/upload/{{img.link}}" alt="{{img.title}}">
+                            <span class="text-nowrap" id="entry_desc"></span>
+                        </h4>
+                    </div>
+                     <div id="map" class="img-rounded">
+                    </div>
+                </div>
+            
+            </div>  <!-- class="row" -->
+            <br/>
+            <div id="desc_text">
+                
+            </div>
+        </div>
+    </body>
+</html>

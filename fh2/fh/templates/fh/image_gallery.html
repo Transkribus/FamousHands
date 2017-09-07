@@ -1,0 +1,74 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% trans 'image_gallery' %}</title>
+        {% include "fh/includes/head.html" %}
+        <link rel="stylesheet" type="text/css" href="{% static 'fh/image_gallery.css' %}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
+    </head>
+    <body>
+        {% load static %}
+        <div class="container">
+         
+            {% include "fh/includes/navbar.html" %} 
+            <h1>
+                <img src={{e.image}} class ="img-circle" alt="Profil bild" style="width:50px">
+                {{e.description}}<a href="/detail?id={{e.pk}}"> [{% trans 'back' %}]</a>    
+            </h1>   
+            
+            {% for img in handwritings %}
+             <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
+                <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
+                    <img src="/static/fh/img/upload/{{img.link}}" class="img-responsive">
+                </a>
+                {% if request.session.user == 'admin' %} 
+                    <div class="material-switch  pull-right">
+                        <input id="{{img.id}}" class="boxes" name="{{e.wiki_link}}" type="checkbox" checked="checked"/>
+                        <label for="{{img.id}}" class="label-success"></label>
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+        </div>
+        <script>
+            $(document).ready(function()
+            {
+        
+                 // delegate calls to data-toggle="demolightbox"
+                $(document).delegate('*[data-toggle="demolightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+                    event.preventDefault();
+                    return $(this).ekkoLightbox({
+                    });
+                });
+                
+                $(".filter-button").click(function(){
+                    var value = $(this).attr('data-filter');
+                    
+                    if(value == "all")
+                    {
+                        //$('.filter').removeClass('hidden');
+                        $('.filter').show('1000');
+                    }
+                    else
+                    {
+            //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+            //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+                        $(".filter").not('.'+value).hide('3000');
+                        $('.filter').filter('.'+value).show('3000');
+                        
+                    }
+                });
+                
+                if ($(".filter-button").removeClass("active")) {
+            $(this).removeClass("active");
+            }
+            $(this).addClass("active");
+        
+        });
+        </script>
+    </body>
+</html>

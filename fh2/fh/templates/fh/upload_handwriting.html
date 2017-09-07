@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        {% load static %}
+        {% load i18n %}
+        <title>{% trans 'upload_handwriting' %}</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'fh/fh.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fh/upload.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fh/dropzone.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fh/basic.min.css' %}">
+        <script src="{% static 'fh/dropzone.min.js' %}"></script>
+        <script src="{% static 'fh/upload.js' %}"></script>
+        <!--         <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css"> -->
+        {% include "fh/includes/head.html" %}
+        <script>
+            //TODO replace with hidden div field
+            var img_templ = " <br/><br/><br/><br/><br/><br/> " +
+                            " <div class='col-sm-10'>" +
+                            " <img src='/static/fh/img/tmp/@link' width='120px' />" +
+                            " title: <input class='form-control' id='desc' type='text' name='title__@link' value=''/>" +
+                            " desc: <input class='form-control' id='desc' type='text' name='desc__@link' value=''/>" +
+                 //           " origin: <input class='form-control' id='origin' type='text' name='origin__@link' value=''/>" +
+                             " </div>";
+            var id = 1;
+            
+            $(document).ready(function()
+            {
+                var date_input=$('input[name="date"]'); //our date input has the name "date"
+                var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                date_input.datepicker({
+                    format: 'mm/dd/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                    orientation: "top left"  
+                })
+                
+                $("#search").click(function()
+                {
+                    $('#entries').empty();
+                    $("#search").html('{% trans 'progress...' %}');
+                    name_part = $("#name_part").val();
+                    $.get("search_name_service?name_part="+ name_part, function(data, status)
+                    {    
+
+                        $("#search").html('{% trans 'search' %}');
+                        for (k in data)
+                        {
+                            $('#entries').append($('<option>',
+                             {
+                                value: k,
+                                text : data[k]
+                            }));    
+                            
+                            $("#wikidata_id").val(k);
+                            $("#title").val(data[k]);                        
+                        }
+                    });
+                });
+                
+                
+                $("#entries").change(function()
+                {
+                    console.log('change');
+                    $("#wikidata_id").val($(this).val());
+                    $("#title").val($("#entries :selected").text());    
+                
+                     
+                });
+                
+            });
+            
+            
+                Dropzone.options.MyDropzone = 
+                {
+                    dictDefaultMessage: "{% trans 'put_your_files_here' %}",
+                    init: function()
+                    {
+                        /* Called once the file has been processed. It could have failed or succeded */
+                        this.on("complete", function(file){
+                            var img = file.xhr.responseText;
+                            img = img.replace(/"/g,"");
+                            img_form = img_templ.replace(/@link/g, img);
+                            $("#img_container").append(img_form);
+                            id++;
+                        });
+                        
+                        /* Called after the file is uploaded and sucessful */
+                        this.on("sucess", function(file){
+                            console.log("success");
+                            console.log(file);
+                        });
+                        
+                        /* Called before the file is being sent */
+                        this.on("sending", function(file){
+                            console.log("sending");
+                        });
+                        
+                        /* Called before the file is being sent */
+                        this.on("addedfile", function(file){
+                            console.log("addedfile");
+                        });
+                    }
+                };  
+        </script>        
+        <div class="container">
+            {% include "fh/includes/navbar.html" %} 
+            <h3>{% trans 'upload_images_here' %}</h3>
+            <form class="dropzone" action="/upload_handwriting_process_imgs" method="post" enctype="multipart/form-data" id="MyDropzone">
+            </form>
+            <br>
+            <form action="/upload_handwriting_process" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-inline">
+                    <label class="control-label col-sm-2" for="wikidata_id">{% trans 'wikidata_id' %}: </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="wikidata_id" type="text" name="wikidata_id" value="{{request.GET.wiki_id}}" title="{{request.GET.description}}">
+                        <input class="form-control" id="name_part" type="text" name="name_part" value="">
+                        <button type="button" id="search" class="btn">search</button>
+                        <select class="form-control" id="entries">
+                        </select>
+                    </div>
+                    <label class="control-label col-sm-2" for="title">{% trans 'title' %}: </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="title" type="text" name="title" value="{{request.GET.description}}">
+                    </div>
+                    <!-- <label class="control-label col-sm-2" for="description">{% trans 'description' %}: </label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="description" type="text" name="description" value="">
+                        </div> -->
+                    <div id="img_container">
+                        <!-- <br/><br/><br/><br/><br/><br/>
+                            <div class="col-sm-10">
+                               <img src="/static/fh/img/tmp/Brief-Albert-Schweitzer-hp_PiHY82v.jpg" width="120px" />
+                               <input class="form-control" id="desc" type="text" name="descname_part" value=""/>
+                               <input class="form-control" id="origin" type="text" name="origin" value=""/>
+                               <input class="form-control" id="user" type="text" name="user" value=""/>
+                            </div> -->
+                    </div>
+                    <!--
+                        <label class="control-label col-sm-2" for="date">{% trans 'date' %}: </label>
+                        <div class="col-sm-10">
+                           <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                        </div>
+                        
+                         
+                        <label class="control-label col-sm-2" for="image_link">{% trans 'image_link' %}: </label>
+                        <div class="col-sm-10">
+                           <input class="form-control" id="image_link" name="image_link" type="text"/>
+                        </div> -->
+                    <label class="control-label col-sm-2" for=""></label>
+                    <div class="col-sm-10">
+                        <input class="btn btn-default" type="submit" value="{% trans 'upload' %}">
+                    </div>
+                    <!-- <input name="file" type="file" multiple /> -->
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

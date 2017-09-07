@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+ 
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% trans 'create_entry' %}</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'fh/fh.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fh/upload.css' %}">
+
+    </head>
+    <body>
+        {% include "fh/includes/head.html" %}
+        <div class="container">
+            {% include "fh/includes/navbar.html" %} 
+            <button type="button" class="btn btn-success btn-lg">Success</button>
+            <button type="button" class="btn btn-success btn-lg">Success</button>
+            <button type="button" class="btn btn-success btn-lg">Success</button>
+            <button type="button" class="btn btn-success btn-lg">Success</button>
+            <button type="button" class="btn btn-success btn-lg">Success</button>
+            <button type="button" class="btn btn-success btn-lg">Success</button>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% trans 'admin' %} - Famous Hands</title>
+         {% include "fh/includes/head.html" %} 
+    </head>
+    <body>
+        <div class="container">
+            {% include "fh/includes/navbar.html" %} 
+            <h1>{% trans 'show_all_entries' %}</h1>
+            <ol>
+                {% for e in entries %}
+                    <li>{{e.wiki_link}} {{e.description}} {{e.place_of_birth.label}}
+                    <div class="material-switch">
+                        <input id="{{e.wiki_link}}" class="boxes" name="{{e.wiki_link}}" type="checkbox" checked="checked"/>
+                        <label for="{{e.wiki_link}}" class="label-success"></label>
+                    </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </body>
+</html>

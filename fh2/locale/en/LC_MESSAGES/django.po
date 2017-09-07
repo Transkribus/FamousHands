@@ -1,0 +1,407 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-06 18:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: fh/settings.py:114
+msgid "English"
+msgstr "English"
+
+#: fh/settings.py:115
+msgid "German"
+msgstr "German"
+
+#: fh/templates/fh/admin.html:7 fh/templates/fh/includes/navbar.html:18
+msgid "admin"
+msgstr "admin"
+
+#: fh/templates/fh/admin.html:13 fh/templates/fh/search.html:13
+msgid "show_all_entries"
+msgstr "show all entries"
+
+#: fh/templates/fh/detail.html:7
+#, fuzzy
+#| msgid "search"
+msgid "detail_view"
+msgstr "Search"
+
+#: fh/templates/fh/detail.html:23 fh/templates/fh/longsearch.html:24
+#: fh/templates/fh/maps.html:168
+msgid "entity_image"
+msgstr "Entity image"
+
+#: fh/templates/fh/detail.html:25 fh/templates/fh/longsearch.html:28
+msgid "Personal Details"
+msgstr "Personal Details"
+
+#: fh/templates/fh/detail.html:26
+msgid "  Lived from the "
+msgstr "  Lived from the "
+
+#: fh/templates/fh/detail.html:28 fh/templates/fh/longsearch.html:29
+msgid " to the"
+msgstr " to the"
+
+#: fh/templates/fh/detail.html:31 fh/templates/fh/longsearch.html:30
+msgid "Reached the age of"
+msgstr "Reached the age of"
+
+#: fh/templates/fh/detail.html:32
+msgid "Born in"
+msgstr "Born in"
+
+#: fh/templates/fh/detail.html:34
+msgid "Died in"
+msgstr "Died in"
+
+#: fh/templates/fh/detail.html:36
+msgid "  Native language: "
+msgstr "  Native language: "
+
+#: fh/templates/fh/detail.html:39
+msgid "country_citizenship"
+msgstr "Citizenship"
+
+#: fh/templates/fh/detail.html:41 fh/templates/fh/longsearch.html:34
+msgid "Link to the WikiData Site of"
+msgstr "Link to the WikiData Site of"
+
+#: fh/templates/fh/detail.html:45
+msgid "goto_image_gallery"
+msgstr "Go to image gallery"
+
+#: fh/templates/fh/detail.html:49 fh/templates/fh/includes/navbar.html:14
+#: fh/templates/fh/upload_handwriting.html:7
+msgid "upload_handwriting"
+msgstr "Upload Handwriting"
+
+#: fh/templates/fh/detail.html:71 fh/templates/fh/index.html:163
+msgid "previous"
+msgstr "Previous"
+
+#: fh/templates/fh/detail.html:75 fh/templates/fh/index.html:167
+msgid "next"
+msgstr "Next"
+
+#: fh/templates/fh/detail.html:98
+msgid "born"
+msgstr "Born"
+
+#: fh/templates/fh/detail.html:121 fh/templates/fh/index.html:119
+msgid "death"
+msgstr "Death"
+
+#: fh/templates/fh/detail.html:169
+msgid "Summary"
+msgstr "Summary"
+
+#: fh/templates/fh/detail.html:172
+msgid "  ....More"
+msgstr "  ....More"
+
+#: fh/templates/fh/image_gallery.html:6
+#, fuzzy
+#| msgid "image_link"
+msgid "image_gallery"
+msgstr "image link"
+
+#: fh/templates/fh/image_gallery.html:19
+msgid "back"
+msgstr "back"
+
+#: fh/templates/fh/includes/navbar.html:10
+msgid "famous_hands"
+msgstr "Famous Hands"
+
+#: fh/templates/fh/includes/navbar.html:21 fh/templates/fh/maps.html:6
+msgid "maps"
+msgstr "Maps"
+
+#: fh/templates/fh/includes/navbar.html:22 fh/templates/fh/timeline.html:10
+#: fh/templates/fh/timeline.html:19 fh/templates/fh/timeline_cent.html:10
+#: fh/templates/fh/timeline_cent.html:19 fh/templates/fh/timeline_dec.html:10
+#: fh/templates/fh/timeline_dec.html:19 fh/templates/fh/timeline_k.html:10
+#: fh/templates/fh/timeline_k.html:19
+msgid "timeline"
+msgstr "Timeline"
+
+#: fh/templates/fh/includes/navbar.html:37
+msgid "Search(date:DD/MM/JJJJ)"
+msgstr "Search(date:DD/MM/JJJJ)"
+
+#: fh/templates/fh/includes/navbar.html:38 fh/templates/fh/search.html:7
+#: fh/templates/fh/upload_handwriting.html:49
+msgid "search"
+msgstr "Search"
+
+#: fh/templates/fh/includes/navbar.html:53 fh/templates/fh/modals/login.html:12
+msgid "login"
+msgstr "Login"
+
+#: fh/templates/fh/index.html:7
+msgid "startpage"
+msgstr "Home"
+
+#: fh/templates/fh/index.html:98
+msgid "birth"
+msgstr "Birth"
+
+#: fh/templates/fh/index.html:185
+#, fuzzy
+#| msgid "description"
+msgid "description_text"
+msgstr "Description"
+
+#: fh/templates/fh/long_view.html:7
+msgid "create_entry"
+msgstr "create new entry"
+
+#: fh/templates/fh/longsearch.html:7
+#, fuzzy
+#| msgid "search"
+msgid "longsearch"
+msgstr "Search"
+
+#: fh/templates/fh/longsearch.html:20
+msgid "Results"
+msgstr "Results"
+
+#: fh/templates/fh/longsearch.html:29
+msgid "Lived from the"
+msgstr "Lived from the"
+
+#: fh/templates/fh/longsearch.html:31
+msgid "Born in:"
+msgstr "Born in:"
+
+#: fh/templates/fh/longsearch.html:32
+msgid "Died in:"
+msgstr "Died in:"
+
+#: fh/templates/fh/longsearch.html:33
+#, fuzzy
+#| msgid "language"
+msgid "Native language:"
+msgstr "Language"
+
+#: fh/templates/fh/longsearch.html:35
+msgid "Link to the Wikipedia Site of"
+msgstr "Link to the Wikipedia Site of"
+
+#: fh/templates/fh/longsearch.html:40
+#, fuzzy
+#| msgid "search"
+msgid "detail_site"
+msgstr "Search"
+
+#: fh/templates/fh/maps.html:79
+msgid "center"
+msgstr "Starting point"
+
+#: fh/templates/fh/maps.html:155
+msgid "People found"
+msgstr "People found"
+
+#: fh/templates/fh/maps.html:169
+msgid "born_in"
+msgstr "Born in"
+
+#: fh/templates/fh/maps.html:169
+msgid "died_in"
+msgstr "Died in"
+
+#: fh/templates/fh/maps.html:169
+msgid "km_away"
+msgstr "km away"
+
+#: fh/templates/fh/modals/filter_for_timeline.html:8
+#: fh/templates/fh/timeline_dec.html:48
+msgid "filter"
+msgstr "Filter"
+
+#: fh/templates/fh/modals/filter_for_timeline.html:13
+#, fuzzy
+#| msgid "last_name"
+msgid "name"
+msgstr "Last Name"
+
+#: fh/templates/fh/modals/filter_for_timeline.html:14
+msgid "language"
+msgstr "Language"
+
+#: fh/templates/fh/modals/filter_for_timeline.html:15
+msgid "location"
+msgstr "Location"
+
+#: fh/templates/fh/modals/filter_for_timeline.html:18
+msgid "apply"
+msgstr "Apply"
+
+#: fh/templates/fh/modals/filter_for_timeline.html:19
+msgid "apply_filters"
+msgstr "Apply Filters"
+
+#: fh/templates/fh/modals/login.html:6
+msgid "login_to_account"
+msgstr "Login"
+
+#: fh/templates/fh/modals/login.html:10 fh/templates/fh/modals/register.html:12
+msgid "email"
+msgstr "e-mail"
+
+#: fh/templates/fh/modals/login.html:15 fh/templates/fh/modals/register.html:6
+#: fh/templates/fh/modals/register.html:16
+msgid "register"
+msgstr "Register"
+
+#: fh/templates/fh/modals/login.html:15
+#, fuzzy
+#| msgid "password"
+msgid "forgot_password"
+msgstr "forgot password?"
+
+#: fh/templates/fh/modals/register.html:10
+msgid "first_name"
+msgstr "First Name"
+
+#: fh/templates/fh/modals/register.html:11
+msgid "last_name"
+msgstr "Last Name"
+
+#: fh/templates/fh/modals/register.html:13
+msgid "password"
+msgstr "password"
+
+#: fh/templates/fh/modals/register.html:14
+#, fuzzy
+#| msgid "password"
+msgid "retype_password"
+msgstr "retype password"
+
+#: fh/templates/fh/search.html:16
+msgid "WIKI-ID"
+msgstr "WIKI-ID"
+
+#: fh/templates/fh/search.html:17
+msgid "Name"
+msgstr "Name"
+
+#: fh/templates/fh/search.html:18 fh/templates/fh/timeline.html:70
+#: fh/templates/fh/timeline_cent.html:67 fh/templates/fh/timeline_dec.html:64
+#: fh/templates/fh/timeline_k.html:66
+#, fuzzy
+#| msgid "date_of_birth"
+msgid "place_of_birth"
+msgstr "Birthday"
+
+#: fh/templates/fh/search.html:19
+#, fuzzy
+#| msgid "date_of_birth"
+msgid "date_of_birth"
+msgstr "Birthday"
+
+#: fh/templates/fh/search.html:20 fh/templates/fh/timeline.html:71
+#: fh/templates/fh/timeline_dec.html:66
+#, fuzzy
+#| msgid "date_of_birth"
+msgid "place_of_death"
+msgstr "Birthday"
+
+#: fh/templates/fh/search.html:21
+msgid "date_of_death"
+msgstr "Date of death"
+
+#: fh/templates/fh/timeline.html:33
+msgid "timespan: year"
+msgstr "Timespan: Year"
+
+#: fh/templates/fh/timeline_cent.html:33
+msgid "timespan: century"
+msgstr "Timespan: Century"
+
+#: fh/templates/fh/timeline_cent.html:54
+msgid "abbrevationCentury"
+msgstr "cent"
+
+#: fh/templates/fh/timeline_dec.html:33
+msgid "timespan: decate"
+msgstr "Timespan: Decade"
+
+#: fh/templates/fh/timeline_k.html:33
+msgid "timespan: millenium"
+msgstr "Timespan: Millenium"
+
+#: fh/templates/fh/upload_handwriting.html:44
+msgid "progress..."
+msgstr "progress..."
+
+#: fh/templates/fh/upload_handwriting.html:79
+msgid "put_your_files_here"
+msgstr "Put your files here"
+
+#: fh/templates/fh/upload_handwriting.html:111
+msgid "upload_images_here"
+msgstr "Upload your images here"
+
+#: fh/templates/fh/upload_handwriting.html:118
+msgid "wikidata_id"
+msgstr "wikidata ID"
+
+#: fh/templates/fh/upload_handwriting.html:126
+msgid "title"
+msgstr "Title"
+
+#: fh/templates/fh/upload_handwriting.html:130
+msgid "description"
+msgstr "description"
+
+#: fh/templates/fh/upload_handwriting.html:144
+msgid "date"
+msgstr "Date"
+
+#: fh/templates/fh/upload_handwriting.html:150
+msgid "image_link"
+msgstr "image link"
+
+#: fh/templates/fh/upload_handwriting.html:156
+msgid "upload"
+msgstr "Upload"
+
+#~ msgid "show_all_users"
+#~ msgstr "show all users"
+
+#~ msgid "save"
+#~ msgstr "save"
+
+#~ msgid "home"
+#~ msgstr "Home"
+
+#, fuzzy
+#~| msgid "image_link"
+#~ msgid "images"
+#~ msgstr "image link"
+
+#, fuzzy
+#~| msgid "search"
+#~ msgid "Search"
+#~ msgstr "Search"
+
+#~ msgid "search_string"
+#~ msgstr "Search String"
+
+#~ msgid "Hello"
+#~ msgstr "Hallodiro"
