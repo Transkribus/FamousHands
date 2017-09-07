@@ -6,38 +6,80 @@
     <head>       
         <title>{% trans 'search' %}</title>
         {% include "fh/includes/head.html" %} 
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     </head>
     <body>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+        <script src="https://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"></script>
+        <script>
+            $(document).ready(function() 
+            {
+                $.fn.dataTable.moment('DD.MM.YYYY');
+                $('#res_tab').DataTable(
+                    {
+                        "language": 
+                        {
+                            "lengthMenu": "{% trans 'Display _MENU_ records per page' %}",
+                            "zeroRecords": "{% trans 'Nothing found - sorry' %}",
+                            "info": "{% trans 'Showing page _PAGE_ of _PAGES_' %}",
+                            "infoEmpty": "{% trans 'No records available' %}",
+                            "infoFiltered": "{% trans '(filtered from _MAX_ total records)' %}",
+                            "search": "{% trans 'search' %}",
+                            "paginate": {
+                                "first":      "{% trans 'first' %}",
+                                "last":       "{% trans 'last' %}",
+                                "next":       "{% trans 'next' %}",
+                                "previous":   "{% trans 'previous' %}"
+                            }
+                        }
+                    }
+                );
+            } );
+        </script>
+        
         <div class="container">
             {% include "fh/includes/navbar.html" %}  
-            <h1>{% trans 'show_all_entries' %}</h1>
-                <table style="width:100%">
-                     <tr>
-                         <th>{% trans 'WIKI-ID' %}</th> 
-                         <th>{% trans 'Name' %}</th>
-                         <th>{% trans 'place_of_birth' %}</th>
-                         <th>{% trans 'date_of_birth' %}</th>
-                        <th>{% trans 'place_of_death' %}</th>
-                         <th>{% trans 'date_of_death' %}</th>
-                     </tr>
-                    {% for e in entries %}
+            <h3>{% trans 'show_all_entries' %}</h3>
+                <table id="res_tab" class="display" style="width:100%">
+                    <thead>
                          <tr>
-                            <td> {{e.wiki_link}}</td>
-                            <td><a href="/detail?id={{e.id}}">{{e.description}}</a></td>
-                            <td><a target="_blank" href ="/maps?lat={{e.place_of_birth.lng}}&amp;lng={{e.place_of_birth.lat}}">{{e.place_of_birth.label}}</a></td>
-                            <td>{{e.day_of_birth|stringformat:"02d"}}.{{e.month_of_birth|stringformat:"02d"}}.{{e.year_of_birth|stringformat:"02d"}}</td>
-                            <td>
-                                {% if e.place_of_death.label %}
-                                    <a target="_blank" href ="/maps?lat={{e.place_of_death.lng}}&amp;lng={{e.place_of_death.lat}}">{{e.place_of_death.label}}</a>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if e.day_of_death %}
-                                    {{e.day_of_death|stringformat:"02d"}}.{{e.month_of_death|stringformat:"02d"}}.{{e.year_of_death}}
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
+                             <th>{% trans 'Name' %}</th>
+                             <th>{% trans 'place_of_birth' %}</th>
+                             <th>{% trans 'place_of_death' %}</th>
+                             <th>{% trans 'date_of_birth' %}</th>
+                             <th>{% trans 'date_of_death' %}</th>
+                         </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{% trans 'Name' %}</th>
+                            <th>{% trans 'place_of_birth' %}</th>
+                            <th>{% trans 'place_of_death' %}</th>
+                            <th>{% trans 'date_of_birth' %}</th>
+                            <th>{% trans 'date_of_death' %}</th>
+                         </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for e in entries %}
+                             <tr>
+                                <td><a href="/detail?id={{e.id}}">{{e.description}}</a> <small>({{e.wiki_link}})</small></td>
+                                <td><a target="_blank" href ="/maps?lat={{e.place_of_birth.lng}}&amp;lng={{e.place_of_birth.lat}}">{{e.place_of_birth.label}}</a></td>
+                                <td>
+                                    {% if e.place_of_death.label %}
+                                        <a target="_blank" href ="/maps?lat={{e.place_of_death.lng}}&amp;lng={{e.place_of_death.lat}}">{{e.place_of_death.label}}</a>
+                                    {% endif %}
+                                </td>
+                                <td> <a target="_blank" href ="/timeline?year={{e.year_of_birth}}">{{e.day_of_birth|stringformat:"02d"}}.{{e.month_of_birth|stringformat:"02d"}}.{{e.year_of_birth|stringformat:"02d"}}</a></td>
+                                <td>
+                                    {% if e.day_of_death %}
+                                        <a target="_blank" href ="/timeline?year={{e.year_of_death}}">{{e.day_of_death|stringformat:"02d"}}.{{e.month_of_death|stringformat:"02d"}}.{{e.year_of_death}}</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>            
         </div>
     </body>
