@@ -23,9 +23,9 @@
                  <img src={{e.image}} class ="img-rounded" alt="{% trans 'entity_image' %}" style="width:100%;"> 
                  
                    <h3>{% trans 'Personal Details' %}</h3>
-                        {% trans '  Lived from the ' %}{{e.day_of_birth}}.{{e.month_of_birth}}.{{e.year_of_birth}}
+                        {% trans '  Lived from the ' %} <a target="_blank" href ="/timeline?#{{e.year_of_birth}}">{{e.day_of_birth}}.{{e.month_of_birth}}.{{e.year_of_birth}} </a>
                         {% if e.day_of_death %}
-                            {% trans ' to the' %} {{e.day_of_death}}.{{e.month_of_death}}.{{e.year_of_death}} 
+                            {% trans ' to the' %} <a target="_blank" href ="/timeline?#{{e.year_of_birth}}"> {{e.day_of_death}}.{{e.month_of_death}}.{{e.year_of_death}} </a>
                         {% endif %}
                         <br>
                         {% trans 'Reached the age of' %}: {{e.lifespan}}<br/>
@@ -46,10 +46,7 @@
                         {% endif %}
                         
                         
-                        <a href="/upload_handwriting?wiki_id={{e.wiki_link}}&description={{e.description}}">{% trans 'upload_handwriting' %}</a> <br/>
-
-                 
-                     
+                        <a href="/upload_handwriting?wiki_id={{e.wiki_link}}&description={{e.description}}">{% trans 'upload_handwriting' %}</a> <br/>       
             </div>
             <div class="col-sm-8 nopadding-left">
             
