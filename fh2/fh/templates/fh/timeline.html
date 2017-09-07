@@ -49,56 +49,58 @@
                     </div>
                 </div>
                 {% for e in entries %}  <!-- Hier werden die Entries nach einander eingetragen -->
-                    <div class="row timeline-movement">
-                        <div class="timeline-badge">
-                            <span class="timeline-balloon-date-year">{{e.0.year_of_birth}}</span>
-                        </div>
-                        <div class="col-sm-6  timeline-item">
-                            <div class="row">
-                                <div class="col-sm-11">
-                                    <div class="timeline-panel ">
-                                        <ul class="timeline-panel-ul">
-                                            <!-- <ul class="list-group"> -->
-                                                {%for ent in e %}
-                                                    <ul class="list-group">
-                                                    <!-- <li class="list-group-item"> -->
-                                                        <li class="list-group-item no-down-border name">                                                                
-                                                         <img id="img" class="img-rounded" src="{{ent.image}}" alt="Lights" height="80" />
-                                                            <span class="importo"><a target="_plain" href="detail?id={{ent.id}}">{{ent.description}}, {{ent.lifespan}}</a></span>
-                                                            
-                                                        </li>
-                                                        <li class="list-group-item place"><span class="causale">{% trans 'place_of_birth' %} : {{ent.place_of_birth.label}} </span> </li>
-                                                        <li class="list-group-item no-updown-border place"><span class="causale">{% trans 'place_of_death' %} : {{ent.place_of_death.label}} </span> </li>
-                                                        <li  class="list-group-item {{ ent.day_of_death|yesno:"no-updown-border,no-up-border" }} birth">
-                                                            <small class="text-muted"><i class="glyphicon glyphicon-asterisk"></i> {{ent.day_of_birth}}.{{ent.month_of_birth}}.{{ent.year_of_birth}}</small>
-                                                        </li>
-                                                        {% if ent.day_of_death %}
-                                                            <li class="list-group-item no-up-border death">
-                                                                <p><small class="text-muted"><i class="glyphicon glyphicon-plus"></i> {{ent.day_of_death}}.{{ent.month_of_death}}.{{ent.year_of_death}}</small></P>
+                    <a id="{{e.0.year_of_birth}}">
+                        <div class="row timeline-movement">
+                            <div class="timeline-badge">
+                                <span class="timeline-balloon-date-year">{{e.0.year_of_birth}}</span>
+                            </div>
+                            <div class="col-sm-6  timeline-item">
+                                <div class="row">
+                                    <div class="col-sm-11">
+                                        <div class="timeline-panel ">
+                                            <ul class="timeline-panel-ul">
+                                                <!-- <ul class="list-group"> -->
+                                                    {%for ent in e %}
+                                                        <ul class="list-group">
+                                                        <!-- <li class="list-group-item"> -->
+                                                            <li class="list-group-item no-down-border name">                                                                
+                                                             <img id="img" class="img-rounded" src="{{ent.image}}" alt="Lights" height="80" />
+                                                                <span class="importo"><a target="_plain" href="detail?id={{ent.id}}">{{ent.description}}, {{ent.lifespan}}</a></span>
+                                                                
                                                             </li>
-                                                        {% endif%}
-                                                    <!-- </li> -->
-                                                    </ul>
-                                                {% endfor %}
-                                            <!-- </ul> -->
-                                        </ul>
+                                                            <li class="list-group-item place"><span class="causale">{% trans 'place_of_birth' %} : {{ent.place_of_birth.label}} </span> </li>
+                                                            <li class="list-group-item no-updown-border place"><span class="causale">{% trans 'place_of_death' %} : {{ent.place_of_death.label}} </span> </li>
+                                                            <li  class="list-group-item {{ ent.day_of_death|yesno:"no-updown-border,no-up-border" }} birth">
+                                                                <small class="text-muted"><i class="glyphicon glyphicon-asterisk"></i> {{ent.day_of_birth}}.{{ent.month_of_birth}}.{{ent.year_of_birth}}</small>
+                                                            </li>
+                                                            {% if ent.day_of_death %}
+                                                                <li class="list-group-item no-up-border death">
+                                                                    <p><small class="text-muted"><i class="glyphicon glyphicon-plus"></i> {{ent.day_of_death}}.{{ent.month_of_death}}.{{ent.year_of_death}}</small></P>
+                                                                </li>
+                                                            {% endif%}
+                                                        <!-- </li> -->
+                                                        </ul>
+                                                    {% endfor %}
+                                                <!-- </ul> -->
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-1">
-                            <!-- Ich möchte das Bild gerne weiter Rechts haben-->
-                        </div>
-                        <div class="col-sm-5">
-                            {%for ent in e%}
-                                       {%for img in hws|get_value_from_dict:ent.pk %}
-                                          <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
-                                            <img src="/static/fh/img/upload/{{img.link}}" class="img-responsive">
-                                          </a>
-                                       {% endfor %}            
-                            {% endfor %}
-                        </div>
-                    </div>   
+                            <div class="col-sm-1">
+                                <!-- Ich möchte das Bild gerne weiter Rechts haben-->
+                            </div>
+                            <div class="col-sm-5">
+                                {%for ent in e%}
+                                           {%for img in hws|get_value_from_dict:ent.pk %}
+                                              <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
+                                                <img src="/static/fh/img/upload/{{img.link}}" class="img-responsive">
+                                              </a>
+                                           {% endfor %}            
+                                {% endfor %}
+                            </div>
+                        </div>   
+                    </a>
                 {% endfor %}       
             </div>
         </div>

@@ -71,10 +71,10 @@
                                         <a target="_blank" href ="/maps?lat={{e.place_of_death.lng}}&amp;lng={{e.place_of_death.lat}}">{{e.place_of_death.label}}</a>
                                     {% endif %}
                                 </td>
-                                <td> <a target="_blank" href ="/timeline?year={{e.year_of_birth}}">{{e.day_of_birth|stringformat:"02d"}}.{{e.month_of_birth|stringformat:"02d"}}.{{e.year_of_birth|stringformat:"02d"}}</a></td>
+                                <td> <a target="_blank" href ="/timeline#{{e.year_of_birth}}">{{e.day_of_birth|stringformat:"02d"}}.{{e.month_of_birth|stringformat:"02d"}}.{{e.year_of_birth|stringformat:"02d"}}</a></td>
                                 <td>
                                     {% if e.day_of_death %}
-                                        <a target="_blank" href ="/timeline?year={{e.year_of_death}}">{{e.day_of_death|stringformat:"02d"}}.{{e.month_of_death|stringformat:"02d"}}.{{e.year_of_death}}</a>
+                                        <a target="_blank" href ="/timeline?#{{e.year_of_birth}}">{{e.day_of_death|stringformat:"02d"}}.{{e.month_of_death|stringformat:"02d"}}.{{e.year_of_death}}</a>
                                     {% endif %}
                                 </td>
                             </tr>
