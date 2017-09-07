@@ -1,7 +1,7 @@
 # FamousHands
 
 
-##Needed libraries
+## Needed libraries
 * pip install cx-Oracle
 * pip install djangorestframework
 * pip install httplib2
