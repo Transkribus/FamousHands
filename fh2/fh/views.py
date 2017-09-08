@@ -342,15 +342,18 @@ def detail(request):
     s = request.GET.get('id', '')
     e = m.ENTRY.objects.get(pk=s)
     wikipedia.set_lang(translation.get_language())
+    
     try:
         desc = wikipedia.summary(e.description, sentences=5).split("==")[0]
+
     except:
         desc = ""
         
     context = {
         'e' :  e,
         'description' : desc,
-        'handwritings' : m.HANDWRITTENIMAGE.objects.filter(entry=e) #TODO: better way
+        'handwritings' : m.HANDWRITTENIMAGE.objects.filter(entry=e), #TODO: better way
+        'wiki_name' : wikipedia.search(e.description,1)[0]
         }
     
     return HttpResponse(template.render(context, request))
