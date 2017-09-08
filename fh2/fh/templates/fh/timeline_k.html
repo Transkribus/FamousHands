@@ -49,36 +49,53 @@
                     </div>
                 </div>
                 {% for e in entries %}  <!-- Hier werden die Entries nach einander eingetragen -->
-                    <div class="row timeline-movement">
-                        <div class="timeline-badge">
-                            <span class="timeline-balloon-date-year">{{e.0.year_of_birth | millennium}}.</span>
-                        </div>
-                        <div class="col-sm-6  timeline-item">
-                            <div class="row">
-                                <div class="col-sm-11">
-                                    <div class="timeline-panel credits">
-                                        <ul class="timeline-panel-ul">
-                                            {%for ent in e %}
-                                                <ul class="list-group">
-                                                <!-- <li class="list-group-item"> -->
-                                                    <li class="list-group-item no-down-border accordion"><span class="importo"> <a target="_plain" href="detail?id={{ent.id}}">{{ent.description}}, {{ent.lifespan}}</a> </span></li>
-                                                    <div class="panel" style="max-height: 0; overflow: hidden;">
-                                                        <li id="place" class="list-group-item no-updwon-border"><span class="causale">{% trans 'place_of_birth' %} : {{ent.place_of_birth.label}} </span> </li>
-                                                        <li id="birth" class="list-group-item no-updown-border">
-                                                            <small class="text-muted"><i class="glyphicon glyphicon-asterisk"></i> {{ent.day_of_birth}}.{{ent.month_of_birth}}.{{ent.year_of_birth}}</small>
+                    <a id="{{e.0.year_of_birth | millennium}}">
+                        <div class="row timeline-movement">
+                            <div class="timeline-badge">
+                                <span class="timeline-balloon-date-year">{{e.0.year_of_birth | millennium}}.</span>
+                            </div>
+                            <div class="col-sm-6  timeline-item">
+                                <div class="row">
+                                    <div class="col-sm-11">
+                                        <div class="timeline-panel credits">
+                                            <ul class="timeline-panel-ul">
+                                                {%for ent in e %}
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item no-down-border accordion">
+                                                            <a class="importo" target="_plain" href="detail?id={{ent.id}}">
+                                                                {{ent.description}}, {{ent.lifespan}}
+                                                            </a> 
                                                         </li>
-                                                        <li id="death" class="list-group-item no-up-border">
-                                                            <small class="text-muted"><i class="glyphicon glyphicon-plus"></i> {{ent.day_of_death}}.{{ent.month_of_death}}.{{ent.year_of_death}}</small>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                            {% endfor %}
-                                        </ul>
+                                                        <div class="panel" style="max-height: 0; overflow: hidden;">
+                                                            <li class="list-group-item no-updown-border place">
+                                                                <span class="causale">
+                                                                    {% trans 'place_of_birth' %} : <a target="_blank" href ="/maps?lat={{ent.place_of_birth.lng}}&amp;lng={{ent.place_of_birth.lat}}">{{ent.place_of_birth.label}}</a> 
+                                                                </span> 
+                                                            </li>
+                                                            
+                                                            
+                                                            <li class="list-group-item no-updown-border place">
+                                                                <span class="causale">
+                                                                    {% trans 'place_of_death' %} : <a target="_blank" href ="/maps?lat={{ent.place_of_death.lng}}&amp;lng={{ent.place_of_death.lat}}">{{ent.place_of_death.label}}</a> 
+                                                                </span> 
+                                                            </li>
+                                                            
+                                                            <li id="birth" class="list-group-item no-updown-border">
+                                                                <small class="text-muted"><i class="glyphicon glyphicon-asterisk"></i><a target="_blank" href ="/timeline?#{{ent.year_of_birth}}">{{ent.day_of_birth}}.{{ent.month_of_birth}}.{{ent.year_of_birth}}</a></small>
+                                                            </li>
+                                                            <li id="death" class="list-group-item no-up-border">
+                                                                <small class="text-muted"><i class="glyphicon glyphicon-plus"></i><a target="_blank" href ="/timeline?#{{ent.year_of_birth}}"> {{ent.day_of_death}}.{{ent.month_of_death}}.{{ent.year_of_death}}</a></small>
+                                                            </li>
+                                                        </div>
+                                                    </ul>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>   
+                    </a>   
                 {% endfor %}  
             </div>
         </div>
