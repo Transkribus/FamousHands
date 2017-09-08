@@ -55,7 +55,9 @@ def index(request):
 #    recent_posts = m.Post.objects.filter(created_at__gt=two_days_ago).all()
     
     context = {
-        'rnd_hw': m.HANDWRITTENIMAGE.objects.order_by('?')[:10]
+        'rnd_hw': (m.HANDWRITTENIMAGE.objects.order_by('?')[:10]),
+        'cnt_entity' : m.ENTRY.objects.all(),
+        'cnt_hw' : m.HANDWRITTENIMAGE.objects.all()
     }
 
     return HttpResponse(template.render(context, request))
