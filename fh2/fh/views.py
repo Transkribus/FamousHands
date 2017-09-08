@@ -15,7 +15,6 @@ import math
 import wikipedia
 import uuid
 import os
-#from shutil import copyfile
 
 
 from . import models as m
@@ -461,21 +460,20 @@ def upload_handwriting_process(request):
         
     print("REQ:" + str(request))
     for fname in qids:
-        
-        
-        os.makedirs('fh/static/fh/img/upload/' + qid, exist_ok=True)
-        #Move files from the tmp to the upload store, remove file afterwards
         src= 'fh/static/fh/img/tmp/' + fname
         dst = 'fh/static/fh/img/upload/' + qid + "/" + fname
-        os.rename(src, dst)
         
-        title = request.POST.get("title__" + fname)
-        desc =  request.POST.get("desc__" + fname)
-        origin =  "me"  #TODO: the logged in user
-        
-        hwi = m.HANDWRITTENIMAGE.objects.create(entry=entry, title=title, description=desc, link= qid + "/" + fname, origin=origin)
+        if os.path.isfile(src): 
+            os.makedirs('fh/static/fh/img/upload/' + qid, exist_ok=True)
+            #Move files from the tmp to the upload store, remove file afterwards
+            os.rename(src, dst)
+            title = request.POST.get("title__" + fname)
+            desc =  request.POST.get("desc__" + fname) #link to the origin
+            origin =  request.session['user'] #the logged in user
+            
+            hwi = m.HANDWRITTENIMAGE.objects.create(entry=entry, title=title, description=desc, link= qid + "/" + fname, origin=origin)
     
-    request.session["up_file_names"] = [];
+    request.session["fnames"] = [];
     request.session.modified = True
     return HttpResponseRedirect("upload_handwriting")
 
