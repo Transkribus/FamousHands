@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load app_filters %}
 {% include "fh/modals/filter_for_timeline.html" %}
- 
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,10 +38,11 @@
                 
                 change: function( event, ui ) 
                 {
+                    console.log(years);
                     years.some(function (el)
                     {   if (el >= ui.value)
                         {
-                            //console.log(el);
+                            console.log(el);
                             window.location.href = '#' + el; 
                             return el;
                         }
@@ -77,22 +78,7 @@
         <div class="container">
             {% include "fh/includes/navbar.html" %} 
             <div id="page-header" class="page-header">
-                <nav class="navbar navbar-default"  id="myScrollspy">
-                  <div class="container-fluid">
-                    <div class="navbar-header">
-                      <a class="navbar-brand" href="#"> {% trans 'timeline' %}</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                      <li class="active"><a href="/timeline">{% trans 'year' %}</a></li>
-                      <li><a href="/timeline_dec">{% trans 'decade' %}</a></li>
-                      <li><a href="/timeline_cent">{% trans 'century' %}</a></li>
-                      <li><a href="/timeline_k">{% trans 'millenium' %}</a></li>
-                      <li>
-                        <button type="button" class="btn filter_btn" data-toggle="modal" data-target="#filter_time">Filter</button>
-                      </li>
-                    </ul>
-                   </div>  
-                </nav>           
+                {% include "fh/includes/timeline_head.html" %} 
             
                 <div id="slider"></div>
              </div>
@@ -102,7 +88,17 @@
                     <div class="year_anchor" id="{{e.0.year_of_birth}}"></div>
                         <div class="row timeline-movement">
                             <div class="timeline-badge">
-                                <span class="timeline-balloon-date-year">{{e.0.year_of_birth}}</span>
+                                <span class="timeline-balloon-date-year">
+                                    {% if  agg == 1%}
+                                        {{e.0.year_of_birth}}
+                                    {% elif  agg == 10%}
+                                        {{e.0.year_of_birth | decade}}0
+                                    {% elif  agg == 100%}  
+                                        {{e.0.year_of_birth | century}}{% trans 'abbrevationCentury' %}
+                                    {% elif  agg == 1000%}      
+                                        {{e.0.year_of_birth | millennium}}.
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="col-sm-6  timeline-item">
                                 <div class="row">

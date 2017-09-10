@@ -125,8 +125,9 @@ def timeline(request):
     n = request.POST.get('filterName', '')
     la = request.POST.get('filterLang', '')
     lo = request.POST.get('filterLoc', '')
+    agg = int(request.GET.get('agg','1')) 
     template = loader.get_template('fh/timeline.html')    
-    #entries = []
+    entries = []
     entries = m.ENTRY.objects.all().order_by('year_of_birth').filter(Q(description__icontains=n)&Q(country_citizenship__icontains=lo))
     
     a = entries[:]
@@ -139,8 +140,15 @@ def timeline(request):
         same_entries.clear()
         count = 0
         i = 0
+        
         for be in b:
-            if a[0].year_of_birth == be.year_of_birth:
+            try:
+                ia = math.ceil(float(a[0].year_of_birth)/agg)
+                ib = math.ceil(float(be.year_of_birth)/agg)
+            except:
+                ia = None
+                ib = None
+            if ia == ib:
                 same_entries.append(be)
                 count += 1
             else:
@@ -150,170 +158,25 @@ def timeline(request):
             b = b[1:]
             a = a[1:]
             i+=1
-    
-    
+    for de in different_entries:
+        i = 0
+        while i < len(de):
+            i += 1
+
     #get handwritings for all entries
     hws = {}
     for e in entries:
         hw = m.HANDWRITTENIMAGE.objects.filter(entry=e)
         hws[e.pk] = hw
-    
-    context = {
-        'entries': different_entries,
-        'hws' : hws,
-        'from' : 'timeline'
-    }
-
-    return HttpResponse(template.render(context, request))
-
-def timeline_k(request):
-    n = request.POST.get('filterName', '')
-    la = request.POST.get('filterLang', '')
-    lo = request.POST.get('filterLoc', '')
-    template = loader.get_template('fh/timeline_k.html')    
-    entries = []
-    entries = m.ENTRY.objects.all().order_by('year_of_birth').filter(Q(description__icontains=n)&Q(country_citizenship__icontains=lo))
-    
-    a = entries[:]
-    b = entries[:]
-    same_entries = []
-    different_entries = []
-    count = 0
-    
-    while len(a) > 0:
-        same_entries.clear()
-        count = 0
-        i = 0
         
-        for be in b:
-            try:
-                ia = math.ceil(float(a[0].year_of_birth)/1000)
-                ib = math.ceil(float(be.year_of_birth)/1000)
-            except:
-                ia = None
-                ib = None
-            if ia == ib:
-                same_entries.append(be)
-                count += 1
-            else:
-                break
-        different_entries.append(same_entries[:])
-        while i < count:
-            b = b[1:]
-            a = a[1:]
-            i+=1
-    for de in different_entries:
-        i = 0
-        while i < len(de):
-            i += 1
-    
     context = {
         'entries': different_entries,
-        'from' : 'timeline_k'
-    }
-
-    return HttpResponse(template.render(context, request))
-    
-def timeline_cent(request):
-    n = request.POST.get('filterName', '')
-    la = request.POST.get('filterLang', '')
-    lo = request.POST.get('filterLoc', '')
-    template = loader.get_template('fh/timeline_cent.html')    
-    entries = []
-    entries = m.ENTRY.objects.all().order_by('year_of_birth').filter(Q(description__icontains=n)&Q(country_citizenship__icontains=lo))
-    
-    a = entries[:]
-    b = entries[:]
-    same_entries = []
-    different_entries = []
-    count = 0
-    
-    while len(a) > 0:
-        same_entries.clear()
-        count = 0
-        i = 0
-        
-        for be in b:
-            try:
-                ia = math.ceil(float(a[0].year_of_birth)/100)
-                ib = math.ceil(float(be.year_of_birth)/100)
-            except:
-                ia = None
-                ib = None
-            if ia == ib:
-                same_entries.append(be)
-                count += 1
-            else:
-                break
-        different_entries.append(same_entries[:])
-        while i < count:
-            b = b[1:]
-            a = a[1:]
-            i+=1
-    for de in different_entries:
-        i = 0
-        while i < len(de):
-            i += 1
-
-    context = {
-        'entries': different_entries,
-        'from' : 'timeline_cent'
+        'agg' : agg,
+        'hws' : hws
     }
     
     return HttpResponse(template.render(context, request))
 
-def timeline_dec(request):
-    n = request.POST.get('filterName', '')
-    la = request.POST.get('filterLang', '')
-    lo = request.POST.get('filterLoc', '')
-    template = loader.get_template('fh/timeline_dec.html')    
-    entries = []
-    entries = m.ENTRY.objects.all().order_by('year_of_birth').filter(Q(description__icontains=n)&Q(country_citizenship__icontains=lo))
-    
-    a = entries[:]
-    b = entries[:]
-    same_entries = []
-    different_entries = []
-    count = 0
-    
-    while len(a) > 0:
-        same_entries.clear()
-        count = 0
-        i = 0
-        
-        for be in b:
-            try:
-                ia = math.floor(float(a[0].year_of_birth)/10)
-                ib = math.floor(float(be.year_of_birth)/10)
-            except:
-                ia = None
-                ib = None
-            if ia == ib:
-                same_entries.append(be)
-                count += 1
-            else:
-                break
-        different_entries.append(same_entries[:])
-        while i < count:
-            b = b[1:]
-            a = a[1:]
-            i+=1
-    for de in different_entries:
-        i = 0
-        while i < len(de):
-            i += 1
-
-    context = {
-        'entries': different_entries,
-        'from': 'timeline_dec'
-    }
-
-    return HttpResponse(template.render(context, request))
-    
-# def create_entry(request):
-#     template = loader.get_template('fh/create_entry.html')
-#     context = {}
-#     return HttpResponse(template.render(context, request))
 
 def upload_handwriting(request):
     template = loader.get_template('fh/upload_handwriting.html')
