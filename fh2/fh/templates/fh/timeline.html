@@ -5,51 +5,101 @@
  
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
+    <head>
         <title>{% trans 'timeline' %}</title>
         <meta name="viewport" content="initial-scale=1.0">
         <meta charset="utf-8">
         {% include "fh/includes/head.html" %}
         <link rel="stylesheet" type="text/css" href="{% static 'fh/fh.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'fh/timeline.css' %}">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    </head>
+    <body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+        <script>
+        var years = []
+        
+        $(document).ready(function()
+        {
+            $(".year_anchor").each(function(i, val) 
+            {
+                years.push(val.id);
+            });
+        });
+        
+        $( function() 
+        {
+            $("#slider").slider(
+            {
+                min: {{entries.0.0.year_of_birth}},
+                max: {% now "Y" %},
+                step: 1,
+                value: 1900,
+                
+                change: function( event, ui ) 
+                {
+                    years.some(function (el)
+                    {   if (el >= ui.value)
+                        {
+                            //console.log(el);
+                            window.location.href = '#' + el; 
+                            return el;
+                        }
+                    });
+                }
+            }).each(function() {
+        
+                // Add labels to slider whose values 
+                // are specified by min, max
+            
+                // Get the options for this slider (specified above)
+                var opt = $(this).data().uiSlider.options;
+            
+                // Get the number of possible values
+                var vals = 2;
+            
+                // Position the labels
+                var ticks = 16; //how many years should be displayed as tick points
+                var len = {{entries|length}}
+                for (var i = 0; i <= ticks; i++) 
+                {
+                    // Create a new element and position it with percentages
+                    var pos = (i * len) / ticks; //get the position on the scale
+                    var el = $('<label class="text-nowrap">' + Math.round(opt.min + (opt.max - opt.min)/ticks *i) + ' </label>').css('left', (i/ticks*100) + '%');
+                
+                    // Add the element inside #slider
+                    $("#slider").append(el);
+                }
+            });
+        });    
+        </script>    
+        
         <div class="container">
             {% include "fh/includes/navbar.html" %} 
-            <div class="page-header">
-                <h1>{% trans 'timeline' %}</h1>
-            </div>
-            <div>
-                <div class="col-sm-1">
-                    <div class="">
-                        <a href="timeline_dec"> <!-- Hier soll der Dargestellte Zeitraum geändert werden können (zoom) -->
-                            <span class="glyphicon glyphicon-minus x1_35"></span>
-                        </a>
+            <div id="page-header" class="page-header">
+                <nav class="navbar navbar-default"  id="myScrollspy">
+                  <div class="container-fluid">
+                    <div class="navbar-header">
+                      <a class="navbar-brand" href="#"> {% trans 'timeline' %}</a>
                     </div>
-                </div>
-                <div class="col-sm-10">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="100"
-                            aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                {% trans 'timespan: year' %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="">
-                        <a href="#"> <!-- Hier soll der Dargestellte Zeitraum geändert werden können (zoom) -->
-                            <!-- <span class="glyphicon glyphicon-plus" style="font-size: 1.35em"></span> -->
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div id="timeline">
-                <div class="row timeline-movement timeline-movement-top">
-                    <div class="timeline-badge timeline-future-movement">
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="/timeline">{% trans 'year' %}</a></li>
+                      <li><a href="/timeline_dec">{% trans 'decade' %}</a></li>
+                      <li><a href="/timeline_cent">{% trans 'century' %}</a></li>
+                      <li><a href="/timeline_k">{% trans 'millenium' %}</a></li>
+                      <li>
                         <button type="button" class="btn filter_btn" data-toggle="modal" data-target="#filter_time">Filter</button>
-                    </div>
-                </div>
+                      </li>
+                    </ul>
+                   </div>  
+                </nav>           
+            
+                <div id="slider"></div>
+             </div>
+                         
+            <div id="timeline" >
                 {% for e in entries %}  <!-- Hier werden die Entries nach einander eingetragen -->
-                    <a id="{{e.0.year_of_birth}}"/>
+                    <div class="year_anchor" id="{{e.0.year_of_birth}}"></div>
                         <div class="row timeline-movement">
                             <div class="timeline-badge">
                                 <span class="timeline-balloon-date-year">{{e.0.year_of_birth}}</span>
@@ -59,70 +109,45 @@
                                     <div class="col-sm-11">
                                         <div class="timeline-panel ">
                                             <ul class="timeline-panel-ul">
-                                                <!-- <ul class="list-group"> -->
-                                                    {%for ent in e %}
-                                                        <ul class="list-group">
-                                                        <!-- <li class="list-group-item"> -->
-                                                            <li class="list-group-item no-down-border name">                                                                
-                                                             <img id="img" class="img-rounded" src="{{ent.image}}" alt="Lights" height="80" />
-                                                                <span class="importo"><a target="_plain" href="detail?id={{ent.id}}">{{ent.description}}, {{ent.lifespan}}</a></span>
-                                                                
+                                                {%for ent in e %}
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item no-down-border name">                                                                
+                                                         <img id="img" class="img-rounded" src="{{ent.image}}" alt="Lights" height="80" />
+                                                            <span class="importo"><a target="_plain" href="detail?id={{ent.id}}">{{ent.description}}, {{ent.lifespan}}</a></span>
+                                                        </li>
+                                                        <li class="list-group-item place"><span class="causale">{% trans 'place_of_birth' %} : <a target="_blank" href ="/maps?lat={{ent.place_of_birth.lng}}&amp;lng={{ent.place_of_birth.lat}}">{{ent.place_of_birth.label}} </a></span> </li>
+                                                        {% if ent.place_of_death %}
+                                                            <li class="list-group-item no-updown-border place"><span class="causale">{% trans 'place_of_death' %} : <a target="_blank" href ="/maps?lat={{ent.place_of_death.lng}}&amp;lng={{ent.place_of_death.lat}}">{{ent.place_of_death.label}} </a></span> </li>
+                                                        {% endif %}
+                                                        <li class="list-group-item {{ent.day_of_death|yesno:"no-updown-border,no-up-border" }} birth">
+                                                            <small class="text-muted"><i class="glyphicon glyphicon-asterisk"></i>{{ent.day_of_birth}}.{{ent.month_of_birth}}.{{ent.year_of_birth}}</small>
+                                                        </li>
+                                                        {% if ent.day_of_death %}
+                                                            <li class="list-group-item no-up-border death">
+                                                                <p><small class="text-muted"><i class="glyphicon glyphicon-plus"></i> {{ent.day_of_death}}.{{ent.month_of_death}}.{{ent.year_of_death}}</small></P>
                                                             </li>
-                                                            <li class="list-group-item place"><span class="causale">{% trans 'place_of_birth' %} : {{ent.place_of_birth.label}} </span> </li>
-                                                            <li class="list-group-item no-updown-border place"><span class="causale">{% trans 'place_of_death' %} : {{ent.place_of_death.label}} </span> </li>
-                                                            <li  class="list-group-item {{ ent.day_of_death|yesno:"no-updown-border,no-up-border" }} birth">
-                                                                <small class="text-muted"><i class="glyphicon glyphicon-asterisk"></i> {{ent.day_of_birth}}.{{ent.month_of_birth}}.{{ent.year_of_birth}}</small>
-                                                            </li>
-                                                            {% if ent.day_of_death %}
-                                                                <li class="list-group-item no-up-border death">
-                                                                    <p><small class="text-muted"><i class="glyphicon glyphicon-plus"></i> {{ent.day_of_death}}.{{ent.month_of_death}}.{{ent.year_of_death}}</small></P>
-                                                                </li>
-                                                            {% endif%}
-                                                        <!-- </li> -->
-                                                        </ul>
-                                                    {% endfor %}
-                                                <!-- </ul> -->
+                                                        {% endif %}
+                                                    </ul>
+                                                {% endfor %}
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <!-- Ich möchte das Bild gerne weiter Rechts haben-->
                             </div>
                             <div class="col-sm-5">
                                 {%for ent in e%}
-                                           {%for img in hws|get_value_from_dict:ent.pk %}
-                                              <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
-                                                <img src="/static/fh/img/upload/{{img.link}}" class="img-responsive">
-                                              </a>
-                                           {% endfor %}            
+                                   {%for img in hws|get_value_from_dict:ent.pk %}
+                                      <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
+                                        <img src="/static/fh/img/upload/{{img.link}}" title="{{img.title}}" class="img-responsive" />
+                                      </a>
+                                   {% endfor %}            
                                 {% endfor %}
                             </div>
                         </div>   
-                    
                 {% endfor %}       
             </div>
         </div>
     </body>
 </html>
-
-
-<!--
-<div class="col-sm-3 timeline-item">
-                            <div class="timeline-panel credits">
-                                <ul class="timeline-panel-ul">
-                                    {%for ent in e%}
-                                        <div class="thumbnail">
-                                            <a href="#" data-toggle="modal" data-target="#myModal">
-                                                <img id="myImg" src="{{ent.image}}" alt="Lights" style="height:117px">
-                                                <div class="caption">
-                                                    <p><small class="text-muted">Handschrift von {{ent.description}}</small></p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
--->

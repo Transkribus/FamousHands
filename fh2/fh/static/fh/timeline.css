@@ -1,8 +1,22 @@
-#timeline {
-  list-style: none;
-  position: relative;
-  top: 50px;
+#slider label 
+{
+    position: absolute;
+    width: 20px;
+    margin-top: 20px;
+    margin-left: -10px;
+    text-align: center;
 }
+
+#timeline {
+    list-style: none;
+    position: relative;
+    top: 50px;
+    overflow-y: scroll; 
+    overflow-x:hidden;
+    max-height : 600px;
+}
+
+
 #timeline:before {
   top: 0;
   bottom: 0;
