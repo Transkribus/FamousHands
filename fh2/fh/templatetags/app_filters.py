@@ -53,8 +53,8 @@ def century(value):
         value = str(value)
         return math.ceil(float(value)/100)
     
-@register.filter(name='decate')
-def decate(value):
+@register.filter(name='decade')
+def decade(value):
     if str(value).startswith('-'):
         value = str(value)[1:]
         value = math.floor(float(value) / 10)
