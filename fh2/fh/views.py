@@ -122,9 +122,9 @@ def login(request):
 #     return HttpResponse(template.render(context, request))
 
 def timeline(request):
-    n = request.POST.get('filterName', '')
-    la = request.POST.get('filterLang', '')
-    lo = request.POST.get('filterLoc', '')
+    n = request.GET.get('filterName', '')
+    la = request.GET.get('filterLang', '')
+    lo = request.GET.get('filterLoc', '')
     agg = int(request.GET.get('agg','1')) 
     template = loader.get_template('fh/timeline.html')    
     entries = []
