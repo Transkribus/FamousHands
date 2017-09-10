@@ -10,8 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fh/maps.css' %}"/>
     <script src="{% static 'fh/fh.js' %}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   </head>
   <body>
      <style>
@@ -35,25 +34,24 @@
                 
             }).each(function() {
 
-    // Add labels to slider whose values 
-    // are specified by min, max
-
-    // Get the options for this slider (specified above)
-    var opt = $(this).data().uiSlider.options;
-
-    // Get the number of possible values
-    var vals = 2;
-
-    // Position the labels
-    for (var i = 0; i <= vals; i++) {
-
-        // Create a new element and position it with percentages
-        var el = $('<label class="text-nowrap">' + (i*50 + opt.min) + ' km</label>').css('left', (i/vals*100) + '%');
-
-        // Add the element inside #slider
-        $("#slider").append(el);
-
-    }
+        // Add labels to slider whose values 
+        // are specified by min, max
+    
+        // Get the options for this slider (specified above)
+        var opt = $(this).data().uiSlider.options;
+    
+        // Get the number of possible values
+        var vals = 2;
+    
+        // Position the labels
+        for (var i = 0; i <= vals; i++) {
+    
+            // Create a new element and position it with percentages
+            var el = $('<label class="text-nowrap">' + (i*50 + opt.min) + ' km</label>').css('left', (i/vals*100) + '%');
+    
+            // Add the element inside #slider
+            $("#slider").append(el);
+        }
 
 });;
         });
@@ -67,10 +65,11 @@
                 <script>
                     var map;
                     var marker = [];
-                     
+                    var latc = {{lat}};
+                    var lngc = {{lng}}; 
+                    
                     function initMap() {
-                        var latc = {{lat}};
-                        var lngc = {{lng}};
+                        
                         map = new google.maps.Map(document.getElementById('map'), {                
                             center: {lat: latc, lng: lngc},
                             zoom: 8
@@ -144,36 +143,45 @@
                         google.maps.event.addListener(map, 'click', function(event) 
                         {
                             findNearestMarker(event.latLng);
-                            var lat = event.latLng.lat();
-                            var lng = event.latLng.lng();
+                            //var lat = event.latLng.lat();
+                            //var lng = event.latLng.lng();
                         });
                         
                         
-                        function findNearestMarker(coords) 
-                        {
-                            var d = document.getElementById('data');
-                            d.innerHTML = '<br/><br/><h3>{% trans 'People found' %}</h3>';
-                            var minDist = $("#slider").slider("value") * 1000, //we deal with km, not m
-                            nearest_text = '*None*',
-                            markerDist;
-                            
-                          // iterate over objects and calculate distance between them
-                          for (var i = 0; i < marker.length; i += 1) 
-                          {
-                          
-                            var distance = google.maps.geometry.spherical.computeDistanceBetween(marker[i].getPosition(), coords);       
-
-                            if (distance < minDist) 
-                            {
-                                d.innerHTML += "<h3 class='text-nowrap'><img height='70'  src='" + marker[i].image + "' class ='img-circle' alt='{% trans 'entity_image' %}' /> <a target='_blank' href='/detail?id=" +  marker[i].id + "'>" + marker[i].description + "</a> </h3>";
-                                d.innerHTML += "<small>" + (marker[i].born ? '{% trans 'born_in' %}' : '{% trans 'died_in' %}') + ' <a href="/maps?lat=' +  marker[i].position.lat() + '&lng=' + marker[i].position.lng()+ '">' + marker[i].title + ' </a> (' +  Math.round(distance /1000) + ' ' + '{% trans 'km_away' %}' + ')</small><br/>';
-                                console.log (d.innerHTML);
-                            }
-                          }
-                                    
-                        }
                        
+                      
+                        
+                    } //init map
+                    
+                    
+                     function findNearestMarker(coords) 
+                    {
+                        var d = document.getElementById('data');
+                        d.innerHTML = '<br/><br/><h3>{% trans 'People found' %}</h3>';
+                        var minDist = $("#slider").slider("value") * 1000, //we deal with km, not m
+                        nearest_text = '*None*',
+                        markerDist;
+                        
+                      // iterate over objects and calculate distance between them
+                      for (var i = 0; i < marker.length; i += 1) 
+                      {
+                      
+                        var distance = google.maps.geometry.spherical.computeDistanceBetween(marker[i].getPosition(), coords);       
+
+                        if (distance < minDist) 
+                        {
+                            d.innerHTML += "<h3 class='text-nowrap'><img height='70'  src='" + marker[i].image + "' class ='img-circle' alt='{% trans 'entity_image' %}' /> <a target='_blank' href='/detail?id=" +  marker[i].id + "'>" + marker[i].description + "</a> </h3>";
+                            d.innerHTML += "<small>" + (marker[i].born ? '{% trans 'born_in' %}' : '{% trans 'died_in' %}') + ' <a href="/maps?lat=' +  marker[i].position.lat() + '&lng=' + marker[i].position.lng()+ '">' + marker[i].title + ' </a> (' +  Math.round(distance /1000) + ' ' + '{% trans 'km_away' %}' + ')</small><br/>';
+                            //console.log (d.innerHTML);
+                        }
+                      }
+                                
                     }
+                    
+                    $(document).ready(function()
+                    {
+                        findNearestMarker(new google.maps.LatLng(latc,lngc));
+                    });  
                 </script>    
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGqJazDaAYPXovs-mb3HBeL1eAX7i5rE&amp;callback=initMap&amp;libraries=geometry"
                     async defer>     
