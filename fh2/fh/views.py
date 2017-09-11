@@ -171,10 +171,10 @@ def upload_handwriting(request):
     
 def admin(request):
     
-    if  'user' in request.session:
+    if  'user' in request.session and request.session['user']['isAdmin']:
         template = loader.get_template('fh/admin.html')
         context = {
-            'entries' : m.ENTRY.objects.all(),
+            'entries' : m.ENTRY.objects.all().order_by('description'),
         }
         return HttpResponse(template.render(context, request))
     else:
@@ -374,7 +374,7 @@ def script(request):
     #hc = wg.GetHumansContaining("Einstein")
     #return HttpResponse(str(hc))
 
-    m.ENTRY.objects.get(pk=955).delete()
+    #m.ENTRY.objects.get(pk=955).delete()
     return HttpResponse("ok")
 
 
@@ -386,17 +386,28 @@ def search_name_service(request):
     
     wg = w.WikiGet()
     hc = wg.GetHumansContaining(name_part)
-    print(hc)
     
-    
-    print("-----------------------------------------")
     entries = m.ENTRY.objects.all().order_by('pk').filter(Q(description__icontains=name_part))
     wlDesc = list(entries.values_list('wiki_link', 'description'))
-    print( wlDesc)
     
     mrg = hc.copy()
     mrg.update(wlDesc)
-    print("-----------------------------------------")
-    print(mrg) 
     return HttpResponse(json.dumps(mrg), content_type="application/json")
 
+def turn_onoff_service(request):
+    if  'user' in request.session and request.session['user']['isAdmin']:
+        what = request.GET.get("what") #entity or image
+        iid = request.GET.get("id")
+        on = request.GET.get("on") # should item be turned on?
+        
+        if (what == 'entity'):
+            ent = m.ENTRY.objects.get(pk=iid)
+            ent.on=(on == 'true')
+            ent.save()
+        else: 
+            hwi = m.HANDWRITTENIMAGE.objects.get(pk=iid)
+            hwi.on=(on == 'true')
+            hwi.save()
+        return HttpResponse('ok', content_type="text/plain")
+    else:
+        return HttpResponse('insufficient_privileges', content_type="text/plain")

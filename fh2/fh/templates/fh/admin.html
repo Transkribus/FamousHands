@@ -6,18 +6,44 @@
     <head>
         <title>{% trans 'admin' %} - Famous Hands</title>
          {% include "fh/includes/head.html" %} 
+        <style>
+            .l_entry
+            {
+                padding-top: 20px;
+            }
+            .material-switch
+            {
+                padding-left: 10px;
+            } 
+        </style>
     </head>
     <body>
+        <script>
+             $(document).ready(function()
+            {
+                $(".boxes").change(function()
+                {
+                    var id = $(this).attr("id");
+                    var checked = $(this).is(":checked");
+                    console.log("ID:" + id +  " " + checked);
+                    $.get("turn_onoff_service?what=entity&id=" + id + "&on=" + checked, function(data, status)
+                    {
+                        $("#" +  id + "_lab").html(data);
+                    });  
+                });
+            });
+        </script>
         <div class="container">
             {% include "fh/includes/navbar.html" %} 
             <h1>{% trans 'show_all_entries' %}</h1>
             <ol>
                 {% for e in entries %}
-                    <li>{{e.wiki_link}} {{e.description}} {{e.place_of_birth.label}}
-                    <div class="material-switch">
-                        <input id="{{e.wiki_link}}" class="boxes" name="{{e.wiki_link}}" type="checkbox" checked="checked"/>
-                        <label for="{{e.wiki_link}}" class="label-success"></label>
-                    </div>
+                    <li class="l_entry"> <a target="_blank" href="/detail?id={{e.id}}">{{e.description}}</a> ({{e.year_of_birth}} - {{e.place_of_birth.label}}) - {{e.wiki_link}}
+                    <span class="material-switch">
+                        <input id="{{e.id}}" class="boxes" name="{{e.id}}" type="checkbox" 
+                            {% if e.on %} checked="checked" {% endif    %} />
+                        <label id="{{e.id}}_lab" for="{{e.id}}" class="label-success"></label>
+                    </span>
                     </li>
                 {% endfor %}
             </ol>

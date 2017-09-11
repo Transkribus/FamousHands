@@ -10,7 +10,21 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
     </head>
     <body>
-        {% load static %}
+        <script>
+             $(document).ready(function()
+            {
+                $(".boxes").change(function()
+                {
+                    var id = $(this).attr("id");
+                    var checked = $(this).is(":checked");
+                    console.log("ID:" + id +  " " + checked);
+                    $.get("turn_onoff_service?what=image&id=" + id + "&on=" + checked, function(data, status)
+                    {
+                        $("#" +  id + "_lab").html(data);
+                    });  
+                });
+            });
+        </script>
         <div class="container">
          
             {% include "fh/includes/navbar.html" %} 
@@ -24,10 +38,11 @@
                 <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
                     <img src="/static/fh/img/upload/{{img.link}}" class="img-responsive">
                 </a>
-                {% if request.session.user.isAdmin %} 
+                {% if request.session.user.isAdmin  %} 
                     <div class="material-switch  pull-right">
-                        <input id="{{img.id}}" class="boxes" name="{{e.wiki_link}}" type="checkbox" checked="checked"/>
-                        <label for="{{img.id}}" class="label-success"></label>
+                        <input id="{{img.id}}" class="boxes" name="{{e.wiki_link}}" type="checkbox" 
+                            {% if img.on %} checked="checked" {% endif    %} />
+                        <label id="{{img.id}}_lab" for="{{img.id}}" class="label-success"></label>
                     </div>
                 {% endif %}
             </div>
