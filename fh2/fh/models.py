@@ -42,6 +42,7 @@ class ENTRY(models.Model):
     lifespan = models.IntegerField()
     unknown_date_of_death = models.BooleanField(blank=False)
     unknown_date_of_birth = models.BooleanField(blank=False)
+    on = models.BooleanField(blank=False, default=True) # if false, items will not be displayed
     
 class NAMEVARIANT(models.Model):
     '''
@@ -63,6 +64,7 @@ class HANDWRITTENIMAGE(models.Model):
     date = models.DateField(auto_now_add=True)
     link = models.CharField(max_length=512, null=False) #the link to the image
     origin = models.CharField(max_length=512, null=True) #who uploaded the image
+    on = models.BooleanField(blank=False, default=True) # if false, items will not be displayed
     
 # class Contact(models.Model):
 # 
