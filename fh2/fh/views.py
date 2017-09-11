@@ -33,22 +33,7 @@ import json
  
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
-
-
-# def test(request): 
-#     wi = w.WikiGet()
-#     #wi.GetEntry("Q7346")
-#     l = wi.GetLocation("Q1885566")
-#     #print(l)
-#     print(l)
-#     logger.info('x')
-#     template = loader.get_template('fh/login.html')    
-#     context = {
-#         'x': 'y',
-#     }
-# 
-#     return HttpResponse(template.render(context, request))
-#     
+   
 def index(request):
     template = loader.get_template('fh/index.html')
 #    two_days_ago = datetime.utcnow() - timedelta(days=2)
@@ -77,7 +62,7 @@ def maps(request):
     return HttpResponse(template.render(context, request))
 
 
-'''
+
 def register(request):
     template = loader.get_template('fh/register.html')
 #    two_days_ago = datetime.utcnow() - timedelta(days=2)
@@ -90,14 +75,14 @@ def register(request):
     return HttpResponse(template.render(context, request))
 
 
-def login(request):
-    template = loader.get_template('fh/login.html')    
-    context = {
-        'x': 'y',
-    }
+# def login(request):
+#     template = loader.get_template('fh/login.html')    
+#     context = {
+#         'x': 'y',
+#     }
+# 
+#     return HttpResponse(template.render(context, request))
 
-    return HttpResponse(template.render(context, request))
-'''
 
 # def upload(request):
 #     template = loader.get_template('fh/upload.html')    
@@ -185,11 +170,18 @@ def upload_handwriting(request):
     
     
 def admin(request):
-    template = loader.get_template('fh/admin.html')
-    context = {
-        'entries' : m.ENTRY.objects.all(),
+    
+    if  'user' in request.session:
+        template = loader.get_template('fh/admin.html')
+        context = {
+            'entries' : m.ENTRY.objects.all(),
         }
-    return HttpResponse(template.render(context, request))
+        return HttpResponse(template.render(context, request))
+    else:
+        messages.warning(request, "insufficient_privileges")
+        return HttpResponseRedirect("index")
+
+    
 
 def longsearch(request):
     template = loader.get_template('fh/longsearch.html')
@@ -259,7 +251,8 @@ def image_gallery(request):
 def logout_process(request):
     s = serv.Services();
     s.Logout()
-    request.session['user'] = None;
+    del request.session['user']
+    request.session.modified = True
     return HttpResponseRedirect("index")
  
 def login_process(request):
@@ -271,15 +264,14 @@ def login_process(request):
     #else:
     #    return HttpResponseRedirect("index")
     
-    if (e == 'admin' and p == 'admin123'):
-        request.session['user'] = 'admin';
-        request.session.modified = True
-        return HttpResponseRedirect("index")
+#     if (e == 'admin' and p == 'admin123'):
+#         request.session['user'] = 'admin';
+#         request.session.modified = True
+#         return HttpResponseRedirect("index")
     
     s = serv.Services();
     try:
-        res = s.Login(e,p)
-        request.session['user'] = res;
+        request.session['user'] = s.Login(e,p)['trpUserLogin']
         request.session.modified = True 
     except:
         messages.warning(request, "login_failed")

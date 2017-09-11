@@ -24,7 +24,7 @@
                 <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
                     <img src="/static/fh/img/upload/{{img.link}}" class="img-responsive">
                 </a>
-                {% if request.session.user == 'admin' %} 
+                {% if request.session.user.isAdmin %} 
                     <div class="material-switch  pull-right">
                         <input id="{{img.id}}" class="boxes" name="{{e.wiki_link}}" type="checkbox" checked="checked"/>
                         <label for="{{img.id}}" class="label-success"></label>
