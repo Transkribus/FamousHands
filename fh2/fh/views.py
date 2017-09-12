@@ -53,67 +53,21 @@ def maps(request):
     lat =  request.GET.get('lat', '47.26').replace(',','.') #IBK as default
     long = request.GET.get('lng', '11.39').replace(',','.')
     context = {
-        #'locs': m.LOCATION.objects.all(),
-        'entries' : m.ENTRY.objects.all(),
+        'entries' : m.ENTRY.objects.filter(on=True),
         'lat' : lat,  #the center lat, lng, to be set as parameter
         'lng' : long
     }
 
     return HttpResponse(template.render(context, request))
 
-
-
-def register(request):
-    template = loader.get_template('fh/register.html')
-#    two_days_ago = datetime.utcnow() - timedelta(days=2)
-#    recent_posts = m.Post.objects.filter(created_at__gt=two_days_ago).all()
-
-    context = {
-        'x': 'y',
-    }
-
-    return HttpResponse(template.render(context, request))
-
-
-# def login(request):
-#     template = loader.get_template('fh/login.html')    
-#     context = {
-#         'x': 'y',
-#     }
-# 
-#     return HttpResponse(template.render(context, request))
-
-
-# def upload(request):
-#     template = loader.get_template('fh/upload.html')    
-#     context = {
-#         'x': 'y',
-#     }
-# 
-#     return HttpResponse(template.render(context, request))
-
-
-# def images(request):
-#     template = loader.get_template('fh/images.html')   
-#     #loc = m.LOCATION.objects.create(lat=0, lng=0, label='loc1')
-#     #e = m.ENTRY.objects.create(description='entry', date_of_birth=datetime.date(2007, 12, 5), date_of_death=datetime.date(2007, 12, 5), lifespan=2, place_of_birth= loc, place_of_death=loc)
-#     #imgs = []
-#     #for i in range(3):
-#     #    imgs.append(m.HANDWRITTENIMAGE.objects.create(entry = e, title = 'Bild' + str(i), description = 'Desc Bild ' + str(i), date = datetime.date(2007, 12, 5), link = 'fh/img/upload/img' + str(i) + '.png'))  
-#     context = {
-#         'imgs': 'imgs'
-#     }
-# 
-#     return HttpResponse(template.render(context, request))
-
 def timeline(request):
     n = request.GET.get('filterName', '')
     la = request.GET.get('filterLang', '')
     lo = request.GET.get('filterLoc', '')
-    agg = int(request.GET.get('agg','1')) 
+    agg = int(request.GET.get('agg','1')) #1...year, 10...decade, 100...mill, ...
     template = loader.get_template('fh/timeline.html')    
     entries = []
-    entries = m.ENTRY.objects.all().order_by('year_of_birth').filter(Q(description__icontains=n)&Q(country_citizenship__icontains=lo))
+    entries = m.ENTRY.objects.filter(on=True).order_by('year_of_birth').filter(Q(description__icontains=n)&Q(country_citizenship__icontains=lo))
     
     a = entries[:]
     b = entries[:]
@@ -151,7 +105,7 @@ def timeline(request):
     #get handwritings for all entries
     hws = {}
     for e in entries:
-        hw = m.HANDWRITTENIMAGE.objects.filter(entry=e)
+        hw = m.HANDWRITTENIMAGE.objects.filter(entry=e,on=True)
         hws[e.pk] = hw
         
     context = {
@@ -183,14 +137,13 @@ def admin(request):
 
     
 
-def longsearch(request):
-    template = loader.get_template('fh/longsearch.html')
-    s = request.POST.get('search', '')
-    context = {
-        'entries' : m.ENTRY.objects.filter(Q(description__icontains=s)|Q(description__icontains=s))
-       # 'users' : User.objects.all()
-        }
-    return HttpResponse(template.render(context, request))
+# def longsearch(request):
+#     template = loader.get_template('fh/longsearch.html')
+#     s = request.POST.get('search', '')
+#     context = {
+#         'entries' : m.ENTRY.objects.filter(on=True).filter(Q(description__icontains=s)|Q(description__icontains=s))
+#         }
+#     return HttpResponse(template.render(context, request))
 
 def detail(request):
     template = loader.get_template('fh/detail.html')
@@ -207,7 +160,7 @@ def detail(request):
     context = {
         'e' :  e,
         'description' : desc,
-        'handwritings' : m.HANDWRITTENIMAGE.objects.filter(entry=e), #TODO: better way
+        'handwritings' : m.HANDWRITTENIMAGE.objects.filter(entry=e),
         'wiki_name' : wikipedia.search(e.description,1)[0]
         }
     
@@ -221,11 +174,11 @@ def search(request):
     s = request.POST.get('search', '')
     p = s.split('/')
     if len(p)==2:
-        entries = m.ENTRY.objects.all().order_by('description').filter(Q(month_of_birth__icontains=p[0])&Q(year_of_birth__icontains=p[1])|Q(day_of_birth__icontains=p[0])&Q(month_of_birth__icontains=p[1])|Q(month_of_death__icontains=p[0])&Q(year_of_death__icontains=p[1])|Q(day_of_death__icontains=p[0])&Q(month_of_death__icontains=p[1]))
+        entries = m.ENTRY.objects.filter(on=True).order_by('description').filter(Q(month_of_birth__icontains=p[0])&Q(year_of_birth__icontains=p[1])|Q(day_of_birth__icontains=p[0])&Q(month_of_birth__icontains=p[1])|Q(month_of_death__icontains=p[0])&Q(year_of_death__icontains=p[1])|Q(day_of_death__icontains=p[0])&Q(month_of_death__icontains=p[1]))
     elif len(p)==3:
-        entries = m.ENTRY.objects.all().order_by('description').filter(Q(day_of_birth__icontains=p[0])|Q(month_of_birth__icontains=p[1])|Q(day_of_death__icontains=p[0])|Q(month_of_death__icontains=p[1])| Q(year_of_death__icontains=p[2])|Q(year_of_birth__icontains=p[2]))
+        entries = m.ENTRY.objects.filter(on=True).order_by('description').filter(Q(day_of_birth__icontains=p[0])|Q(month_of_birth__icontains=p[1])|Q(day_of_death__icontains=p[0])|Q(month_of_death__icontains=p[1])| Q(year_of_death__icontains=p[2])|Q(year_of_birth__icontains=p[2]))
     else  :
-        entries = m.ENTRY.objects.all().order_by('description').filter(Q(description__icontains=s)|Q(month_of_birth__icontains=s)|Q(year_of_birth__icontains=s)|Q(day_of_birth__icontains=s)|Q(day_of_death__icontains=s)| Q(month_of_death__icontains=s)| Q(year_of_death__icontains=s)|Q(wiki_link__icontains=s)|Q(place_of_birth__label__icontains=s)|Q(place_of_death__label__icontains=s))
+        entries = m.ENTRY.objects.filter(on=True).order_by('description').filter(Q(description__icontains=s)|Q(month_of_birth__icontains=s)|Q(year_of_birth__icontains=s)|Q(day_of_birth__icontains=s)|Q(day_of_death__icontains=s)| Q(month_of_death__icontains=s)| Q(year_of_death__icontains=s)|Q(wiki_link__icontains=s)|Q(place_of_birth__label__icontains=s)|Q(place_of_death__label__icontains=s))
     context = {
         'entries' : entries,
         }
@@ -258,17 +211,7 @@ def logout_process(request):
 def login_process(request):
     e = request.POST.get('email','')
     p = request.POST.get('password','')
-    #user = authenticate(username=e, password=p)
-    #if user is not None:
-    #    return HttpResponseRedirect("user")
-    #else:
-    #    return HttpResponseRedirect("index")
-    
-#     if (e == 'admin' and p == 'admin123'):
-#         request.session['user'] = 'admin';
-#         request.session.modified = True
-#         return HttpResponseRedirect("index")
-    
+  
     s = serv.Services();
     try:
         request.session['user'] = s.Login(e,p)['trpUserLogin']
@@ -278,32 +221,11 @@ def login_process(request):
     
     return HttpResponseRedirect("index")
 
-# def register_process(request):
-#     first_name = request.POST['first_name']
-#     last_name = request.POST['last_name']
-#     email = request.POST['email']
-#     password = request.POST['password']
-#     password2 = request.POST['password2']
-#     if password == password2:
-#         m.FHUSER.objects.create(first_name=first_name, last_name = last_name, email = email, password=password) #TODO remove
-#         user = User.objects.create_user(username= email, first_name=first_name, last_name = last_name, email = email, password=password)
-#         user.save()
-#         return HttpResponseRedirect("user")
-#     else:
-#         return HttpResponseRedirect("register")
-
-# def create_entry_process(request):
-#     wiki_id = request.POST['wikidata_id']
-#     desc = request.POST['desc']
-#     print("WID:" + wiki_id)
-#     wi = w.WikiGet()
-#     #wi.GetEntry("Q7346")
-#     entry = wi.GetEntry(wiki_id, desc)
-#     #print(entry)
-#     return HttpResponseRedirect("index")
 
 
-#TODO
+'''
+    always called after: upload_handwriting_process_imgs
+'''
 def upload_handwriting_process(request):
     
     qids = request.session["fnames"] # the file names uploaded stored within the session
@@ -311,14 +233,13 @@ def upload_handwriting_process(request):
     qid = request.POST.get("wikidata_id","")
     qtitle = request.POST.get("title","")
     
+    #if entry does not exist, create one
     if not m.ENTRY.objects.filter(wiki_link=qid).exists():
         wi = w.WikiGet()
-        #wi.GetEntry("Q7346")
         entry = wi.GetEntry(qid, qtitle)
     else:
         entry = m.ENTRY.objects.get(wiki_link=qid)
         
-    print("REQ:" + str(request))
     for fname in qids:
         src= 'fh/static/fh/img/tmp/' + fname
         dst = 'fh/static/fh/img/upload/' + qid + "/" + fname
@@ -331,7 +252,7 @@ def upload_handwriting_process(request):
             desc =  request.POST.get("desc__" + fname) #link to the origin
             origin =  request.session['user'] #the logged in user
             
-            hwi = m.HANDWRITTENIMAGE.objects.create(entry=entry, title=title, description=desc, link= qid + "/" + fname, origin=origin)
+            m.HANDWRITTENIMAGE.objects.create(entry=entry, title=title, description=desc, link= qid + "/" + fname, origin=origin)
     
     request.session["fnames"] = [];
     request.session.modified = True
@@ -341,8 +262,6 @@ def upload_handwriting_process(request):
 @csrf_exempt
 def upload_handwriting_process_imgs(request):
     file = request.FILES['file']
-    #file.save()
-    #file.save_as('/home/albert/Dropbox/my/workspaces/liclipse/fh/fh/static/fh/img/tmp/' + str(file));
     fname = str(uuid.uuid4()) + "." + os.path.splitext(str(file))[1][1:].strip() 
     
     fnames = []
@@ -354,40 +273,20 @@ def upload_handwriting_process_imgs(request):
     request.session["fnames"] = fnames
 
     default_storage.save('fh/static/fh/img/tmp/' + fname, ContentFile(file.read()))
-    #path = "/" + path.split("/", 1)[1]; 
     return HttpResponse(json.dumps(fname), content_type="application/json") 
 
 
-def long_view(request):
-    template = loader.get_template('fh/long_view.html')
-    context = {
-        'x': 'y',
-    }
-    return HttpResponse(template.render(context, request))
-
 #-------------------------------------------
-def script(request):
-    #eup = eu.EntryUploader()
-    #eup.upload()
-    #eup.uploadHandwriting()
-    #wg = w.WikiGet()
-    #hc = wg.GetHumansContaining("Einstein")
-    #return HttpResponse(str(hc))
-
-    #m.ENTRY.objects.get(pk=955).delete()
-    return HttpResponse("ok")
-
-
+# Web Services
 #-------------------------------------------
-#-------------------------------------------
-#-------------------------------------------
+
 def search_name_service(request):
     name_part = request.GET.get("name_part")
     
     wg = w.WikiGet()
     hc = wg.GetHumansContaining(name_part)
     
-    entries = m.ENTRY.objects.all().order_by('pk').filter(Q(description__icontains=name_part))
+    entries = m.ENTRY.objects.filter(on=True).order_by('pk').filter(Q(description__icontains=name_part))
     wlDesc = list(entries.values_list('wiki_link', 'description'))
     
     mrg = hc.copy()
@@ -411,3 +310,21 @@ def turn_onoff_service(request):
         return HttpResponse('ok', content_type="text/plain")
     else:
         return HttpResponse('insufficient_privileges', content_type="text/plain")
+    
+    
+#-------------------------------------------
+'''
+    This is just for starting batch processes
+    not really part of the web application
+'''
+def script(request):
+    #eup = eu.EntryUploader()
+    #eup.upload()
+    #eup.uploadHandwriting()
+    #wg = w.WikiGet()
+    #hc = wg.GetHumansContaining("Einstein")
+    #return HttpResponse(str(hc))
+
+    #m.ENTRY.objects.get(pk=955).delete()
+    return HttpResponse("ok")
+    
