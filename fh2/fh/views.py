@@ -160,7 +160,7 @@ def detail(request):
     context = {
         'e' :  e,
         'description' : desc,
-        'handwritings' : m.HANDWRITTENIMAGE.objects.filter(entry=e),
+        'handwritings' : m.HANDWRITTENIMAGE.objects.filter(entry=e,on=True),
         'wiki_name' : wikipedia.search(e.description,1)[0]
         }
     
