@@ -89,7 +89,7 @@
                                                
                                     function initMap() {
                                         map = new google.maps.Map(document.getElementById('map'), {
-                                            center: {lat: comma_point({{e.place_of_birth.lng}}), lng:  comma_point({{e.place_of_birth.lat}})},
+                                            center: {lat: comma_point({{e.place_of_birth.lat}}), lng:  comma_point({{e.place_of_birth.lng}})},
                                             zoom: 8
                                         });
                                         
@@ -97,7 +97,7 @@
                                         var born_label = "{% trans 'born' %} : {{e.place_of_birth.label}}";
                                                                      
                                         var mark_born = new google.maps.Marker({
-                                            position: {lat: comma_point({{e.place_of_birth.lng}}), lng:  comma_point({{e.place_of_birth.lat}})},
+                                            position: {lat: comma_point({{e.place_of_birth.lat}}), lng:  comma_point({{e.place_of_birth.lng}})},
                                             map: map,
                                             title: born_label,
                                             icon: "/static/fh/img/born.png"
@@ -119,7 +119,7 @@
                                         
                                             var death_label = "{% trans 'death' %} : {{e.place_of_death.label}}";
                                             var mark_death = new google.maps.Marker({
-                                                position: {lat:  comma_point({{e.place_of_death.lng}}), lng:  comma_point({{e.place_of_death.lat}})},
+                                                position: {lat:  comma_point({{e.place_of_death.lat}}), lng:  comma_point({{e.place_of_death.lng}})},
                                                 map: map,
                                                 title: death_label,
                                                 icon: "/static/fh/img/died.jpeg"

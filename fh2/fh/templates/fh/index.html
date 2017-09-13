@@ -84,7 +84,7 @@
                         $('#entry_img').attr("src", rnd_hw[i].entry_img);
                         
                          map = new google.maps.Map(document.getElementById('map'), {
-                            center: {lat: comma_point(rnd_hw[i].birth_lng), lng:  comma_point(rnd_hw[i].birth_lat)},
+                            center: {lat: comma_point(rnd_hw[i].birth_lat), lng:  comma_point(rnd_hw[i].birth_lng)},
                             zoom: 8
                         }); 
                         
@@ -97,7 +97,7 @@
                                                                              
                         var birth_label = "{% trans 'birth' %} : " + rnd_hw[i].birth_label;                                         
                         var mark_born = new google.maps.Marker({
-                            position: {lat: comma_point(rnd_hw[i].birth_lng), lng:  comma_point(rnd_hw[i].birth_lat)},
+                            position: {lat: comma_point(rnd_hw[i].birth_lat), lng:  comma_point(rnd_hw[i].birth_lng)},
                             map: map,
                             title: birth_label,
                             icon: "/static/fh/img/born.png"
@@ -119,7 +119,7 @@
                             var death_label = "{% trans 'death' %} : " + rnd_hw[i].death_label;
                             
                             var mark_death = new google.maps.Marker({
-                                position: {lat:  comma_point(rnd_hw[i].death_lng), lng:  comma_point(rnd_hw[i].death_lat)},
+                                position: {lat:  comma_point(rnd_hw[i].death_lat), lng:  comma_point(rnd_hw[i].death_lng)},
                                 map: map,
                                 title: death_label,
                                 icon: "/static/fh/img/died.jpeg"

@@ -44,7 +44,7 @@ class WikiGet:
         loc = loc.replace("Point(", "")
         loc = loc.replace(")", "")
         locs = loc.split(' ')
-        return m.LOCATION.objects.create(lat=locs[0], lng=locs[1], label=label)
+        return m.LOCATION.objects.create(lat=locs[1], lng=locs[0], label=label)
     
     
     

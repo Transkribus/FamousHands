@@ -318,9 +318,9 @@ def turn_onoff_service(request):
     not really part of the web application
 '''
 def script(request):
-    #eup = eu.EntryUploader()
-    #eup.upload()
-    #eup.uploadHandwriting()
+    eup = eu.EntryUploader()
+    eup.upload()
+    eup.uploadHandwriting()
     #wg = w.WikiGet()
     #hc = wg.GetHumansContaining("Einstein")
     #return HttpResponse(str(hc))
