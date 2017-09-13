@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-06 18:56+0000\n"
+"POT-Creation-Date: 2017-09-13 19:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,140 +17,166 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: fh/settings.py:114
+#: fh/settings.py:124
 msgid "English"
 msgstr "English"
 
-#: fh/settings.py:115
+#: fh/settings.py:125
 msgid "German"
 msgstr "German"
 
-#: fh/templates/fh/admin.html:7 fh/templates/fh/includes/navbar.html:18
+#: fh/templates/fh/admin.html:7
 msgid "admin"
 msgstr "admin"
 
-#: fh/templates/fh/admin.html:13 fh/templates/fh/search.html:13
+#: fh/templates/fh/admin.html:38 fh/templates/fh/search.html:44
 msgid "show_all_entries"
 msgstr "show all entries"
 
 #: fh/templates/fh/detail.html:7
-#, fuzzy
-#| msgid "search"
 msgid "detail_view"
-msgstr "Search"
+msgstr "detail view"
 
-#: fh/templates/fh/detail.html:23 fh/templates/fh/longsearch.html:24
-#: fh/templates/fh/maps.html:168
+#: fh/templates/fh/detail.html:25 fh/templates/fh/longsearch.html:24
+#: fh/templates/fh/maps.html:173
 msgid "entity_image"
 msgstr "Entity image"
 
-#: fh/templates/fh/detail.html:25 fh/templates/fh/longsearch.html:28
+#: fh/templates/fh/detail.html:27 fh/templates/fh/longsearch.html:28
 msgid "Personal Details"
 msgstr "Personal Details"
 
-#: fh/templates/fh/detail.html:26
+#: fh/templates/fh/detail.html:28
 msgid "  Lived from the "
 msgstr "  Lived from the "
 
-#: fh/templates/fh/detail.html:28 fh/templates/fh/longsearch.html:29
+#: fh/templates/fh/detail.html:30 fh/templates/fh/longsearch.html:29
 msgid " to the"
 msgstr " to the"
 
-#: fh/templates/fh/detail.html:31 fh/templates/fh/longsearch.html:30
+#: fh/templates/fh/detail.html:33 fh/templates/fh/longsearch.html:30
 msgid "Reached the age of"
 msgstr "Reached the age of"
 
-#: fh/templates/fh/detail.html:32
+#: fh/templates/fh/detail.html:34
 msgid "Born in"
 msgstr "Born in"
 
-#: fh/templates/fh/detail.html:34
+#: fh/templates/fh/detail.html:36
 msgid "Died in"
 msgstr "Died in"
 
-#: fh/templates/fh/detail.html:36
+#: fh/templates/fh/detail.html:38
 msgid "  Native language: "
 msgstr "  Native language: "
 
-#: fh/templates/fh/detail.html:39
+#: fh/templates/fh/detail.html:41
 msgid "country_citizenship"
 msgstr "Citizenship"
 
-#: fh/templates/fh/detail.html:41 fh/templates/fh/longsearch.html:34
+#: fh/templates/fh/detail.html:43 fh/templates/fh/longsearch.html:34
 msgid "Link to the WikiData Site of"
 msgstr "Link to the WikiData Site of"
 
-#: fh/templates/fh/detail.html:45
+#: fh/templates/fh/detail.html:47
 msgid "goto_image_gallery"
 msgstr "Go to image gallery"
 
-#: fh/templates/fh/detail.html:49 fh/templates/fh/includes/navbar.html:14
+#: fh/templates/fh/detail.html:51 fh/templates/fh/includes/navbar.html:10
 #: fh/templates/fh/upload_handwriting.html:7
 msgid "upload_handwriting"
 msgstr "Upload Handwriting"
 
-#: fh/templates/fh/detail.html:71 fh/templates/fh/index.html:163
+#: fh/templates/fh/detail.html:70 fh/templates/fh/index.html:163
+#: fh/templates/fh/search.html:34
 msgid "previous"
 msgstr "Previous"
 
-#: fh/templates/fh/detail.html:75 fh/templates/fh/index.html:167
+#: fh/templates/fh/detail.html:74 fh/templates/fh/index.html:167
+#: fh/templates/fh/search.html:33
 msgid "next"
 msgstr "Next"
 
-#: fh/templates/fh/detail.html:98
+#: fh/templates/fh/detail.html:97
 msgid "born"
 msgstr "Born"
 
-#: fh/templates/fh/detail.html:121 fh/templates/fh/index.html:119
+#: fh/templates/fh/detail.html:120 fh/templates/fh/index.html:119
 msgid "death"
 msgstr "Death"
 
-#: fh/templates/fh/detail.html:169
+#: fh/templates/fh/detail.html:157
 msgid "Summary"
 msgstr "Summary"
 
-#: fh/templates/fh/detail.html:172
+#: fh/templates/fh/detail.html:160
 msgid "  ....More"
 msgstr "  ....More"
 
 #: fh/templates/fh/image_gallery.html:6
-#, fuzzy
-#| msgid "image_link"
 msgid "image_gallery"
-msgstr "image link"
+msgstr "image gallery"
 
-#: fh/templates/fh/image_gallery.html:19
+#: fh/templates/fh/image_gallery.html:32
 msgid "back"
 msgstr "back"
 
-#: fh/templates/fh/includes/navbar.html:10
+#: fh/templates/fh/includes/navbar.html:6
 msgid "famous_hands"
 msgstr "Famous Hands"
 
-#: fh/templates/fh/includes/navbar.html:21 fh/templates/fh/maps.html:6
+#: fh/templates/fh/includes/navbar.html:13 fh/templates/fh/maps.html:6
 msgid "maps"
 msgstr "Maps"
 
-#: fh/templates/fh/includes/navbar.html:22 fh/templates/fh/timeline.html:10
-#: fh/templates/fh/timeline.html:19 fh/templates/fh/timeline_cent.html:10
-#: fh/templates/fh/timeline_cent.html:19 fh/templates/fh/timeline_dec.html:10
-#: fh/templates/fh/timeline_dec.html:19 fh/templates/fh/timeline_k.html:10
-#: fh/templates/fh/timeline_k.html:19
+#: fh/templates/fh/includes/navbar.html:14
+#: fh/templates/fh/includes/timeline_head.html:7
+#: fh/templates/fh/timeline.html:9
 msgid "timeline"
 msgstr "Timeline"
 
-#: fh/templates/fh/includes/navbar.html:37
+#: fh/templates/fh/includes/navbar.html:15
+msgid "all_entries"
+msgstr "show all entries"
+
+#: fh/templates/fh/includes/navbar.html:31
 msgid "Search(date:DD/MM/JJJJ)"
 msgstr "Search(date:DD/MM/JJJJ)"
 
-#: fh/templates/fh/includes/navbar.html:38 fh/templates/fh/search.html:7
-#: fh/templates/fh/upload_handwriting.html:49
+#: fh/templates/fh/includes/navbar.html:32 fh/templates/fh/search.html:7
+#: fh/templates/fh/search.html:29 fh/templates/fh/upload_handwriting.html:51
+#: fh/templates/fh/upload_handwriting.html:145
 msgid "search"
 msgstr "Search"
+
+#: fh/templates/fh/includes/navbar.html:46
+msgid "admin_page"
+msgstr "admin page"
 
 #: fh/templates/fh/includes/navbar.html:53 fh/templates/fh/modals/login.html:12
 msgid "login"
 msgstr "Login"
+
+#: fh/templates/fh/includes/timeline_head.html:10
+msgid "year"
+msgstr "Year"
+
+#: fh/templates/fh/includes/timeline_head.html:11
+msgid "decade"
+msgstr "Decade"
+
+#: fh/templates/fh/includes/timeline_head.html:12
+msgid "century"
+msgstr "Century"
+
+#: fh/templates/fh/includes/timeline_head.html:13
+msgid "millenium"
+msgstr "Millenium"
+
+#: fh/templates/fh/includes/timeline_head.html:15
+#: fh/templates/fh/modals/filter_for_timeline.html:8
+msgid "filter"
+msgstr "Filter"
 
 #: fh/templates/fh/index.html:7
 msgid "startpage"
@@ -161,20 +187,38 @@ msgid "birth"
 msgstr "Birth"
 
 #: fh/templates/fh/index.html:185
-#, fuzzy
-#| msgid "description"
-msgid "description_text"
-msgstr "Description"
+msgid "startpage_text_1"
+msgstr "Welcome, welcome! "
 
-#: fh/templates/fh/long_view.html:7
-msgid "create_entry"
-msgstr "create new entry"
+#: fh/templates/fh/index.html:186
+msgid "startpage_text_2"
+msgstr ""
+"With <b>Famous hands</b> you can read and explore the manuscripts of famous "
+"personalities from all times and countries. Click on the picture gallery or "
+"the timeline to find out more."
+
+#: fh/templates/fh/index.html:187
+msgid "startpage_text_3"
+msgstr ""
+"But that's not all: you can also upload your own images of manuscripts of "
+"famous personalities, add a Wikipedia link to them and help complete the "
+"collection."
+
+#: fh/templates/fh/index.html:188
+msgid "startpage_text_4"
+msgstr "Have fun - Transkribus team!"
+
+#: fh/templates/fh/index.html:189
+msgid "number_of_personality"
+msgstr "Number of Personality"
+
+#: fh/templates/fh/index.html:189
+msgid "number_of_handwritings"
+msgstr "Upload Handwriting"
 
 #: fh/templates/fh/longsearch.html:7
-#, fuzzy
-#| msgid "search"
 msgid "longsearch"
-msgstr "Search"
+msgstr "Extended Search"
 
 #: fh/templates/fh/longsearch.html:20
 msgid "Results"
@@ -203,41 +247,32 @@ msgid "Link to the Wikipedia Site of"
 msgstr "Link to the Wikipedia Site of"
 
 #: fh/templates/fh/longsearch.html:40
-#, fuzzy
-#| msgid "search"
 msgid "detail_site"
-msgstr "Search"
+msgstr "Detailes search"
 
-#: fh/templates/fh/maps.html:79
+#: fh/templates/fh/maps.html:78
 msgid "center"
 msgstr "Starting point"
 
-#: fh/templates/fh/maps.html:155
+#: fh/templates/fh/maps.html:160
 msgid "People found"
 msgstr "People found"
 
-#: fh/templates/fh/maps.html:169
+#: fh/templates/fh/maps.html:174
 msgid "born_in"
 msgstr "Born in"
 
-#: fh/templates/fh/maps.html:169
+#: fh/templates/fh/maps.html:174
 msgid "died_in"
 msgstr "Died in"
 
-#: fh/templates/fh/maps.html:169
+#: fh/templates/fh/maps.html:174
 msgid "km_away"
 msgstr "km away"
 
-#: fh/templates/fh/modals/filter_for_timeline.html:8
-#: fh/templates/fh/timeline_dec.html:48
-msgid "filter"
-msgstr "Filter"
-
 #: fh/templates/fh/modals/filter_for_timeline.html:13
-#, fuzzy
-#| msgid "last_name"
 msgid "name"
-msgstr "Last Name"
+msgstr "Name"
 
 #: fh/templates/fh/modals/filter_for_timeline.html:14
 msgid "language"
@@ -247,11 +282,11 @@ msgstr "Language"
 msgid "location"
 msgstr "Location"
 
-#: fh/templates/fh/modals/filter_for_timeline.html:18
+#: fh/templates/fh/modals/filter_for_timeline.html:19
 msgid "apply"
 msgstr "Apply"
 
-#: fh/templates/fh/modals/filter_for_timeline.html:19
+#: fh/templates/fh/modals/filter_for_timeline.html:20
 msgid "apply_filters"
 msgstr "Apply Filters"
 
@@ -269,8 +304,6 @@ msgid "register"
 msgstr "Register"
 
 #: fh/templates/fh/modals/login.html:15
-#, fuzzy
-#| msgid "password"
 msgid "forgot_password"
 msgstr "forgot password?"
 
@@ -287,99 +320,144 @@ msgid "password"
 msgstr "password"
 
 #: fh/templates/fh/modals/register.html:14
-#, fuzzy
-#| msgid "password"
 msgid "retype_password"
 msgstr "retype password"
 
-#: fh/templates/fh/search.html:16
-msgid "WIKI-ID"
-msgstr "WIKI-ID"
+#: fh/templates/fh/search.html:24
+msgid "Display _MENU_ records per page"
+msgstr "Display _MENU_ records per page"
 
-#: fh/templates/fh/search.html:17
+#: fh/templates/fh/search.html:25
+msgid "Nothing found - sorry"
+msgstr "Nothing found - sorry"
+
+#: fh/templates/fh/search.html:26
+msgid "Showing page _PAGE_ of _PAGES_"
+msgstr "Showing page _PAGE_ of _PAGES_"
+
+#: fh/templates/fh/search.html:27
+msgid "No records available"
+msgstr "No records available"
+
+#: fh/templates/fh/search.html:28
+msgid "(filtered from _MAX_ total records)"
+msgstr "(filtered from _MAX_ total records)"
+
+#: fh/templates/fh/search.html:31
+msgid "first"
+msgstr "First Name"
+
+#: fh/templates/fh/search.html:32
+msgid "last"
+msgstr "Last Name"
+
+#: fh/templates/fh/search.html:48 fh/templates/fh/search.html:57
 msgid "Name"
 msgstr "Name"
 
-#: fh/templates/fh/search.html:18 fh/templates/fh/timeline.html:70
-#: fh/templates/fh/timeline_cent.html:67 fh/templates/fh/timeline_dec.html:64
-#: fh/templates/fh/timeline_k.html:66
-#, fuzzy
-#| msgid "date_of_birth"
+#: fh/templates/fh/search.html:49 fh/templates/fh/search.html:58
+#: fh/templates/fh/timeline.html:110
 msgid "place_of_birth"
-msgstr "Birthday"
+msgstr "Place of birth"
 
-#: fh/templates/fh/search.html:19
-#, fuzzy
-#| msgid "date_of_birth"
-msgid "date_of_birth"
-msgstr "Birthday"
-
-#: fh/templates/fh/search.html:20 fh/templates/fh/timeline.html:71
-#: fh/templates/fh/timeline_dec.html:66
-#, fuzzy
-#| msgid "date_of_birth"
+#: fh/templates/fh/search.html:50 fh/templates/fh/search.html:59
+#: fh/templates/fh/timeline.html:112
 msgid "place_of_death"
-msgstr "Birthday"
+msgstr "Place of Death"
 
-#: fh/templates/fh/search.html:21
+#: fh/templates/fh/search.html:51 fh/templates/fh/search.html:60
+msgid "date_of_birth"
+msgstr "Date of birth"
+
+#: fh/templates/fh/search.html:52 fh/templates/fh/search.html:61
 msgid "date_of_death"
 msgstr "Date of death"
 
-#: fh/templates/fh/timeline.html:33
-msgid "timespan: year"
-msgstr "Timespan: Year"
-
-#: fh/templates/fh/timeline_cent.html:33
-msgid "timespan: century"
-msgstr "Timespan: Century"
-
-#: fh/templates/fh/timeline_cent.html:54
+#: fh/templates/fh/timeline.html:93
 msgid "abbrevationCentury"
 msgstr "cent"
 
-#: fh/templates/fh/timeline_dec.html:33
-msgid "timespan: decate"
-msgstr "Timespan: Decade"
+#: fh/templates/fh/upload_handwriting.html:23
+msgid "label"
+msgstr "label"
 
-#: fh/templates/fh/timeline_k.html:33
-msgid "timespan: millenium"
-msgstr "Timespan: Millenium"
+#: fh/templates/fh/upload_handwriting.html:24
+msgid "source"
+msgstr "source"
 
-#: fh/templates/fh/upload_handwriting.html:44
+#: fh/templates/fh/upload_handwriting.html:46
 msgid "progress..."
 msgstr "progress..."
 
-#: fh/templates/fh/upload_handwriting.html:79
+#: fh/templates/fh/upload_handwriting.html:81
 msgid "put_your_files_here"
 msgstr "Put your files here"
 
-#: fh/templates/fh/upload_handwriting.html:111
+#: fh/templates/fh/upload_handwriting.html:120
 msgid "upload_images_here"
 msgstr "Upload your images here"
 
-#: fh/templates/fh/upload_handwriting.html:118
+#: fh/templates/fh/upload_handwriting.html:122
+msgid "upload_step_1"
+msgstr "Add images of manuscripts to this personality "
+
+#: fh/templates/fh/upload_handwriting.html:128
+msgid "upload_step_2"
+msgstr "Add caption to image and specify source (link)"
+
+#: fh/templates/fh/upload_handwriting.html:140
+msgid "upload_step_3"
+msgstr "Looking for a famous personality in the system of Wikipedia/Wikidata "
+
+#: fh/templates/fh/upload_handwriting.html:142
 msgid "wikidata_id"
 msgstr "wikidata ID"
 
-#: fh/templates/fh/upload_handwriting.html:126
+#: fh/templates/fh/upload_handwriting.html:144
+msgid "search_personality"
+msgstr "Search Personality"
+
+#: fh/templates/fh/upload_handwriting.html:149
 msgid "title"
 msgstr "Title"
 
-#: fh/templates/fh/upload_handwriting.html:130
-msgid "description"
-msgstr "description"
-
-#: fh/templates/fh/upload_handwriting.html:144
-msgid "date"
-msgstr "Date"
-
-#: fh/templates/fh/upload_handwriting.html:150
-msgid "image_link"
-msgstr "image link"
-
-#: fh/templates/fh/upload_handwriting.html:156
+#: fh/templates/fh/upload_handwriting.html:152
 msgid "upload"
 msgstr "Upload"
+
+#~ msgid "create_entry"
+#~ msgstr "create new entry"
+
+#~ msgid "timespan: year"
+#~ msgstr "Timespan: Year"
+
+#~ msgid "timespan: century"
+#~ msgstr "Timespan: Century"
+
+#~ msgid "timespan: decate"
+#~ msgstr "Timespan: Decade"
+
+#, fuzzy
+#~| msgid "upload"
+#~ msgid "upload_step_4"
+#~ msgstr "Add images of manuscripts to this personality "
+
+#~ msgid "description"
+#~ msgstr "description"
+
+#~ msgid "date"
+#~ msgstr "Date"
+
+#~ msgid "image_link"
+#~ msgstr "image link"
+
+#, fuzzy
+#~| msgid "description"
+#~ msgid "description_text"
+#~ msgstr "Description"
+
+#~ msgid "WIKI-ID"
+#~ msgstr "WIKI-ID"
 
 #~ msgid "show_all_users"
 #~ msgstr "show all users"
