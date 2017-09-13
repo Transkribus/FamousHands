@@ -60,7 +60,6 @@ class WikiGet:
 #     
     
     
-    #TOOOO slow
 #     def GetHumansContainingRegex(self, name_part):
 #         QUERY_PATTERN =  "SELECT ?human ?label WHERE { ?human wdt:P31 wd:Q5; rdfs:label ?label. FILTER(LANG(?label) = \"en\"). FILTER REGEX(str(?label), '"+ name_part + "','i'). } LIMIT 5"
 #         print(QUERY_PATTERN)
@@ -68,8 +67,6 @@ class WikiGet:
 #         data = response.read().decode("utf-8")
 #         j = json.loads(data)
 #         print(json.dumps(j, indent=4, sort_keys=True))
-#         
-#         
     
     def GetItemsContaining(self,name_part):  
         QUERY_PATTERN = "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=" + name_part + "&language=en&format=json&limit=50" 
@@ -112,7 +109,7 @@ class WikiGet:
     
     def GetEntry(self,wiki_id, description = ""):
         #QUERY_PATTERN = "SELECT ?langSpokenLabel ?image ?gender ?genderLabel ?birthLabel ?birthPl ?deathLabel ?deathPl WHERE {wd:%id wdt:P1412 ?langSpoken.wd:%id wdt:P18 ?image.wd:%id wdt:P21 ?gender.wd:%id wdt:P569 ?birth.wd:%id wdt:P19 ?birthPl. wd:%id wdt:P570 ?death.wd:%id wdt:P20 ?deathPl. SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". } }"
-        QUERY_PATTERN = "SELECT ?label ?itemLabel ?langSpokenLabel ?image ?gender ?genderLabel ?birthLabel ?birthPl ?deathLabel ?deathPl WHERE {{wd:%id wdt:P1412 ?langSpoken}UNION{wd:%id rdfs:label ?item}UNION{wd:%id wdt:P18 ?image}UNION{wd:%id wdt:P21 ?gender}UNION{wd:%id wdt:P569 ?birth}UNION{wd:%id wdt:P19 ?birthPl}UNION{wd:%id wdt:P570 ?death.wd:%id wdt:P20 ?deathPl} SERVICE wikibase:label { bd:serviceParam wikibase:language \"en,de\". } }"
+        QUERY_PATTERN = "SELECT ?label ?itemLabel ?langSpokenLabel ?image ?gender ?genderLabel ?birthLabel ?birthPl ?deathLabel ?deathPl WHERE {{wd:%id wdt:P103 ?langSpoken}UNION{wd:%id rdfs:label ?item}UNION{wd:%id wdt:P18 ?image}UNION{wd:%id wdt:P21 ?gender}UNION{wd:%id wdt:P569 ?birth}UNION{wd:%id wdt:P19 ?birthPl}UNION{wd:%id wdt:P570 ?death.wd:%id wdt:P20 ?deathPl} SERVICE wikibase:label { bd:serviceParam wikibase:language \"en,de\". } }"
         url = self.BASE_URL  + QUERY_PATTERN.replace("%id", wiki_id).replace(" ","%20") + "&format=json" # %7B%
         #print (url)
 
