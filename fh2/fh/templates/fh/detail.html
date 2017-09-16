@@ -35,7 +35,9 @@
                 {% if e.place_of_death.label %}
                     {% trans 'Died in' %}:  <a target="_blank" href ="/maps?lat={{e.place_of_death.lng}}&amp;lng={{e.place_of_death.lat}}">{{e.place_of_death.label}}</a><br/>
                 {% endif %}
+                 {% if e.native_lang %}
                 {% trans '  Native language: ' %}: {{e.native_lang}}<br/>
+                {% endif %}
                 
                 {% if e.country_citizenship.label %}
                     {% trans 'country_citizenship' %}: {{e.country_citizenship.label}}<br/>
