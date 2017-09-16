@@ -52,10 +52,13 @@ def maps(request):
     template = loader.get_template('fh/maps.html')
     lat =  request.GET.get('lat', '47.26').replace(',','.') #IBK as default
     long = request.GET.get('lng', '11.39').replace(',','.')
+    slider_km = request.GET.get('km', 50)
+    
     context = {
         'entries' : m.ENTRY.objects.filter(on=True),
         'lat' : lat,  #the center lat, lng, to be set as parameter
-        'lng' : long
+        'lng' : long,
+        'km' : slider_km
     }
 
     return HttpResponse(template.render(context, request))
@@ -321,7 +324,9 @@ def script(request):
     eup = eu.EntryUploader()
     eup.upload()
     eup.uploadHandwriting()
+    
     #wg = w.WikiGet()
+    #hc = wg.GetEntry('Q567', 'description') #Merkel
     #hc = wg.GetHumansContaining("Einstein")
     #return HttpResponse(str(hc))
 

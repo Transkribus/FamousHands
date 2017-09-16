@@ -30,7 +30,7 @@
                 min: 0,
                 max: 100,
                 step: 5,
-                value: 20
+                value: {{km}}
                 
             }).each(function() {
 
@@ -146,13 +146,7 @@
                             //var lat = event.latLng.lat();
                             //var lng = event.latLng.lng();
                         });
-                        
-                        
-                       
-                      
-                        
                     } //init map
-                    
                     
                      function findNearestMarker(coords) 
                     {
@@ -171,7 +165,7 @@
                         if (distance < minDist) 
                         {
                             d.innerHTML += "<h3 class='text-nowrap'><img height='70'  src='" + marker[i].image + "' class ='img-circle' alt='{% trans 'entity_image' %}' /> <a target='_blank' href='/detail?id=" +  marker[i].id + "'>" + marker[i].description + "</a> </h3>";
-                            d.innerHTML += "<small>" + (marker[i].born ? '{% trans 'born_in' %}' : '{% trans 'died_in' %}') + ' <a href="/maps?lat=' +  marker[i].position.lat() + '&lng=' + marker[i].position.lng()+ '">' + marker[i].title + ' </a> (' +  Math.round(distance /1000) + ' ' + '{% trans 'km_away' %}' + ')</small><br/>';
+                            d.innerHTML += "<small>" + (marker[i].born ? '{% trans 'born_in' %}' : '{% trans 'died_in' %}') + ' <a href="/maps?lat=' +  marker[i].position.lat() + '&lng=' + marker[i].position.lng()+ '&km=' + (minDist / 1000) + '">' + marker[i].title + ' </a> (' +  Math.round(distance /1000) + ' ' + '{% trans 'km_away' %}' + ')</small><br/>';
                             //console.log (d.innerHTML);
                         }
                       }
