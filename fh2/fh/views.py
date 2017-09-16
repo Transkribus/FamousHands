@@ -159,15 +159,15 @@ def detail(request):
     
     try:
         desc = wikipedia.summary(e.description, sentences=5).split("==")[0]
-
+        wiki_name = wikipedia.search(e.description,1)[0]
     except:
         desc = ""
-        
+        wiki_name = ""
     context = {
         'e' :  e,
         'description' : desc,
         'handwritings' : m.HANDWRITTENIMAGE.objects.filter(entry=e,on=True),
-        'wiki_name' : wikipedia.search(e.description,1)[0]
+        'wiki_name' : wiki_name
         }
     
     return HttpResponse(template.render(context, request))
