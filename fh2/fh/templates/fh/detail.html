@@ -156,13 +156,13 @@
                 
                         </div></div>
                     </div>  
-                <h3>{% trans 'Summary' %}</h3>
-                <p id="desc">
-                    {{description}}
-                     <a target="_blank" href="https://{{ LANGUAGE_CODE }}.wikipedia.org/wiki/{{wiki_name|urlencode}}"> {% trans '  ....More' %}</a>
-                </p>
-                
-                
+                {% if wiki_name %}
+                    <h3>{% trans 'Summary' %}</h3>
+                    <p id="desc">
+                        {{description}}
+                         <a target="_blank" href="https://{{ LANGUAGE_CODE }}.wikipedia.org/wiki/{{wiki_name|urlencode}}"> {% trans '  ....More' %}</a>
+                    </p>
+                {% endif  %}
             </div>                                       
         </div>
             
