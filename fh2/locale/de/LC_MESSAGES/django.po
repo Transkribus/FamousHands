@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-13 19:15+0000\n"
+"POT-Creation-Date: 2017-09-16 10:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,12 +38,12 @@ msgstr "Zeige alle Einträge"
 msgid "detail_view"
 msgstr "Detailansicht"
 
-#: fh/templates/fh/detail.html:25 fh/templates/fh/longsearch.html:24
-#: fh/templates/fh/maps.html:173
+#: fh/templates/fh/detail.html:25 fh/templates/fh/longsearch.html:26
+#: fh/templates/fh/maps.html:167
 msgid "entity_image"
 msgstr "Bild der Person"
 
-#: fh/templates/fh/detail.html:27 fh/templates/fh/longsearch.html:28
+#: fh/templates/fh/detail.html:27 fh/templates/fh/longsearch.html:31
 msgid "Personal Details"
 msgstr "Detailinformation"
 
@@ -51,11 +51,11 @@ msgstr "Detailinformation"
 msgid "  Lived from the "
 msgstr "Lebte vom "
 
-#: fh/templates/fh/detail.html:30 fh/templates/fh/longsearch.html:29
+#: fh/templates/fh/detail.html:30 fh/templates/fh/longsearch.html:32
 msgid " to the"
 msgstr "bis zum"
 
-#: fh/templates/fh/detail.html:33 fh/templates/fh/longsearch.html:30
+#: fh/templates/fh/detail.html:33 fh/templates/fh/longsearch.html:33
 msgid "Reached the age of"
 msgstr "Erreichte das Alter von"
 
@@ -75,7 +75,7 @@ msgstr "Sprachen"
 msgid "country_citizenship"
 msgstr "Staatsangehörigkeit"
 
-#: fh/templates/fh/detail.html:43 fh/templates/fh/longsearch.html:34
+#: fh/templates/fh/detail.html:43 fh/templates/fh/longsearch.html:37
 msgid "Link to the WikiData Site of"
 msgstr "Link auf die Wikidata-Seite von"
 
@@ -83,7 +83,7 @@ msgstr "Link auf die Wikidata-Seite von"
 msgid "goto_image_gallery"
 msgstr "Gehe zur Bildergallerie"
 
-#: fh/templates/fh/detail.html:51 fh/templates/fh/includes/navbar.html:10
+#: fh/templates/fh/detail.html:51 fh/templates/fh/includes/navbar.html:14
 #: fh/templates/fh/upload_handwriting.html:7
 msgid "upload_handwriting"
 msgstr "Handschriften hochladen"
@@ -122,39 +122,43 @@ msgstr "Bildergalerie"
 msgid "back"
 msgstr "Zurück"
 
-#: fh/templates/fh/includes/navbar.html:6
+#: fh/templates/fh/includes/navbar.html:10
 msgid "famous_hands"
 msgstr "Famous Hands"
 
-#: fh/templates/fh/includes/navbar.html:13 fh/templates/fh/maps.html:6
+#: fh/templates/fh/includes/navbar.html:17 fh/templates/fh/maps.html:6
 msgid "maps"
 msgstr "Karte"
 
-#: fh/templates/fh/includes/navbar.html:14
+#: fh/templates/fh/includes/navbar.html:18
 #: fh/templates/fh/includes/timeline_head.html:7
 #: fh/templates/fh/timeline.html:9
 msgid "timeline"
 msgstr "Zeitachse"
 
-#: fh/templates/fh/includes/navbar.html:15
+#: fh/templates/fh/includes/navbar.html:19
 msgid "all_entries"
 msgstr "Zeige alle Einträge"
 
-#: fh/templates/fh/includes/navbar.html:31
+#: fh/templates/fh/includes/navbar.html:38
 msgid "Search(date:DD/MM/JJJJ)"
 msgstr "Suche(Datum:DD/MM/JJJJ)"
 
-#: fh/templates/fh/includes/navbar.html:32 fh/templates/fh/search.html:7
+#: fh/templates/fh/includes/navbar.html:39 fh/templates/fh/search.html:7
 #: fh/templates/fh/search.html:29 fh/templates/fh/upload_handwriting.html:51
 #: fh/templates/fh/upload_handwriting.html:145
 msgid "search"
 msgstr "Suchen"
 
-#: fh/templates/fh/includes/navbar.html:46
+#: fh/templates/fh/includes/navbar.html:53
 msgid "admin_page"
 msgstr "Administrator"
 
-#: fh/templates/fh/includes/navbar.html:53 fh/templates/fh/modals/login.html:12
+#: fh/templates/fh/includes/navbar.html:55
+msgid "logout"
+msgstr "Abmelden"
+
+#: fh/templates/fh/includes/navbar.html:59 fh/templates/fh/modals/login.html:12
 msgid "login"
 msgstr "Anmeldung"
 
@@ -225,27 +229,27 @@ msgstr "Suchen"
 msgid "Results"
 msgstr "Ergebnisse"
 
-#: fh/templates/fh/longsearch.html:29
+#: fh/templates/fh/longsearch.html:32
 msgid "Lived from the"
 msgstr "Lebte vom"
 
-#: fh/templates/fh/longsearch.html:31
+#: fh/templates/fh/longsearch.html:34
 msgid "Born in:"
 msgstr "Geboren in:"
 
-#: fh/templates/fh/longsearch.html:32
+#: fh/templates/fh/longsearch.html:35
 msgid "Died in:"
 msgstr "Gestorben in"
 
-#: fh/templates/fh/longsearch.html:33
+#: fh/templates/fh/longsearch.html:36
 msgid "Native language:"
 msgstr "Muttersprache"
 
-#: fh/templates/fh/longsearch.html:35
+#: fh/templates/fh/longsearch.html:38
 msgid "Link to the Wikipedia Site of"
 msgstr "Link auf die Wikipedias Seite von"
 
-#: fh/templates/fh/longsearch.html:40
+#: fh/templates/fh/longsearch.html:43
 msgid "detail_site"
 msgstr "Suchen"
 
@@ -253,19 +257,19 @@ msgstr "Suchen"
 msgid "center"
 msgstr "Ausgangspunkt"
 
-#: fh/templates/fh/maps.html:160
+#: fh/templates/fh/maps.html:154
 msgid "People found"
 msgstr "Personen gefunden"
 
-#: fh/templates/fh/maps.html:174
+#: fh/templates/fh/maps.html:168
 msgid "born_in"
 msgstr "Geboren in"
 
-#: fh/templates/fh/maps.html:174
+#: fh/templates/fh/maps.html:168
 msgid "died_in"
 msgstr "Gestorben in"
 
-#: fh/templates/fh/maps.html:174
+#: fh/templates/fh/maps.html:168
 msgid "km_away"
 msgstr "km entfernt"
 
@@ -355,12 +359,12 @@ msgid "Name"
 msgstr "Name"
 
 #: fh/templates/fh/search.html:49 fh/templates/fh/search.html:58
-#: fh/templates/fh/timeline.html:110
+#: fh/templates/fh/timeline.html:109
 msgid "place_of_birth"
 msgstr "Geburtsort"
 
 #: fh/templates/fh/search.html:50 fh/templates/fh/search.html:59
-#: fh/templates/fh/timeline.html:112
+#: fh/templates/fh/timeline.html:111
 msgid "place_of_death"
 msgstr "Sterbeort"
 
@@ -372,7 +376,7 @@ msgstr "Geburtsort"
 msgid "date_of_death"
 msgstr "Todesdatum"
 
-#: fh/templates/fh/timeline.html:93
+#: fh/templates/fh/timeline.html:92
 msgid "abbrevationCentury"
 msgstr "Jh"
 
