@@ -35,5 +35,6 @@ urlpatterns = [
     url(r'^search_name_service', views.search_name_service, name='search_name_service'),
     url(r'^image_gallery', views.image_gallery, name='image_gallery'),
     url(r'^fh_admin', views.admin, name='fh_admin'),
-    url(r'^turn_onoff', views.turn_onoff_service , name='turn_onoff_service')
+    url(r'^turn_onoff', views.turn_onoff_service , name='turn_onoff_service'),
+    url(r'^change_lang', views.change_lang , name='change_lang')
 ]

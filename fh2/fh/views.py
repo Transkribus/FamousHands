@@ -9,6 +9,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.utils import translation
+
 #from django.contrib.auth import authenticate
 import logging
 import math
@@ -27,7 +29,8 @@ from django.core import serializers
 from fh.wikidata import WikiGet as w
 from fh.tools import EntryUploader as eu
 from fh.transkribus import Services as serv 
- 
+
+from django.shortcuts import redirect 
 import json 
 
  
@@ -279,6 +282,12 @@ def upload_handwriting_process_imgs(request):
     return HttpResponse(json.dumps(fname), content_type="application/json") 
 
 
+def change_lang(request):
+    lang = request.GET.get('lang','en')
+    translation.activate(lang)
+    request.session[translation.LANGUAGE_SESSION_KEY] = lang
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/')) #redirect to same page
+    
 #-------------------------------------------
 # Web Services
 #-------------------------------------------
