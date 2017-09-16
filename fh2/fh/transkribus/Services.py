@@ -12,12 +12,19 @@ requests.packages.urllib3.disable_warnings()
 
 import xmltodict
 
+
+# class TranskribusUser:
+#     def __init__(self, xmlStr):
+#         dic = xmltodict.parse(xmlStr)
+#         self.user = dic.get('trpUserLogin')
+#         self.isAdmin = dic.get('isAdmin')
+
+        
 class Services:
     
     BASE_URL = "https://transkribus.eu/TrpServer/rest"
     
     def __init__(self):
-        print ("constructor")
         self.s = requests.Session()
      
      
@@ -35,8 +42,9 @@ class Services:
         headers = {'content-type': 'application/x-www-form-urlencoded'}
 
         r = self.s.post(url, params=params, verify=False, headers=headers)
-        print("RES:" + str(r))
+        print("RES:" + str(r.text))
         if r.status_code != 200: #ok
             raise Exception("NO 200")
         
-        return xmltodict.parse(r.text).get('trpUserLogin')
+        
+        return xmltodict.parse(r.text)

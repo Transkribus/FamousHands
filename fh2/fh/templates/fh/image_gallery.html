@@ -17,7 +17,6 @@
                 {
                     var id = $(this).attr("id");
                     var checked = $(this).is(":checked");
-                    console.log("ID:" + id +  " " + checked);
                     $.get("turn_onoff_service?what=image&id=" + id + "&on=" + checked, function(data, status)
                     {
                         $("#" +  id + "_lab").html(data);
@@ -36,8 +35,12 @@
             {% for img in handwritings %}
                 {% if img.on or request.session.user.isAdmin %}
                     <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
+                        <a href="/static/fh/img/upload/{{img.link}}" target="_plain">
+                            <span class="glyphicon glyphicon-zoom-in" />
+                        </a>
                         <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
                             <img src="/static/fh/img/upload/{{img.link}}" class="img-responsive">
+                            <a href="{{img.description}}" target="_plain">{{img.description}}</a>
                         </a>
                         {% if request.session.user.isAdmin  %} 
                             <div class="material-switch  pull-right">
@@ -60,6 +63,7 @@
                 $(document).delegate('*[data-toggle="demolightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
                     event.preventDefault();
                     return $(this).ekkoLightbox({
+                        //scale_height: false
                     });
                 });
                 

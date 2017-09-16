@@ -60,7 +60,7 @@ class HANDWRITTENIMAGE(models.Model):
 
     entry = models.ForeignKey(ENTRY, on_delete=models.CASCADE)
     title = models.CharField(max_length=128, null=False)
-    description = models.CharField(max_length=128, null=True)
+    description = models.CharField(max_length=128, null=True) #where is the image from
     date = models.DateField(auto_now_add=True)
     link = models.CharField(max_length=512, null=False) #the link to the image
     origin = models.CharField(max_length=512, null=True) #who uploaded the image

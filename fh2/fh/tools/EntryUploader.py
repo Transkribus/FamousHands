@@ -41,14 +41,14 @@ class EntryUploader:
             next(f) #ignore header
             for row in f:
                 print (row[0])
-                new_dir = '/home/albert/Dropbox/my/workspaces/liclipse/fh/fh/static/fh/img/upload/' + row[2];
+                new_dir = '/home/albert/Dropbox/my/workspaces/liclipse/fh2/fh/static/fh/img/upload/' + row[2];
                 if not os.path.exists(new_dir):
                     os.makedirs(new_dir)
                 i = 0
                 for img in os.listdir('/home/albert/tmp/fh/Famous Hands/' + row[2]):
                     img_p = row[2] + '/' + img;
                     print(row[3])
-                    en = m.ENTRY.objects.get(pk=row[3])                    
+                    en = m.ENTRY.objects.filter(wiki_link=row[0]).first();                    
                     m.HANDWRITTENIMAGE.objects.create(entry = en, title = row[2]  + "_" + str(i), description = row[2]  + "_" + str(i), date = datetime.datetime.now(), link = img_p)
-                    copyfile('/home/albert/tmp/fh/Famous Hands/' + img_p, '/home/albert/Dropbox/my/workspaces/liclipse/fh/fh/static/fh/img/upload/' + img_p)
+                    #copyfile('/home/albert/tmp/fh/Famous Hands/' + img_p, '/home/albert/Dropbox/my/workspaces/liclipse/fh2/fh/static/fh/img/upload/' + img_p)
                     i += 1

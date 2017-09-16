@@ -20,13 +20,16 @@
             <h1>{% trans 'Results' %}</h1>
             {% for e in entries %}
                 <div class="col-sm-5">
+                    <a href="/detail?id={{e.id}}">
                     <h2>{{e.description}}</h2>
-                    <img src={{e.image}} class ="img-circle" alt="{% trans 'entity_image' %}" style="float:left;height:200px;">
+                    
+                        <img src={{e.image}} class ="img-circle" alt="{% trans 'entity_image' %}" style="float:left;height:200px;">
+                    </a>
                 </div>
                 <div class="col-sm-5">
                     <p>
                         <h3>{% trans 'Personal Details' %}</h3>
-                        {% trans 'Lived from the' %} {{e.day_of_birth}}.{{e.month_of_birth}}.{{e.year_of_birth}}{% trans ' to the' %} {{e.day_of_death}}.{{e.month_of_death}}.{{e.year_of_death}} <br/>
+                        {% trans 'Lived from the' %} {{e.day_of_birth}}.{{e.month_of_birth}}.{{e.year_of_birth}} {% trans ' to the' %} {{e.day_of_death}}.{{e.month_of_death}}.{{e.year_of_death}} <br/>
                         {% trans 'Reached the age of' %} {{e.lifespan}}<br/>
                         {% trans 'Born in:' %} <a target="_blank" href ="/maps?lat={{e.place_of_birth.lng}}&amp;lng={{e.place_of_birth.lat}}">{{e.place_of_birth.label}}</a> <br/>
                         {% trans 'Died in:' %} <a target="_blank" href ="/maps?lat={{e.place_of_death.lng}}&amp;lng={{e.place_of_death.lat}}">{{e.place_of_death.label}}</a><br/>

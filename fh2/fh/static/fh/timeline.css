@@ -153,7 +153,7 @@
 .filter_btn{
   background-color: #4997cd;
   position: relative;
-  left: -75px;
+  left: 70px;
   width: 200px;
 }
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
@@ -173,7 +173,7 @@
 .place:before, .birth:before, .death:before, .name:before{
   color: #fff;
 }
-#img:hover{
+/* #img:hover{
   height: 100%;
   max-width: 100%;
-}
+} */
