@@ -219,12 +219,13 @@ def login_process(request):
     p = request.POST.get('password','')
   
     s = serv.Services();
+    
     try:
         request.session['user'] = s.Login(e,p)['trpUserLogin']
         request.session.modified = True 
     except:
         messages.warning(request, "login_failed")
-    
+     
     return HttpResponseRedirect("index")
 
 

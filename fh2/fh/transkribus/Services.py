@@ -7,8 +7,10 @@ Created on Aug 20, 2017
 import requests
 #workaround for insecure platform warnings...
 #http://stackoverflow.com/questions/29099404/ssl-insecureplatform-error-when-using-requests-package
-import requests.packages.urllib3
-requests.packages.urllib3.disable_warnings()
+#import requests.packages.urllib3 
+#requests.packages.urllib3.disable_warnings()
+
+from transkribus import services
 
 import xmltodict
 
@@ -34,17 +36,24 @@ class Services:
         self.s.post(url, verify=False, headers=headers)
         try: self.cleanPersistentSession()
         except: pass
-        
+    
     def Login(self, user, pw):
-        url = self.BASE_URL +'/auth/login' 
-        t_id = "user_data" # note we are using the same t_id as for t_register... This is OK because the data response will be the same... I think
-        params = {'user': user, 'pw': pw}
-        headers = {'content-type': 'application/x-www-form-urlencoded'}
-
-        r = self.s.post(url, params=params, verify=False, headers=headers)
-        print("RES:" + str(r.text))
+        api = services.TranskribusAPI()
+        r = api.login(username=user, password=pw)
+        #print(xmltodict.parse(r.text))
+        
+#         doc = api.get_doc_by_id(COLL_ID, DOC_ID)
+# 
+#         for page in doc.pages:
+# 
+#             most_recent_transcript = page.most_recent_transcript
+# 
+#             for transcript in page.transcripts:
+#                 if transcript.id != most_recent_transcript.id:
+#                     print("Not the most recent transcript:", transkript.url)
+    
         if r.status_code != 200: #ok
             raise Exception("NO 200")
         
-        
         return xmltodict.parse(r.text)
+        
