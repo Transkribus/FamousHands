@@ -58,9 +58,9 @@
                     <div class="carousel-inner"> 
                         {% for img in handwritings %}
                                 <div class="item imgs_car_size {{forloop.first|yesno:'active,,'}}">
-                                    <img src="/static/fh/img/upload/{{img.link}}" alt="{{img.title}}">
+                                    <img src="static/fh/img/upload/{{img.link}}" alt="{{img.title}}">
                                     <div class="carousel-caption">
-                                        <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}</a>
+                                        <a href="static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}</a>
                                     </div>
                                 </div>
                         {% endfor %}
@@ -102,7 +102,7 @@
                                             position: {lat: comma_point({{e.place_of_birth.lat}}), lng:  comma_point({{e.place_of_birth.lng}})},
                                             map: map,
                                             title: born_label,
-                                            icon: "/static/fh/img/born.png"
+                                            icon: "static/fh/img/born.png"
                                         });
                                         
                                         
@@ -124,7 +124,7 @@
                                                 position: {lat:  comma_point({{e.place_of_death.lat}}), lng:  comma_point({{e.place_of_death.lng}})},
                                                 map: map,
                                                 title: death_label,
-                                                icon: "/static/fh/img/died.jpeg"
+                                                icon: "static/fh/img/died.jpeg"
                                             });
                                             
                                             google.maps.event.addListener(mark_death, 'click', function () 

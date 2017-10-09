@@ -130,9 +130,9 @@
                             <div class="col-sm-5">
                                 {%for ent in e%}
                                    {%for img in hws|get_value_from_dict:ent.pk %}
-                                      <a href="/static/fh/img/upload/{{img.link}}" target="_plain"><span class="glyphicon glyphicon-zoom-in" /></a>  
-                                      <a href="/static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
-                                        <img src="/static/fh/img/upload/{{img.link}}" title="{{img.title}}" class="img-responsive" />
+                                      <a href="static/fh/img/upload/{{img.link}}" target="_plain"><span class="glyphicon glyphicon-zoom-in" /></a>  
+                                      <a href="static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}
+                                        <img src="static/fh/img/upload/{{img.link}}" title="{{img.title}}" class="img-responsive" />
                                       </a>
                                    {% endfor %}            
                                 {% endfor %}
