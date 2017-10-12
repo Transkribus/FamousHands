@@ -8,7 +8,7 @@
                 <h1 style="text-align: center;">{% trans 'filter' %}</h1>
             </div>
             <br>
-            <form class="form-horizontal" action="/timeline" method="get">
+            <form class="form-horizontal" action="timeline" method="get">
                 {% csrf_token %}
                 <input id="filterName" type="text" name="filterName" placeholder="{% trans 'name' %}" value="">
                 <input id="filterLang" type="text" name="filterLang" placeholder="{% trans 'language' %}" value="" disabled style="background-color: #ccc;">

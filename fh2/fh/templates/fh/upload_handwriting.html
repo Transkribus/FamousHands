@@ -99,18 +99,18 @@
                     
                     /* Called after the file is uploaded and sucessful */
                     this.on("sucess", function(file){
-                        console.log("success");
-                        console.log(file);
+                      //  console.log("success");
+                      //  console.log(file);
                     });
                     
                     /* Called before the file is being sent */
                     this.on("sending", function(file){
-                        console.log("sending");
+                      //  console.log("sending");
                     });
                     
                     /* Called before the file is being sent */
                     this.on("addedfile", function(file){
-                        console.log("addedfile");
+                      //  console.log("addedfile");
                     });
                 }
             };  
@@ -120,10 +120,10 @@
             <h3>{% trans 'upload_images_here' %}</h3>
             
             <h4 id="desc_1">1. {% trans 'upload_step_1' %}</h4>
-            <form class="dropzone" action="/upload_handwriting_process_imgs" method="post" enctype="multipart/form-data" id="MyDropzone">
+            <form class="dropzone" action="upload_handwriting_process_imgs" method="post" enctype="multipart/form-data" id="MyDropzone">
             </form>
             <br>
-            <form class="form-inline" action="/upload_handwriting_process" method="post" enctype="multipart/form-data">
+            <form class="form-inline" action="upload_handwriting_process" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h4 id="desc_2">2. {% trans 'upload_step_2' %}</h4>
                 <div id="img_container"> 

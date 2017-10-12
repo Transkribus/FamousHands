@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'fh/fh.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'fh/timeline.css' %}">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
     <body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
         <script>
@@ -106,7 +106,7 @@
                                                          <img id="img" class="img-rounded" src="{{ent.image}}" alt="Lights" height="80" />
                                                             <span class="importo"><a target="_plain" href="detail?id={{ent.id}}">{{ent.description}}, {{ent.lifespan}}</a></span>
                                                         </li>
-                                                        <li class="list-group-item place"><span class="causale">{% trans 'place_of_birth' %} : <a target="_blank" href ="/maps?lat={{ent.place_of_birth.lng}}&amp;lng={{ent.place_of_birth.lat}}">{{ent.place_of_birth.label}} </a></span> </li>
+                                                        <li class="list-group-item place"><span class="causale">{% trans 'place_of_birth' %} : <a target="_blank" href ="maps?lat={{ent.place_of_birth.lng}}&amp;lng={{ent.place_of_birth.lat}}">{{ent.place_of_birth.label}} </a></span> </li>
                                                         {% if ent.place_of_death %}
                                                             <li class="list-group-item no-updown-border place"><span class="causale">{% trans 'place_of_death' %} : <a target="_blank" href ="/maps?lat={{ent.place_of_death.lng}}&amp;lng={{ent.place_of_death.lat}}">{{ent.place_of_death.label}} </a></span> </li>
                                                         {% endif %}

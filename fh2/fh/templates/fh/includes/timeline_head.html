@@ -7,10 +7,10 @@
        <a class="navbar-brand" href="#"> {% trans 'timeline' %}</a>
      </div>
      <ul class="nav navbar-nav">
-       <li{% if agg == 1%} class="active"{% endif %} ><a href="/timeline?agg=1">{% trans 'year' %}</a></li>
-       <li{% if agg == 10%} class="active"{% endif %} ><a href="/timeline?agg=10">{% trans 'decade' %}</a></li>
-       <li{% if agg == 100%} class="active"{% endif %} ><a href="/timeline?agg=100">{% trans 'century' %}</a></li>
-       <li{% if agg == 1000%} class="active"{% endif %} ><a href="/timeline?agg=1000">{% trans 'millenium' %}</a></li>
+       <li{% if agg == 1%} class="active"{% endif %} ><a href="timeline?agg=1">{% trans 'year' %}</a></li>
+       <li{% if agg == 10%} class="active"{% endif %} ><a href="timeline?agg=10">{% trans 'decade' %}</a></li>
+       <li{% if agg == 100%} class="active"{% endif %} ><a href="timeline?agg=100">{% trans 'century' %}</a></li>
+       <li{% if agg == 1000%} class="active"{% endif %} ><a href="timeline?agg=1000">{% trans 'millenium' %}</a></li>
        <li >
             <button type="button" class="btn filter_btn" data-toggle="modal" data-target="#filter_time">{% trans 'filter' %}</button>
        </li>

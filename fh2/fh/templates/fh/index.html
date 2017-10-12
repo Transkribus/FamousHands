@@ -92,7 +92,7 @@
                         {
                             var lat = event.latLng.lat();
                             var lng = event.latLng.lng();
-                            window.location.href = '/maps?lat=' + lat + '&lng=' + lng; 
+                            window.location.href = 'maps?lat=' + lat + '&lng=' + lng; 
                         });
                                                                              
                         var birth_label = "{% trans 'birth' %} : " + rnd_hw[i].birth_label;                                         
@@ -107,7 +107,7 @@
                         {
                             var lat = this.getPosition().lat();
                             var lng = this.getPosition().lng();
-                            window.location.href = '/maps?lat=' + lat + '&lng=' + lng; 
+                            window.location.href = 'maps?lat=' + lat + '&lng=' + lng; 
                         });  
                         
                         //All markers should be visible
@@ -129,7 +129,7 @@
                             {
                                 var lat = this.getPosition().lat();
                                 var lng = this.getPosition().lng();
-                                window.location.href = '/maps?lat=' + lat + '&lng=' + lng; 
+                                window.location.href = 'maps?lat=' + lat + '&lng=' + lng; 
                             });
                             
                             //Only necessary for at least two points    

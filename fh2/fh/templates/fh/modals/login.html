@@ -5,7 +5,7 @@
         <div class="loginmodal-container">
             <h1>{% trans 'login_to_account' %}</h1>
             <br>
-            <form action="/login_process" method="post">
+            <form action="login_process" method="post">
                 {% csrf_token %}
                 <input type="text" name="email" placeholder="{% trans 'email' %}">
                 <input type="password" name="password" placeholder="Password">

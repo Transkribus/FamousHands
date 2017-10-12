@@ -11,7 +11,7 @@
         </div>
         <ul class="nav navbar-nav">
             {% if request.session.user %} 
-                <li><a href="/upload_handwriting">{% trans 'upload_handwriting' %}</a></li>
+                <li><a href="upload_handwriting">{% trans 'upload_handwriting' %}</a></li>
             {% endif %}
             
             <li><a href="maps">{% trans 'maps' %}</a></li>
@@ -33,7 +33,7 @@
         
         <ul class="nav navbar-nav navbar-right ">
             <li>
-                <form method="POST" action="/search" class="form-inline">
+                <form method="POST" action="search" class="form-inline">
                     {% csrf_token %}
                     <input class="form-control mr-sm-2" type="text" placeholder="{% trans 'Search(date:DD/MM/JJJJ)' %}" name="search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans 'search' %}</button>
@@ -50,7 +50,7 @@
                             ({{request.session.user.userName}})
                         </a></li>
                         {% if request.session.user.isAdmin %}
-                            <li><a href="/fh_admin">{% trans 'admin_page' %}</a></li>
+                            <li><a href="fh_admin">{% trans 'admin_page' %}</a></li>
                         {% endif %}
                         <li><a href="logout">{% trans 'logout' %}</a></li>
                     </ul>
@@ -64,9 +64,9 @@
                 <ul class="dropdown-menu">
                     {% for language in languages %}
                         {% if language.code == LANGUAGE_CODE %}
-                            <li><span class="glyphicon glyphicon-ok"/> {{ language.name_local }}</a></li>
+                            <li><span class="glyphicon glyphicon-ok"></span> {{ language.name_local }}</li>
                         {% else %}
-                            <li><a href="/change_lang?lang={{language.code}}">{{ language.name_local }}</a></li>
+                            <li><a href="change_lang?lang={{language.code}}">{{ language.name_local }}</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>

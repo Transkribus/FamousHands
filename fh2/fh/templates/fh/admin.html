@@ -38,7 +38,7 @@
             <h1>{% trans 'show_all_entries' %}</h1>
             <ol>
                 {% for e in entries %}
-                    <li class="l_entry"> <a target="_blank" href="/detail?id={{e.id}}">{{e.description}}</a> ({{e.year_of_birth}} - {{e.place_of_birth.label}}) - {{e.wiki_link}}
+                    <li class="l_entry"> <a target="_blank" href="detail?id={{e.id}}">{{e.description}}</a> ({{e.year_of_birth}} - {{e.place_of_birth.label}}) - {{e.wiki_link}}
                     <span class="material-switch">
                         <input id="{{e.id}}" class="boxes" name="{{e.id}}" type="checkbox" 
                             {% if e.on %} checked="checked" {% endif    %} />

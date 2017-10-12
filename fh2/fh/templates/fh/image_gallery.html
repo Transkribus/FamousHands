@@ -7,11 +7,11 @@
         {% include "fh/includes/head.html" %}
         <link rel="stylesheet" type="text/css" href="{% static 'fh/image_gallery.css' %}" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" />
-        <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
     </head>
     <body>
         <script>
-             $(document).ready(function()
+            $(document).ready(function()
             {
                 $(".boxes").change(function()
                 {
@@ -29,7 +29,7 @@
             {% include "fh/includes/navbar.html" %} 
             <h1>
                 <img src={{e.image}} class ="img-circle" alt="Profil bild" style="width:50px">
-                {{e.description}}<a href="/detail?id={{e.pk}}"> [{% trans 'back' %}]</a>    
+                {{e.description}}<a href="detail?id={{e.pk}}"> [{% trans 'back' %}]</a>    
             </h1>   
             
             {% for img in handwritings %}
@@ -77,8 +77,8 @@
                     }
                     else
                     {
-            //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-            //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+            //          $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+            //          $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
                         $(".filter").not('.'+value).hide('3000');
                         $('.filter').filter('.'+value).show('3000');
                         
@@ -89,7 +89,6 @@
             $(this).removeClass("active");
             }
             $(this).addClass("active");
-        
         });
         </script>
     </body>
