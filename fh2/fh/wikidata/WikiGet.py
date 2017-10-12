@@ -10,9 +10,9 @@ from urllib.request import urlopen
 import fh.models as m
 import fh.wikidata.WikiUtils as wu
 import datetime
-import wikipedia
+#import wikipedia
 from dateutil.relativedelta import relativedelta
-from wikidata.client import Client as wdCl 
+#from wikidata.client import Client as wdCl 
 
 
 class WikiGet:
@@ -26,19 +26,17 @@ class WikiGet:
 
 
     def WikiGet(self):
-        print("constructor")
+        pass
       
     
     def GetLocation(self, wiki_id):
         QUERY_PATTERN = "SELECT ?label ?location WHERE { wd:%id wdt:P625 ?location. wd:%id rdfs:label ?label . FILTER (langMatches( lang(?label), \"EN\" ) ) }"    
         url = self.BASE_URL  + QUERY_PATTERN.replace("%id", wiki_id).replace(" ","%20") + "&format=json" # %7B%
-        print (url)
 
         response = urlopen(url)
         data = response.read().decode("utf-8")
         j = json.loads(data)
         b = j['results']['bindings'][0]
-        print(b)
         label = b['label']['value']
         loc = b['location']['value'];
         loc = loc.replace("Point(", "")
@@ -70,7 +68,6 @@ class WikiGet:
     
     def GetItemsContaining(self,name_part):  
         QUERY_PATTERN = "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=" + name_part + "&language=en&format=json&limit=50" 
-        #print(QUERY_PATTERN)
         response = urlopen(QUERY_PATTERN.replace(" ","%20") + "&format=json")
         data = response.read().decode("utf-8")
         j = json.loads(data)
@@ -111,7 +108,6 @@ class WikiGet:
         #QUERY_PATTERN = "SELECT ?langSpokenLabel ?image ?gender ?genderLabel ?birthLabel ?birthPl ?deathLabel ?deathPl WHERE {wd:%id wdt:P1412 ?langSpoken.wd:%id wdt:P18 ?image.wd:%id wdt:P21 ?gender.wd:%id wdt:P569 ?birth.wd:%id wdt:P19 ?birthPl. wd:%id wdt:P570 ?death.wd:%id wdt:P20 ?deathPl. SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". } }"
         QUERY_PATTERN = "SELECT ?label ?itemLabel ?langSpokenLabel ?image ?gender ?genderLabel ?birthLabel ?birthPl ?deathLabel ?deathPl WHERE {{wd:%id wdt:P103 ?langSpoken}UNION{wd:%id rdfs:label ?item}UNION{wd:%id wdt:P18 ?image}UNION{wd:%id wdt:P21 ?gender}UNION{wd:%id wdt:P569 ?birth}UNION{wd:%id wdt:P19 ?birthPl}UNION{wd:%id wdt:P570 ?death.wd:%id wdt:P20 ?deathPl} SERVICE wikibase:label { bd:serviceParam wikibase:language \"en,de\". } }"
         url = self.BASE_URL  + QUERY_PATTERN.replace("%id", wiki_id).replace(" ","%20") + "&format=json" # %7B%
-        #print (url)
 
         response = urlopen(url)
         data = response.read().decode("utf-8")
@@ -125,20 +121,17 @@ class WikiGet:
             
         #print(json.dumps(b, indent=4, sort_keys=True))
         
-        gender = dic['genderLabel']['value']
-        print('gender:' + gender)
+        #gender = dic['genderLabel']['value']
         
         image = dic['image']['value']
-        print('image:' + image)
+        image = image.replace('http://', 'https://')
         
         place_of_birth = None
         if 'birthPl' in dic:
             place_of_birth_id = dic['birthPl']['value'].rsplit('/', 1)[1] #we just want the id
-            #print('place_of_birth:' + place_of_birth_id)
             place_of_birth = self.GetLocation(place_of_birth_id)
-            #print('place_of_birth:' + str(place_of_birth.lat))
         else:
-            print('Im Else haben wir nun den Error Abgefangen hier soll noch etwas entstehen')
+            print('birthplace not valid')
         
 
         bunknown = False
@@ -152,35 +145,27 @@ class WikiGet:
                 bmonth = None
                 bday = None
                 bunknown = True
-                print('Birthdate unknown')
             elif str(birth).startswith('-'):
                 birth = dic['birthLabel']['value']
                 byear = '-' + str(birth).split(sep='-')[1]   
-                print('birth-year: ' + byear)   
                 bmonth = str(birth).split(sep='-')[2]
                 bday = str(str(birth).split(sep='-')[2]).split(sep='T')[0]
             else:
                 birth = wu.WikiDate(dic['birthLabel']['value'])   
                 byear = str(birth).split(sep='-')[0] 
-                print('birth-year: ' + byear)   
                 bmonth = str(birth).split(sep='-')[1]
-                print('birth-month: ' + bmonth)
                 bday = str(str(birth).split(sep='-')[2]).split(sep=' ')[0]
-                print('birth-day: ' + bday)
 #            if not str(birth).startswith('-') and not bunknown: 
         else:
             birth = None
             byear = None
             bmonth = None
             bday = None
-        print('birth:' + str(birth))
 
         place_of_death = None
         if 'deathPl' in dic:
             place_of_death_id = dic['deathPl']['value'].rsplit('/', 1)[1] #we just want the id
-            print('place_of_death:' + place_of_death_id)
             place_of_death = self.GetLocation(place_of_death_id)
-            print('place_of_death:' + str(place_of_death.lat))
 
         dunknown = False
         death = None
@@ -193,21 +178,16 @@ class WikiGet:
                 dmonth = None
                 dday = None
                 dunknown = True
-                print('Deathdate unknown')
             elif str(death).startswith('-'):
                 death = dic['deathLabel']['value']
                 dyear = '-' + str(death).split(sep='-')[1]   
-                print('death-year: ' + dyear)   
                 dmonth = None
                 dday = None
             else:
                 death = wu.WikiDate(dic['deathLabel']['value'])    
                 dyear = str(death).split(sep='-')[0] 
-                print('death-year: ' + dyear)   
                 dmonth = str(death).split(sep='-')[1]
-                print('death-month: ' + dmonth)
                 dday = str(str(death).split(sep='-')[2]).split(sep=' ')[0]
-                print('death-day: ' + dday)
         else:
                 death = None
                 dyear = None
@@ -216,9 +196,9 @@ class WikiGet:
         print('death:' + str(death))
             
         native_lang = None
+        
         if 'langSpokenLabel' in dic:
             native_lang = dic['langSpokenLabel']['value'][:9] #Abbr?
-            print('native_lang:' + native_lang)
             
         lifespan = 1
             
@@ -235,52 +215,22 @@ class WikiGet:
         else:
             lifespan = int(dyear) - int(byear)
         
-        #lifespan = int(dyear) - int(byear)
-        print('lifespan:' + str(lifespan))
-        
         return m.ENTRY.objects.create(country_citizenship=place_of_birth, image= image, wiki_link=wiki_id, native_lang=native_lang, description=description, day_of_birth=bday, month_of_birth=bmonth, year_of_birth=byear, day_of_death=dday, month_of_death=dmonth, year_of_death=dyear, lifespan=lifespan, place_of_birth= place_of_birth, place_of_death=place_of_death, unknown_date_of_death=dunknown, unknown_date_of_birth=bunknown)
-
-        
-
-        #print(j['results']['bindings'][0]['spouseLabel']['value'])
-        
         
     def GetHandwriting(self, wiki_id):
         #Hier sollen die Entries von der Handwriting tabelle geholt werden.
         QUERY_PATTERN = "SELECT ?label ?itemLabel ?langSpokenLabel ?image ?gender ?genderLabel ?birthLabel ?birthPl ?deathLabel ?deathPl WHERE {{wd:%id wdt:P1412 ?langSpoken}UNION{wd:%id rdfs:label ?item}UNION{wd:%id wdt:P18 ?image}UNION{wd:%id wdt:P21 ?gender}UNION{wd:%id wdt:P569 ?birth}UNION{wd:%id wdt:P19 ?birthPl}UNION{wd:%id wdt:P570 ?death.wd:%id wdt:P20 ?deathPl} SERVICE wikibase:label { bd:serviceParam wikibase:language \"en,de\". } }"
         url = self.BASE_URL  + QUERY_PATTERN.replace("%id", wiki_id).replace(" ","%20") + "&format=json" # %7B%
-        print (url)
 
         response = urlopen(url)
         data = response.read().decode("utf-8")
         j = json.loads(data)
         
-        print(json.dumps(j, indent=4, sort_keys=True))
+        #print(json.dumps(j, indent=4, sort_keys=True))
         
         b = j['results']['bindings'] #[0]
         
         dic = {}
-        print("#####------------\n")
         for bi in b:
             for k in bi.keys():
                 dic[k] = bi[k]
-            
-        
-        print("------------\n")
-        print(json.dumps(b, indent=4, sort_keys=True))
-        
-        print("------------\n")
-        print(dic)
-            
-#print (j['entities']['Q354542']['claims']['P21'])
-'''
-l = len(j['results']['bindings'])
-print(range(0,l))
-for i in range(0,l):
-    print(i)
-    print(j['results']['bindings'][i]['spouseLabel']['value'])
-'''
-
-
-if __name__ == '__main__':
-    pass
