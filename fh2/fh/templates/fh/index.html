@@ -80,7 +80,7 @@
                     
                     function updateInfos()
                     {
-                        $('#entry_desc').html('<a target="_blank" href="/detail?id=' + rnd_hw[i].entry_id + '">' + rnd_hw[i].entry_desc + '</a>');
+                        $('#entry_desc').html('<a target="_blank" href="detail?id=' + rnd_hw[i].entry_id + '">' + rnd_hw[i].entry_desc + '</a>');
                         $('#entry_img').attr("src", rnd_hw[i].entry_img);
                         
                          map = new google.maps.Map(document.getElementById('map'), {
@@ -171,7 +171,7 @@
                 <div class="col-sm-5">
                     <div id ="info">
                         <h4>
-                            <img height="50"  class ="img-circle" id="entry_img" src="static/fh/img/upload/{{img.link}}" alt="{{img.title}}">
+                            <img height="50"  class ="img-circle" id="entry_img"  alt="{{img.title}}">
                             <span class="text-nowrap" id="entry_desc"></span>
                         </h4>
                     </div>
