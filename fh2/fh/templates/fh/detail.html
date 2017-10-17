@@ -31,9 +31,9 @@
                 {% endif %}
                 <br>
                 {% trans 'Reached the age of' %}: {{e.lifespan}}<br/>
-                {% trans 'Born in' %}: <a target="_blank" href ="maps?lat={{e.place_of_birth.lng}}&amp;lng={{e.place_of_birth.lat}}">{{e.place_of_birth.label}} </a><br/>
+                {% trans 'Born in' %}: <a target="_blank" href ="maps?lat={{e.place_of_birth.lat}}&amp;lng={{e.place_of_birth.lng}}">{{e.place_of_birth.label}} </a><br/>
                 {% if e.place_of_death.label %}
-                    {% trans 'Died in' %}:  <a target="_blank" href ="maps?lat={{e.place_of_death.lng}}&amp;lng={{e.place_of_death.lat}}">{{e.place_of_death.label}}</a><br/>
+                    {% trans 'Died in' %}:  <a target="_blank" href ="maps?lat={{e.place_of_death.lat}}&amp;lng={{e.place_of_death.lng}}">{{e.place_of_death.label}}</a><br/>
                 {% endif %}
                  {% if e.native_lang %}
                 {% trans '  Native language: ' %}: {{e.native_lang}}<br/>
