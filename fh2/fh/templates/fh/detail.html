@@ -49,8 +49,9 @@
                     <a href="image_gallery?id={{e.pk}}">{% trans 'goto_image_gallery' %}</a> <br/>
                 {% endif %}
                 
-                
-                <a href="upload_handwriting?wiki_id={{e.wiki_link}}&description={{e.description}}">{% trans 'upload_handwriting' %}</a> <br/>       
+                {% if request.session.user %} 
+                    <a href="upload_handwriting?wiki_id={{e.wiki_link}}&description={{e.description}}">{% trans 'upload_handwriting' %}</a> <br/>       
+                {% endif %}
             </div>
             <div class="col-sm-8 nopadding-left">
             
