@@ -125,6 +125,9 @@ def timeline(request):
 
 
 def upload_handwriting(request):
+    if not 'user' in request.session:
+        return HttpResponseRedirect("index")
+    
     template = loader.get_template('fh/upload_handwriting.html')
     context = {}
     return HttpResponse(template.render(context, request))
@@ -236,6 +239,10 @@ def login_process(request):
 '''
 def upload_handwriting_process(request):
     
+    if not 'user' in request.session:
+        return HttpResponseRedirect("index")
+    
+    
     qids = request.session["fnames"] # the file names uploaded stored within the session
     
     qid = request.POST.get("wikidata_id","")
@@ -269,6 +276,10 @@ def upload_handwriting_process(request):
 
 @csrf_exempt
 def upload_handwriting_process_imgs(request):
+    
+    if not 'user' in request.session:
+        return HttpResponseRedirect("index")
+    
     file = request.FILES['file']
     fname = str(uuid.uuid4()) + "." + os.path.splitext(str(file))[1][1:].strip() 
     
