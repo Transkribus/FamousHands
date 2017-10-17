@@ -18,6 +18,7 @@ import wikipedia
 import uuid
 import os
 
+from django.conf import settings
 
 from . import models as m
 from django.db.models import Q
@@ -248,11 +249,11 @@ def upload_handwriting_process(request):
         entry = m.ENTRY.objects.get(wiki_link=qid)
         
     for fname in qids:
-        src= 'fh/static/fh/img/tmp/' + fname
-        dst = 'fh/static/fh/img/upload/' + qid + "/" + fname
+        src= settings.IMG_DIR + '/tmp/' + fname
+        dst = settings.IMG_DIR + '/upload/' + qid + "/" + fname
         
         if os.path.isfile(src): 
-            os.makedirs('fh/static/fh/img/upload/' + qid, exist_ok=True)
+            os.makedirs(settings.IMG_DIR + '/upload/' + qid, exist_ok=True)
             #Move files from the tmp to the upload store, remove file afterwards
             os.rename(src, dst)
             title = request.POST.get("title__" + fname)
@@ -279,7 +280,9 @@ def upload_handwriting_process_imgs(request):
     fnames.append(fname)
     request.session["fnames"] = fnames
 
-    default_storage.save('fh/static/fh/img/tmp/' + fname, ContentFile(file.read()))
+
+    path = default_storage.save(settings.IMG_DIR + '/tmp/' + fname, ContentFile(file.read()))
+    print("PATH:" + path)
     return HttpResponse(json.dumps(fname), content_type="application/json") 
 
 
