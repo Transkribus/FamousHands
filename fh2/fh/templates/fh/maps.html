@@ -86,7 +86,7 @@
                             //born
                             latb = '{{e.place_of_birth.lat}}';
                             lngb = '{{e.place_of_birth.lng}}';
-                            labelb = '{{e.place_of_birth.label}}';
+                            //labelb = '{{e.place_of_birth.label}}';
                             //console.log (latb + "," + lngb + "," + labelb);
                             
                             // var icon = new google.maps.MarkerImage(
@@ -99,33 +99,35 @@
                             m = new google.maps.Marker({
                               position: {lat:  comma_point(latb), lng:  comma_point(lngb)},
                               map: map,
-                              title: labelb,
+                              title: '{{e.description}}',
                               born: true, //false:death,
                               icon: "static/fh/img/born.png",
                               id : '{{e.id}}',
-                              description : '{{e.description}}',
+                              description : '{{e.place_of_birth.label}}',
                               image : '{{e.image}}'
                             });
                             
                             marker.push(m);
-                                  
+                            //console.log ('{{e.id}}')   
                             {% if e.place_of_death.label %}
                             
-                                latd = '{{e.place_of_death.lng}}';
-                                lngd = '{{e.place_of_death.lat}}';
+                                latd = '{{e.place_of_death.lat}}';
+                                lngd = '{{e.place_of_death.lng}}';
                                 labeld = '{{e.place_of_death.label}}';
+                                //console.log ("DIED:" + latd + "," + lngd + "," + labeld);
                                 
                                 m = new google.maps.Marker({
                                   position: {lat:  comma_point(latd), lng:  comma_point(lngd)},
                                   map: map,
-                                  title: labeld,
+                                  title: '{{e.description}}',
                                   born: false, //false:death
                                   icon: "static/fh/img/died.jpeg",
                                   id : '{{e.id}}',
-                                  description : '{{e.description}}',
+                                  description : '{{e.place_of_death.label}}',
                                   image : '{{e.image}}'
                                 });
                                 
+                                console.log (m);
                                 marker.push(m);
                             
                             {% endif %}       
@@ -164,8 +166,8 @@
 
                         if (distance < minDist) 
                         {
-                            d.innerHTML += "<h3 class='text-nowrap'><img height='70'  src='" + marker[i].image + "' class ='img-circle' alt='{% trans 'entity_image' %}' /> <a target='_blank' href='detail?id=" +  marker[i].id + "'>" + marker[i].description + "</a> </h3>";
-                            d.innerHTML += "<small>" + (marker[i].born ? '{% trans 'born_in' %}' : '{% trans 'died_in' %}') + ' <a href="maps?lat=' +  marker[i].position.lat() + '&lng=' + marker[i].position.lng()+ '&km=' + (minDist / 1000) + '">' + marker[i].title + ' </a> (' +  Math.round(distance /1000) + ' ' + '{% trans 'km_away' %}' + ')</small><br/>';
+                            d.innerHTML += "<h3 class='text-nowrap'><img height='70'  src='" + marker[i].image + "' class ='img-circle' alt='{% trans 'entity_image' %}' /> <a target='_blank' href='detail?id=" +  marker[i].id + "'>" + marker[i].title + "</a> </h3>";
+                            d.innerHTML += "<small>" + (marker[i].born ? '{% trans 'born_in' %}' : '{% trans 'died_in' %}') + ' <a href="maps?lat=' +  marker[i].position.lat() + '&lng=' + marker[i].position.lng()+ '&km=' + (minDist / 1000) + '">' + marker[i].description + ' </a> (' +  Math.round(distance /1000) + ' ' + '{% trans 'km_away' %}' + ')</small><br/>';
                         }
                       }
                                 
