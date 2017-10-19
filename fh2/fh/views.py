@@ -44,7 +44,7 @@ def index(request):
 #    recent_posts = m.Post.objects.filter(created_at__gt=two_days_ago).all()
     
     context = {
-        'rnd_hw': (m.HANDWRITTENIMAGE.objects.order_by('?')[:10]),
+        'rnd_hw': (m.HANDWRITTENIMAGE.objects.filter(on=True, entry__on=True).order_by('?')[:10]),
         'cnt_entity' : m.ENTRY.objects.all(),
         'cnt_hw' : m.HANDWRITTENIMAGE.objects.all()
     }
@@ -73,7 +73,6 @@ def timeline(request):
     lo = request.GET.get('filterLoc', '')
     agg = int(request.GET.get('agg','1')) #1...year, 10...decade, 100...mill, ...
     template = loader.get_template('fh/timeline.html')    
-    entries = []
     entries = m.ENTRY.objects.filter(on=True).order_by('year_of_birth').filter(Q(description__icontains=n)&Q(country_citizenship__icontains=lo))
     
     a = entries[:]
@@ -109,7 +108,7 @@ def timeline(request):
         while i < len(de):
             i += 1
 
-    #get handwritings for all entries
+    #get all handwritings for all entries turned on
     hws = {}
     for e in entries:
         hw = m.HANDWRITTENIMAGE.objects.filter(entry=e,on=True)
