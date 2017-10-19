@@ -51,7 +51,7 @@
                 {% endif %}
                 
                 {% if request.session.user %} 
-                    <a href="upload_handwriting?wiki_id={{e.wiki_link}}&description={{e.description}}">{% trans 'upload_handwriting' %}</a> <br/>       
+                    <a href="upload_handwriting?wiki_id={{e.wiki_link}}&amp;description={{e.description}}">{% trans 'upload_handwriting' %}</a> <br/>       
                 {% endif %}
             </div>
             <div class="col-sm-8 nopadding-left">
@@ -60,7 +60,9 @@
                     <div class="carousel-inner"> 
                         {% for img in handwritings %}
                                 <div class="item imgs_car_size {{forloop.first|yesno:'active,,'}}">
-                                    <img src="static/fh/img/upload/{{img.link}}" alt="{{img.title}}">
+                                    <a href="image_gallery?id={{e.pk}}" target="_plain"> 
+                                        <img src="static/fh/img/upload/{{img.link}}" alt="{{img.title}}">
+                                    </a> 
                                     <div class="carousel-caption">
                                         <a href="static/fh/img/upload/{{img.link}}"  data-toggle="demolightbox" data-title="{{e.description}}" data-footer="{{img.title}}">{{img.title}}</a>
                                     </div>
