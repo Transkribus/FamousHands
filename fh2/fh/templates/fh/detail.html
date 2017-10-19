@@ -27,10 +27,11 @@
                 <h3>{% trans 'Personal Details' %}</h3>
                 {% trans '  Lived from the ' %} <a target="_blank" href ="timeline?#{{e.year_of_birth}}">{{e.day_of_birth}}.{{e.month_of_birth}}.{{e.year_of_birth}} </a>
                 {% if e.day_of_death %}
-                    {% trans ' to the' %} <a target="_blank" href ="timeline?#{{e.year_of_birth}}"> {{e.day_of_death}}.{{e.month_of_death}}.{{e.year_of_death}} </a>
+                    {% trans ' to the' %} <a target="_blank" href ="timeline?#{{e.year_of_birth}}"> {{e.day_of_death}}.{{e.month_of_death}}.{{e.year_of_death}} </a><br/>
+                    {% trans 'Reached the age of' %}: {{e.lifespan}}
                 {% endif %}
                 <br>
-                {% trans 'Reached the age of' %}: {{e.lifespan}}<br/>
+               
                 {% trans 'Born in' %}: <a target="_blank" href ="maps?lat={{e.place_of_birth.lat}}&amp;lng={{e.place_of_birth.lng}}">{{e.place_of_birth.label}} </a><br/>
                 {% if e.place_of_death.label %}
                     {% trans 'Died in' %}:  <a target="_blank" href ="maps?lat={{e.place_of_death.lat}}&amp;lng={{e.place_of_death.lng}}">{{e.place_of_death.label}}</a><br/>
