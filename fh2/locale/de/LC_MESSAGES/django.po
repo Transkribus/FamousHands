@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-16 10:41+0000\n"
+"POT-Creation-Date: 2017-10-19 10:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: fh/settings.py:124
+#: fh/settings.py:126
 msgid "English"
 msgstr "English"
 
-#: fh/settings.py:125
+#: fh/settings.py:127
 msgid "German"
 msgstr "Deutsch"
 
@@ -49,68 +49,68 @@ msgstr "Detailinformation"
 
 #: fh/templates/fh/detail.html:28
 msgid "  Lived from the "
-msgstr "Lebte vom "
+msgstr "Geboren am "
 
 #: fh/templates/fh/detail.html:30 fh/templates/fh/longsearch.html:32
 msgid " to the"
-msgstr "bis zum"
+msgstr "Gestorben am"
 
-#: fh/templates/fh/detail.html:33 fh/templates/fh/longsearch.html:33
+#: fh/templates/fh/detail.html:31 fh/templates/fh/longsearch.html:33
 msgid "Reached the age of"
 msgstr "Erreichte das Alter von"
 
-#: fh/templates/fh/detail.html:34
+#: fh/templates/fh/detail.html:35
 msgid "Born in"
 msgstr "Geboren in"
 
-#: fh/templates/fh/detail.html:36
+#: fh/templates/fh/detail.html:37
 msgid "Died in"
 msgstr "Gestorben in"
 
-#: fh/templates/fh/detail.html:38
+#: fh/templates/fh/detail.html:40
 msgid "  Native language: "
 msgstr "Sprachen"
 
-#: fh/templates/fh/detail.html:41
+#: fh/templates/fh/detail.html:44
 msgid "country_citizenship"
 msgstr "Staatsangehörigkeit"
 
-#: fh/templates/fh/detail.html:43 fh/templates/fh/longsearch.html:37
+#: fh/templates/fh/detail.html:46 fh/templates/fh/longsearch.html:37
 msgid "Link to the WikiData Site of"
 msgstr "Link auf die Wikidata-Seite von"
 
-#: fh/templates/fh/detail.html:47
+#: fh/templates/fh/detail.html:50
 msgid "goto_image_gallery"
 msgstr "Gehe zur Bildergallerie"
 
-#: fh/templates/fh/detail.html:51 fh/templates/fh/includes/navbar.html:14
+#: fh/templates/fh/detail.html:54 fh/templates/fh/includes/navbar.html:14
 #: fh/templates/fh/upload_handwriting.html:7
 msgid "upload_handwriting"
 msgstr "Handschriften hochladen"
 
-#: fh/templates/fh/detail.html:70 fh/templates/fh/index.html:163
+#: fh/templates/fh/detail.html:74 fh/templates/fh/index.html:163
 #: fh/templates/fh/search.html:34
 msgid "previous"
 msgstr "Vorher"
 
-#: fh/templates/fh/detail.html:74 fh/templates/fh/index.html:167
+#: fh/templates/fh/detail.html:78 fh/templates/fh/index.html:167
 #: fh/templates/fh/search.html:33
 msgid "next"
 msgstr "Nächstes"
 
-#: fh/templates/fh/detail.html:97
+#: fh/templates/fh/detail.html:98
 msgid "born"
 msgstr "Geboren"
 
-#: fh/templates/fh/detail.html:120 fh/templates/fh/index.html:119
+#: fh/templates/fh/detail.html:123 fh/templates/fh/index.html:119
 msgid "death"
 msgstr "Gestorben"
 
-#: fh/templates/fh/detail.html:157
+#: fh/templates/fh/detail.html:159
 msgid "Summary"
 msgstr "Zusammenfassung"
 
-#: fh/templates/fh/detail.html:160
+#: fh/templates/fh/detail.html:162
 msgid "  ....More"
 msgstr "....mehr"
 
