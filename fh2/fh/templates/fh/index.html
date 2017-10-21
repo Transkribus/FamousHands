@@ -150,7 +150,9 @@
                         <div class="carousel-inner">
                             {% for img in rnd_hw %}
                                 <div class="item imgs_car_size {{forloop.first|yesno:'active,,'}}">
-                                    <img src="static/fh/img/upload/{{img.link}}" alt="{{img.title}}">
+                                    <a href="image_gallery?id={{img.entry.id}}" target="_plain"> 
+                                        <img src="static/fh/img/upload/{{img.link}}" alt="{{img.title}}">
+                                    </a>
                                     <div class="carousel-caption">
                                         <a href="detail?id={{img.entry.id}}">{{img.title}}</a>
                                     </div>
