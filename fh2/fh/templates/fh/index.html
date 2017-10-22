@@ -100,7 +100,7 @@
                             position: {lat: comma_point(rnd_hw[i].birth_lat), lng:  comma_point(rnd_hw[i].birth_lng)},
                             map: map,
                             title: birth_label,
-                            icon: "static/fh/img/born.png"
+                            icon: "static/fh/img/pin_born.png"
                         });
                         
                         google.maps.event.addListener(mark_born, 'click', function () 
@@ -122,7 +122,7 @@
                                 position: {lat:  comma_point(rnd_hw[i].death_lat), lng:  comma_point(rnd_hw[i].death_lng)},
                                 map: map,
                                 title: death_label,
-                                icon: "static/fh/img/died.jpeg"
+                                icon: "static/fh/img/pin_dead.png"
                             });
                             
                             google.maps.event.addListener(mark_death, 'click', function () 

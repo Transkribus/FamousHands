@@ -105,7 +105,7 @@
                                             lng:  comma_point({{e.place_of_birth.lng}})},
                                         map: map,
                                         title: born_label,
-                                        icon: "static/fh/img/born.png"
+                                        icon: "static/fh/img/pin_born.png"
                                     });
                                     
                                     
@@ -127,7 +127,7 @@
                                             position: {lat:  comma_point({{e.place_of_death.lat}}), lng:  comma_point({{e.place_of_death.lng}})},
                                             map: map,
                                             title: death_label,
-                                            icon: "static/fh/img/died.jpeg"
+                                            icon: "static/fh/img/pin_dead.png"
                                         });
                                         
                                         google.maps.event.addListener(mark_death, 'click', function () 

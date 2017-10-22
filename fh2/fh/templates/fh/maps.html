@@ -79,6 +79,7 @@
                         center = new google.maps.Marker({
                               position: {lat:  comma_point(latc), lng:  comma_point(lngc)},
                               map: map,
+                              icon: "static/fh/img/pin_leer.png",
                               title: cstr,
                             });   
                                     
@@ -101,7 +102,7 @@
                               map: map,
                               title: '{{e.description}}',
                               born: true, //false:death,
-                              icon: "static/fh/img/born.png",
+                              icon: "static/fh/img/pin_born.png",
                               id : '{{e.id}}',
                               description : '{{e.place_of_birth.label}}',
                               image : '{{e.image}}'
@@ -121,7 +122,7 @@
                                   map: map,
                                   title: '{{e.description}}',
                                   born: false, //false:death
-                                  icon: "static/fh/img/died.jpeg",
+                                  icon: "static/fh/img/pin_dead.png",
                                   id : '{{e.id}}',
                                   description : '{{e.place_of_death.label}}',
                                   image : '{{e.image}}'
