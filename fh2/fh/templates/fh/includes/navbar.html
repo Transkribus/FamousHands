@@ -9,12 +9,18 @@
 {
     padding-left: 3px;
 }
+
+.famous_hands {
+  font: 400 26px/0.8 'Great Vibes', Helvetica, sans-serif;
+  color: #fff;
+  text-shadow: 4px 4px 3px rgba(0,0,0,0.1); 
+}
 </style>
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index">{% trans 'famous_hands' %}</a>
+            <a class="navbar-brand famous_hands" href="index">{% trans 'famous_hands' %}</a>
         </div>
         <ul class="nav navbar-nav">
             {% if request.session.user %} 
