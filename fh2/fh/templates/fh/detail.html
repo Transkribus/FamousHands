@@ -46,9 +46,7 @@
                 {% trans 'Link to the WikiData Site of' %} <a target="_blank" href="https://www.wikidata.org/wiki/{{e.wiki_link}}">{{e.description}}</a><br>                            
                 
                 <br/>
-                {% if handwritings %}
-                    <a href="image_gallery?id={{e.pk}}">{% trans 'goto_image_gallery' %}</a> <br/>
-                {% endif %}
+               
                 
                 {% if request.session.user %} 
                     <a href="upload_handwriting?wiki_id={{e.wiki_link}}&amp;description={{e.description}}">{% trans 'upload_handwriting' %}</a> <br/>       
@@ -80,8 +78,10 @@
                         <span class="sr-only">{% trans 'next' %}</span>
                     </a>
                  </div>
-                 <br/>
-                                  
+                 
+                  {% if handwritings %}
+                    <a href="image_gallery?id={{e.pk}}">{% trans 'goto_image_gallery' %}</a> <br/>
+                {% endif %}                 
                  <div class="row">    
                      <div class="col-xs-12 float-right"><div class="mini-box">                   
                         <div id="map" class="img-rounded">
