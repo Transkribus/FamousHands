@@ -21,7 +21,7 @@
                 {% if e.year_of_death %} - {{e.year_of_death}} {% endif %}) </small></h1>
             
             <div class="col-sm-4 nopadding">
-                <a href="image_gallery?id={{e.pk}}" target="_plain">
+                <a href="https://{{ LANGUAGE_CODE }}.wikipedia.org/wiki/{{wiki_name|urlencode}}" target="_plain">
                     <img src={{e.image}} class ="img-rounded" alt="{% trans 'entity_image' %}" style="width:100%;"> 
                 </a> 
                 <h3>{% trans 'Personal Details' %}</h3>
