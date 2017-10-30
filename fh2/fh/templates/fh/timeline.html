@@ -104,18 +104,25 @@
                                                     <ul class="list-group">
                                                         <li class="list-group-item no-down-border name">                                                                
                                                          <img id="img" class="img-rounded" src="{{ent.image}}" alt="Lights" height="80" />
-                                                            <span class="importo"><a target="_plain" href="detail?id={{ent.id}}">{{ent.description}}, {{ent.lifespan}}</a></span>
+                                                            <span class="importo">
+                                                                <a target="_plain" href="detail?id={{ent.id}}">{{ent.description}} 
+                                                                    ({{ent.year_of_birth}}  
+                                                                    {% if ent.year_of_death %}
+                                                                        - {{ent.year_of_death}}
+                                                                    {% endif %}
+                                                                    )   
+                                                                </a></span>
                                                         </li>
                                                         <li class="list-group-item place"><span class="causale">{% trans 'place_of_birth' %} : <a target="_blank" href ="maps?lat={{ent.place_of_birth.lat}}&amp;lng={{ent.place_of_birth.lng}}">{{ent.place_of_birth.label}} </a></span> </li>
                                                         {% if ent.place_of_death %}
                                                             <li class="list-group-item no-updown-border place"><span class="causale">{% trans 'place_of_death' %} : <a target="_blank" href ="maps?lat={{ent.place_of_death.lat}}&amp;lng={{ent.place_of_death.lng}}">{{ent.place_of_death.label}} </a></span> </li>
                                                         {% endif %}
                                                         <li class="list-group-item {{ent.day_of_death|yesno:"no-updown-border,no-up-border" }} birth">
-                                                            <small class="text-muted"><i class="glyphicon glyphicon-asterisk"></i>{{ent.day_of_birth}}.{{ent.month_of_birth}}.{{ent.year_of_birth}}</small>
+                                                            <small class="text-muted"><img src="static/fh/img/born.png"/>{{ent.day_of_birth}}.{{ent.month_of_birth}}.{{ent.year_of_birth}}</small>
                                                         </li>
                                                         {% if ent.day_of_death %}
                                                             <li class="list-group-item no-up-border death">
-                                                                <p><small class="text-muted"><i class="glyphicon glyphicon-plus"></i> {{ent.day_of_death}}.{{ent.month_of_death}}.{{ent.year_of_death}}</small></P>
+                                                                <p><small class="text-muted"><img src="static/fh/img/died.png"/>{{ent.day_of_death}}.{{ent.month_of_death}}.{{ent.year_of_death}}</small></P>
                                                             </li>
                                                         {% endif %}
                                                     </ul>

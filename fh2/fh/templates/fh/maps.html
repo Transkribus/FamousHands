@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,12 +15,20 @@
   </head>
   <body>
      <style>
-     #slider label {
+#slider label {
   position: absolute;
   width: 20px;
   margin-top: 20px;
   margin-left: -10px;
   text-align: center;
+}
+
+#data
+{
+    height:650px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-top: 50px;
 }
      </style>
     <script>
@@ -28,32 +37,33 @@
             $("#slider").slider(
             {
                 min: 0,
-                max: 100,
-                step: 5,
+                max: 200,
+                step: 10,
                 value: {{km}}
+                
                 
             }).each(function() {
 
-        // Add labels to slider whose values 
-        // are specified by min, max
-    
-        // Get the options for this slider (specified above)
-        var opt = $(this).data().uiSlider.options;
-    
-        // Get the number of possible values
-        var vals = 2;
-    
-        // Position the labels
-        for (var i = 0; i <= vals; i++) {
-    
-            // Create a new element and position it with percentages
-            var el = $('<label class="text-nowrap">' + (i*50 + opt.min) + ' km</label>').css('left', (i/vals*100) + '%');
-    
-            // Add the element inside #slider
-            $("#slider").append(el);
-        }
-
-});;
+                    // Add labels to slider whose values 
+                    // are specified by min, max
+                
+                    // Get the options for this slider (specified above)
+                    var opt = $(this).data().uiSlider.options;
+                
+                    // Get the number of possible values
+                    var vals = 2;
+                
+                    // Position the labels
+                    for (var i = 0; i <= vals; i++) {
+                
+                        // Create a new element and position it with percentages
+                        var el = $('<label class="text-nowrap">' + (i*100 + opt.min) + ' km</label>').css('left', (i/vals*100) + '%');
+                
+                        // Add the element inside #slider
+                        $("#slider").append(el);
+                    }
+            
+            });;
         });
     </script>     
     <div class="container"> 
@@ -128,7 +138,7 @@
                                   image : '{{e.image}}'
                                 });
                                 
-                                console.log (m);
+                                //console.log (m);
                                 marker.push(m);
                             
                             {% endif %}       
@@ -151,14 +161,16 @@
                         });
                     } //init map
                     
-                     function findNearestMarker(coords) 
+                    function findNearestMarker(coords) 
                     {
                         var d = document.getElementById('data');
-                        d.innerHTML = '<br/><br/><h3>{% trans 'People found' %}</h3>';
+                        d.innerHTML = '<h3>{% trans 'People found' %}</h3>';
                         var minDist = $("#slider").slider("value") * 1000, //we deal with km, not m
                         nearest_text = '*None*',
                         markerDist;
                         
+                        
+                      res = [];  
                       // iterate over objects and calculate distance between them
                       for (var i = 0; i < marker.length; i += 1) 
                       {
@@ -167,9 +179,21 @@
 
                         if (distance < minDist) 
                         {
-                            d.innerHTML += "<h3 class='text-nowrap'><img height='70'  src='" + marker[i].image + "' class ='img-circle' alt='{% trans 'entity_image' %}' /> <a target='_blank' href='detail?id=" +  marker[i].id + "'>" + marker[i].title + "</a> </h3>";
-                            d.innerHTML += "<small>" + (marker[i].born ? '{% trans 'born_in' %}' : '{% trans 'died_in' %}') + ' <a href="maps?lat=' +  marker[i].position.lat() + '&lng=' + marker[i].position.lng()+ '&km=' + (minDist / 1000) + '">' + marker[i].description + ' </a> (' +  Math.round(distance /1000) + ' ' + '{% trans 'km_away' %}' + ')</small><br/>';
+                            marker[i].distance = distance;
+                            res.push(marker[i]);
                         }
+                      }
+                      
+                      res.sort(function(a,b)
+                      {
+                        return a.distance - b.distance;
+                      });
+                      
+                      for (var i = 0; i <  res.length;i++)
+                      {
+                            d.innerHTML += "<h3 class='text-nowrap'><img height='70'  src='" + res[i].image + "' class ='img-circle' alt='{% trans 'entity_image' %}' /> <a target='_blank' href='detail?id=" +  res[i].id + "'>" + res[i].title + "</a> </h3>";
+                            d.innerHTML += "<small>" + (res[i].born ? '{% trans 'born_in' %}' : '{% trans 'died_in' %}') + ' <a href="maps?lat=' +  res[i].position.lat() + '&lng=' + res[i].position.lng()+ '&km=' + (minDist / 1000) + '">' + res[i].description + ' </a> (' +  Math.round(res[i].distance /1000) + ' ' + '{% trans 'km_away' %}' + ')</small><br/>';
+
                       }
                                 
                     }
@@ -177,6 +201,13 @@
                     $(document).ready(function()
                     {
                         findNearestMarker(new google.maps.LatLng(latc,lngc));
+                        
+                       $( "#slider").on( "slidechange", function( event, ui ) 
+                       {
+                           findNearestMarker(new google.maps.LatLng(latc,lngc));
+                           //console.log(ui.value);
+                       } );
+                        
                     });  
                 </script>    
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGqJazDaAYPXovs-mb3HBeL1eAX7i5rE&amp;callback=initMap&amp;libraries=geometry"

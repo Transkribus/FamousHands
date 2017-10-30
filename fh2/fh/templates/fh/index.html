@@ -15,10 +15,19 @@
             }
             
             #map {
-              height: 325px;
+              height: 330px;
               width:  100%;
             }
 
+            .border
+            {
+                border-width: 1px;
+                border-style: solid;
+                border-radius: 10px 10px 10px 10px;
+                padding: 5px;
+                border-color: grey;
+            }
+            
         </style>        
     </head>
     <body>
@@ -80,7 +89,7 @@
                     
                     function updateInfos()
                     {
-                        $('#entry_desc').html('<a target="_blank" href="detail?id=' + rnd_hw[i].entry_id + '">' + rnd_hw[i].entry_desc + '</a>');
+                        $('#entry_desc').html('<a target="_blank" style="white-space: nowrap" href="detail?id=' + rnd_hw[i].entry_id + '">' + rnd_hw[i].entry_desc + '</a>');
                         $('#entry_img').attr("src", rnd_hw[i].entry_img);
                         
                          map = new google.maps.Map(document.getElementById('map'), {
@@ -144,7 +153,11 @@
         </script>
         <div class="container">
             {% include "fh/includes/navbar.html" %} 
-            <div class="row">
+           
+            <!-- <div class="row" id="desc_text">
+              
+            </div> -->
+             <div class="row">
                 <div class="col-sm-7">
                      <div id="images" class="carousel slide img-rounded" data-ride="carousel">
                         <div class="carousel-inner">
@@ -169,31 +182,30 @@
                         <span class="sr-only">{% trans 'next' %}</span>
                         </a>
                     </div>
+                    <br/>
+                    <div class=" border">
+                   
+                    {% trans 'startpage_text_2' %}<br/><br/>
+                     {% trans 'number_of_personality' %}: <b>{{cnt_entity|length}}</b>. {% trans 'number_of_handwritings' %}: <b>{{cnt_hw|length}}</b>
+                </div>
                 </div>
                 <div class="col-sm-5">
                     <div id ="info">
-                        <h4>
+                        <h4 style="overflow:hidden;white-space: nowrap">
                             <img height="50"  class ="img-circle" id="entry_img"  alt="{{img.title}}">
                             <span class="text-nowrap" id="entry_desc"></span>
                         </h4>
                     </div>
                      <div id="map" class="img-rounded">
                     </div>
+                    <br/>
+                     <div class="border">                 
+                        {% trans 'startpage_text_3' %}<br/>   
+                        <a href="upload_handwriting">{% trans 'upload_handwriting' %}</a> 
+                    </div>
                 </div>
             
             </div>  <!-- class="row" -->
-            <br/>
-            <div class="row" id="desc_text">
-                <div class="col-sm-7">
-                    <h4>{% trans 'startpage_text_1' %}</h4><br/>
-                    {% trans 'startpage_text_2' %}<br/><br/>
-                </div>
-                <div class="col-sm-5">                 
-                    {% trans 'startpage_text_3' %}<br/><br/>      
-                    {% trans 'startpage_text_4' %}<br/><br/> 
-                </div>
-            </div>
-             {% trans 'number_of_personality' %}: <b>{{cnt_entity|length}}</b>. {% trans 'number_of_handwritings' %}: <b>{{cnt_hw|length}}</b>
         </div>
     </body>
 </html>

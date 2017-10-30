@@ -11,22 +11,30 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" />
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
+        <style>
+        small
+        {
+            
+            vertical-align:middle;
+        }
+        </style>
      </head>
     <body>
         <div class="container">
             <link rel="stylesheet" type="text/css" href="{% static 'fh/longsearch' %}">
             {% include "fh/includes/navbar.html" %}            
             
-            <h1>{{e.description}} <small>({{e.year_of_birth}}  
-                {% if e.year_of_death %} - {{e.year_of_death}} {% endif %}) </small></h1>
+            <h1>{{e.description}} <small>(<img src="static/fh/img/born.png"/>{{e.year_of_birth}}  
+                 {% if e.year_of_death %} - <img src="static/fh/img/died.png"/>{{e.year_of_death}} {% endif %}) </small></h1>
             
             <div class="col-sm-4 nopadding">
                 <a href="https://{{ LANGUAGE_CODE }}.wikipedia.org/wiki/{{wiki_name|urlencode}}" target="_plain">
                     <img src={{e.image}} class ="img-rounded" alt="{% trans 'entity_image' %}" style="width:100%;"> 
                 </a> 
-                <h3>{% trans 'Personal Details' %}</h3>
+                <br/><br/>
                 {% trans '  Lived from the ' %} <a target="_blank" href ="timeline?#{{e.year_of_birth}}">{{e.day_of_birth}}.{{e.month_of_birth}}.{{e.year_of_birth}} </a>
                 {% if e.day_of_death %}
+                    <br/>
                     {% trans ' to the' %} <a target="_blank" href ="timeline?#{{e.year_of_birth}}"> {{e.day_of_death}}.{{e.month_of_death}}.{{e.year_of_death}} </a><br/>
                     {% trans 'Reached the age of' %}: {{e.lifespan}}
                 {% endif %}
@@ -43,6 +51,11 @@
                 {% if e.country_citizenship.label %}
                     {% trans 'country_citizenship' %}: {{e.country_citizenship.label}}<br/>
                 {% endif %}
+                
+                {% if handwritings %}
+                    <a href="image_gallery?id={{e.pk}}">{% trans 'goto_image_gallery' %}</a> <br/>
+                {% endif %}
+                
                 {% trans 'Link to the WikiData Site of' %} <a target="_blank" href="https://www.wikidata.org/wiki/{{e.wiki_link}}">{{e.description}}</a><br>                            
                 
                 <br/>
@@ -78,10 +91,8 @@
                         <span class="sr-only">{% trans 'next' %}</span>
                     </a>
                  </div>
-                 
-                  {% if handwritings %}
-                    <a href="image_gallery?id={{e.pk}}">{% trans 'goto_image_gallery' %}</a> <br/>
-                {% endif %}                 
+                 <br/>
+                                 
                  <div class="row">    
                      <div class="col-xs-12 float-right"><div class="mini-box">                   
                         <div id="map" class="img-rounded">

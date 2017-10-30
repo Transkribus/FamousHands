@@ -8,6 +8,13 @@
         <link rel="stylesheet" type="text/css" href="{% static 'fh/image_gallery.css' %}" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
+        <style>
+        small
+        {
+            
+            vertical-align:middle;
+        }
+        </style>
     </head>
     <body>
         <script>
@@ -27,9 +34,10 @@
         <div class="container">
          
             {% include "fh/includes/navbar.html" %} 
-            <h1>
-                <img src={{e.image}} class ="img-circle" alt="Profil bild" style="width:50px">
-                {{e.description}}<a href="detail?id={{e.pk}}"> [{% trans 'back' %}]</a>    
+            <h1><img src={{e.image}} class ="img-circle" alt="Profil bild" style="width:50px">
+                {{e.description}} <small>(<img src="static/fh/img/born.png"/>{{e.year_of_birth}}  
+                 {% if e.year_of_death %} - <img src="static/fh/img/died.png"/>{{e.year_of_death}} {% endif %}) </small>
+                <a href="detail?id={{e.pk}}"> [{% trans 'back' %}]</a>    
             </h1>   
             
             {% for img in handwritings %}

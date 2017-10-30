@@ -19,6 +19,7 @@
                 $.fn.dataTable.moment('DD.MM.YYYY');
                 $('#res_tab').DataTable(
                     {
+                         "iDisplayLength": 100,
                         "language": 
                         {
                             "lengthMenu": "{% trans 'Display _MENU_ records per page' %}",
@@ -64,7 +65,7 @@
                     <tbody>
                         {% for e in entries %}
                              <tr>
-                                <td><a href="detail?id={{e.id}}">{{e.description}}</a> <small>({{e.wiki_link}})</small></td>
+                                <td>{{e.description}} <a target="_blank" href = "detail?id={{e.id}}"> <small>({{e.wiki_link}})</small></a> </td>
                                 <td><a target="_blank" href ="maps?lat={{e.place_of_birth.lat}}&amp;lng={{e.place_of_birth.lng}}">{{e.place_of_birth.label}}</a></td>
                                 <td>
                                     {% if e.place_of_death.label %}

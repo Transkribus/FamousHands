@@ -21,7 +21,7 @@
             var img_templ = " <br/> <br/> <div class='form-group row'>" +
                             " <img  class='img-rounded' src='static/fh/img/tmp/@link' width='220px' />" +
                             " <input class='form-control' size='40' id='desc' type='text' name='title__@link' value='' placeholder='{% trans 'label' %}'/>" +
-                            " <input class='form-control' size='60' id='desc' type='text' name='desc__@link' value='' placeholder='{% trans 'source' %}'/>" +
+                            " <input class='form-control' size='40' id='desc' type='text' name='desc__@link' value='' placeholder='{% trans 'source' %}'/>" +
                             " </div>";
             var id = 1;
 
@@ -86,6 +86,7 @@
                         var img = file.xhr.responseText;
                         img = img.replace(/"/g,"");
                         img_form = img_templ.replace(/@link/g, img);
+                        console.log(img_form);
                         $("#img_container").append(img_form);
                         id++;
                         
@@ -123,7 +124,7 @@
             <form class="dropzone" action="upload_handwriting_process_imgs" method="post" enctype="multipart/form-data" id="MyDropzone">
             </form>
             <br>
-            <form class="form-inline" action="upload_handwriting_process" method="post" enctype="multipart/form-data">
+            <form class="form-inline" action="upload_handwriting_process" method="post">
                 {% csrf_token %}
                 <h4 id="desc_2">2. {% trans 'upload_step_2' %}</h4>
                 <div id="img_container"> 
@@ -135,18 +136,19 @@
                            <input class="form-control" id="user" type="text" name="user" value=""/>
                         </div> -->
                 </div>
-                <div id="step_3" class="form-inline row">
+                <div id="step_3" >
                     <br/>
                     <h4>3. {% trans 'upload_step_3' %}</h4>
                     <br/>
-                    <input class="form-control" id="wikidata_id" placeholder="{% trans 'wikidata_id' %}" type="text" name="wikidata_id" value="{{request.GET.wiki_id}}" title="{{request.GET.description}}">
                     
-                    <input class="form-control col-md-offset-2" size="40" id="name_part" type="text" placeholder="{% trans 'search_personality' %}" name="name_part" value=""> 
+                    <input class="form-control" size="40" id="name_part" type="text" placeholder="{% trans 'search_personality' %}" name="name_part" value=""> 
                     <button type="button" id="search" class="btn">{% trans 'search' %}</button>
                     <select class="form-control" id="entries">
                     </select>
-                    <br/>
-                    <input class="form-control" id="title" type="text" placeholder="{% trans 'title' %}" name="title" value="{{request.GET.description}}">
+                    
+                    <input class="form-control" readonly="readonly" id="wikidata_id" placeholder="{% trans 'wikidata_id' %}" type="text" name="wikidata_id" value="{{request.GET.wiki_id}}" title="{{request.GET.description}}">
+                    
+                    <input class="form-control" readonly="readonly" id="title" type="text" placeholder="{% trans 'title' %}" name="title" value="{{request.GET.description}}">
                     
                     <br/><br/>
                     <input class="btn btn-default" type="submit" value="{% trans 'upload' %}">
