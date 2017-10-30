@@ -105,6 +105,7 @@ class WikiGet:
         return idLab
     
     def GetEntry(self,wiki_id, description = ""):
+        print ("WIKI_ID",wiki_id)
         #QUERY_PATTERN = "SELECT ?langSpokenLabel ?image ?gender ?genderLabel ?birthLabel ?birthPl ?deathLabel ?deathPl WHERE {wd:%id wdt:P1412 ?langSpoken.wd:%id wdt:P18 ?image.wd:%id wdt:P21 ?gender.wd:%id wdt:P569 ?birth.wd:%id wdt:P19 ?birthPl. wd:%id wdt:P570 ?death.wd:%id wdt:P20 ?deathPl. SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". } }"
         QUERY_PATTERN = "SELECT ?label ?itemLabel ?langSpokenLabel ?image ?gender ?genderLabel ?birthLabel ?birthPl ?deathLabel ?deathPl WHERE {{wd:%id wdt:P103 ?langSpoken}UNION{wd:%id rdfs:label ?item}UNION{wd:%id wdt:P18 ?image}UNION{wd:%id wdt:P21 ?gender}UNION{wd:%id wdt:P569 ?birth}UNION{wd:%id wdt:P19 ?birthPl}UNION{wd:%id wdt:P570 ?death.wd:%id wdt:P20 ?deathPl} SERVICE wikibase:label { bd:serviceParam wikibase:language \"en,de\". } }"
         url = self.BASE_URL  + QUERY_PATTERN.replace("%id", wiki_id).replace(" ","%20") + "&format=json" # %7B%
@@ -122,7 +123,7 @@ class WikiGet:
         #print(json.dumps(b, indent=4, sort_keys=True))
         
         #gender = dic['genderLabel']['value']
-        
+        print (dic)
         image = dic['image']['value']
         image = image.replace('http://', 'https://')
         
