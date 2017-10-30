@@ -201,7 +201,11 @@
                     <br/>
                      <div class="border">                 
                         {% trans 'startpage_text_3' %}<br/>   
-                        <a href="upload_handwriting">{% trans 'upload_handwriting' %}</a> 
+                        {% if request.session.user %} 
+                            <a href="upload_handwriting">{% trans 'upload_handwriting' %}</a>
+                        {% else %}
+                            <a href="#" data-toggle="modal" data-target="#login_modal">{% trans 'upload_handwriting' %}</a>
+                        {% endif %}
                     </div>
                 </div>
             
