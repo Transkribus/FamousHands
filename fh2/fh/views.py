@@ -56,7 +56,7 @@ def maps(request):
     template = loader.get_template('fh/maps.html')
     lat =  request.GET.get('lat', '47.26').replace(',','.') #IBK as default
     long = request.GET.get('lng', '11.39').replace(',','.')
-    slider_km = request.GET.get('km', 50)
+    slider_km = request.GET.get('km', 100)
     
     context = {
         'entries' : m.ENTRY.objects.filter(on=True),
@@ -229,7 +229,7 @@ def login_process(request):
     except:
         messages.warning(request, "login_failed")
      
-    return HttpResponseRedirect("index")
+    return HttpResponseRedirect("upload_handwriting")
 
 
 
@@ -283,16 +283,17 @@ def upload_handwriting_process_imgs(request):
     fname = str(uuid.uuid4()) + "." + os.path.splitext(str(file))[1][1:].strip() 
     
     fnames = []
-    if 'up_file_names' in request.session:
+    if 'fnames' in request.session:
         print("fnames found in session")
-        fnames = request.session["up_file_names"]
+        fnames = request.session["fnames"]
     
     fnames.append(fname)
     request.session["fnames"] = fnames
-
+    
+    print("FNAMES:", fnames)
 
     path = default_storage.save(settings.IMG_DIR + '/tmp/' + fname, ContentFile(file.read()))
-    print("PATH:" + path)
+    
     return HttpResponse(json.dumps(fname), content_type="application/json") 
 
 
