@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-19 10:47+0000\n"
+"POT-Creation-Date: 2017-10-29 19:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,79 +38,79 @@ msgstr "Zeige alle Einträge"
 msgid "detail_view"
 msgstr "Detailansicht"
 
-#: fh/templates/fh/detail.html:25 fh/templates/fh/longsearch.html:26
-#: fh/templates/fh/maps.html:167
+#: fh/templates/fh/detail.html:32 fh/templates/fh/longsearch.html:26
+#: fh/templates/fh/maps.html:181
 msgid "entity_image"
 msgstr "Bild der Person"
 
-#: fh/templates/fh/detail.html:27 fh/templates/fh/longsearch.html:31
+#: fh/templates/fh/detail.html:34 fh/templates/fh/longsearch.html:31
 msgid "Personal Details"
 msgstr "Detailinformation"
 
-#: fh/templates/fh/detail.html:28
+#: fh/templates/fh/detail.html:35
 msgid "  Lived from the "
 msgstr "Geboren am "
 
-#: fh/templates/fh/detail.html:30 fh/templates/fh/longsearch.html:32
+#: fh/templates/fh/detail.html:37 fh/templates/fh/longsearch.html:32
 msgid " to the"
 msgstr "Gestorben am"
 
-#: fh/templates/fh/detail.html:31 fh/templates/fh/longsearch.html:33
+#: fh/templates/fh/detail.html:38 fh/templates/fh/longsearch.html:33
 msgid "Reached the age of"
 msgstr "Erreichte das Alter von"
 
-#: fh/templates/fh/detail.html:35
+#: fh/templates/fh/detail.html:42
 msgid "Born in"
 msgstr "Geboren in"
 
-#: fh/templates/fh/detail.html:37
+#: fh/templates/fh/detail.html:44
 msgid "Died in"
 msgstr "Gestorben in"
 
-#: fh/templates/fh/detail.html:40
+#: fh/templates/fh/detail.html:47
 msgid "  Native language: "
 msgstr "Sprachen"
 
-#: fh/templates/fh/detail.html:44
+#: fh/templates/fh/detail.html:51
 msgid "country_citizenship"
 msgstr "Staatsangehörigkeit"
 
-#: fh/templates/fh/detail.html:46 fh/templates/fh/longsearch.html:37
+#: fh/templates/fh/detail.html:53 fh/templates/fh/longsearch.html:37
 msgid "Link to the WikiData Site of"
 msgstr "Link auf die Wikidata-Seite von"
 
-#: fh/templates/fh/detail.html:50
-msgid "goto_image_gallery"
-msgstr "Gehe zur Bildergallerie"
-
-#: fh/templates/fh/detail.html:54 fh/templates/fh/includes/navbar.html:14
+#: fh/templates/fh/detail.html:59 fh/templates/fh/includes/navbar.html:27
 #: fh/templates/fh/upload_handwriting.html:7
 msgid "upload_handwriting"
 msgstr "Handschriften hochladen"
 
-#: fh/templates/fh/detail.html:74 fh/templates/fh/index.html:163
+#: fh/templates/fh/detail.html:81 fh/templates/fh/index.html:183
 #: fh/templates/fh/search.html:34
 msgid "previous"
 msgstr "Vorher"
 
-#: fh/templates/fh/detail.html:78 fh/templates/fh/index.html:167
+#: fh/templates/fh/detail.html:85 fh/templates/fh/index.html:187
 #: fh/templates/fh/search.html:33
 msgid "next"
 msgstr "Nächstes"
 
-#: fh/templates/fh/detail.html:98
+#: fh/templates/fh/detail.html:90
+msgid "goto_image_gallery"
+msgstr "Zeige alle Handschriften"
+
+#: fh/templates/fh/detail.html:107
 msgid "born"
 msgstr "Geboren"
 
-#: fh/templates/fh/detail.html:123 fh/templates/fh/index.html:119
+#: fh/templates/fh/detail.html:132 fh/templates/fh/index.html:133
 msgid "death"
 msgstr "Gestorben"
 
-#: fh/templates/fh/detail.html:159
+#: fh/templates/fh/detail.html:168
 msgid "Summary"
 msgstr "Zusammenfassung"
 
-#: fh/templates/fh/detail.html:162
+#: fh/templates/fh/detail.html:171
 msgid "  ....More"
 msgstr "....mehr"
 
@@ -118,47 +118,47 @@ msgstr "....mehr"
 msgid "image_gallery"
 msgstr "Bildergalerie"
 
-#: fh/templates/fh/image_gallery.html:32
+#: fh/templates/fh/image_gallery.html:40
 msgid "back"
 msgstr "Zurück"
 
-#: fh/templates/fh/includes/navbar.html:10
+#: fh/templates/fh/includes/navbar.html:23
 msgid "famous_hands"
 msgstr "Famous Hands"
 
-#: fh/templates/fh/includes/navbar.html:17 fh/templates/fh/maps.html:6
+#: fh/templates/fh/includes/navbar.html:30 fh/templates/fh/maps.html:7
 msgid "maps"
 msgstr "Karte"
 
-#: fh/templates/fh/includes/navbar.html:18
+#: fh/templates/fh/includes/navbar.html:31
 #: fh/templates/fh/includes/timeline_head.html:7
 #: fh/templates/fh/timeline.html:9
 msgid "timeline"
 msgstr "Zeitachse"
 
-#: fh/templates/fh/includes/navbar.html:19
+#: fh/templates/fh/includes/navbar.html:32
 msgid "all_entries"
 msgstr "Zeige alle Einträge"
 
-#: fh/templates/fh/includes/navbar.html:38
+#: fh/templates/fh/includes/navbar.html:51
 msgid "Search(date:DD/MM/JJJJ)"
 msgstr "Suche(Datum:DD/MM/JJJJ)"
 
-#: fh/templates/fh/includes/navbar.html:39 fh/templates/fh/search.html:7
+#: fh/templates/fh/includes/navbar.html:52 fh/templates/fh/search.html:7
 #: fh/templates/fh/search.html:29 fh/templates/fh/upload_handwriting.html:51
 #: fh/templates/fh/upload_handwriting.html:145
 msgid "search"
 msgstr "Suchen"
 
-#: fh/templates/fh/includes/navbar.html:53
+#: fh/templates/fh/includes/navbar.html:66
 msgid "admin_page"
 msgstr "Administrator"
 
-#: fh/templates/fh/includes/navbar.html:55
+#: fh/templates/fh/includes/navbar.html:68
 msgid "logout"
 msgstr "Abmelden"
 
-#: fh/templates/fh/includes/navbar.html:59 fh/templates/fh/modals/login.html:12
+#: fh/templates/fh/includes/navbar.html:72
 msgid "login"
 msgstr "Anmeldung"
 
@@ -187,39 +187,31 @@ msgstr "Filter"
 msgid "startpage"
 msgstr "Startseite"
 
-#: fh/templates/fh/index.html:98
+#: fh/templates/fh/index.html:112
 msgid "birth"
 msgstr "Geburt"
 
-#: fh/templates/fh/index.html:185
-msgid "startpage_text_1"
-msgstr "Willkommen! "
-
-#: fh/templates/fh/index.html:186
+#: fh/templates/fh/index.html:207
 msgid "startpage_text_2"
 msgstr ""
 "Mit <b>Famous hands</b> können Sie die Handschriften berühmter "
 "Persönlichkeiten aus allen Zeiten und Ländern lesen und erkunden. Klicken "
 "Sie auf die Bildergalerie oder die Zeitleiste um mehr zu erfahren. "
 
-#: fh/templates/fh/index.html:187
+#: fh/templates/fh/index.html:208
+msgid "number_of_personality"
+msgstr "Anzahl von Personen"
+
+#: fh/templates/fh/index.html:208
+msgid "number_of_handwritings"
+msgstr "Anzahl von Handschriften"
+
+#: fh/templates/fh/index.html:211
 msgid "startpage_text_3"
 msgstr ""
 "Aber nicht nur das: Sie können auch selbst Bilder von Handschriften "
 "berühmter Persönlichkeiten hochladen, diese mit einem Wikipedia Link "
 "versehen und so dazu beitragen, die Sammlung zu komplettieren. "
-
-#: fh/templates/fh/index.html:188
-msgid "startpage_text_4"
-msgstr "Viel Vergnügen - das Transkribus Team"
-
-#: fh/templates/fh/index.html:189
-msgid "number_of_personality"
-msgstr "Anzahl von Personen"
-
-#: fh/templates/fh/index.html:189
-msgid "number_of_handwritings"
-msgstr "Anzahl von Handschriften"
 
 #: fh/templates/fh/longsearch.html:7
 msgid "longsearch"
@@ -253,23 +245,23 @@ msgstr "Link auf die Wikipedias Seite von"
 msgid "detail_site"
 msgstr "Suchen"
 
-#: fh/templates/fh/maps.html:78
+#: fh/templates/fh/maps.html:89
 msgid "center"
 msgstr "Ausgangspunkt"
 
-#: fh/templates/fh/maps.html:154
+#: fh/templates/fh/maps.html:168
 msgid "People found"
 msgstr "Personen gefunden"
 
-#: fh/templates/fh/maps.html:168
+#: fh/templates/fh/maps.html:182
 msgid "born_in"
 msgstr "Geboren in"
 
-#: fh/templates/fh/maps.html:168
+#: fh/templates/fh/maps.html:182
 msgid "died_in"
 msgstr "Gestorben in"
 
-#: fh/templates/fh/maps.html:168
+#: fh/templates/fh/maps.html:182
 msgid "km_away"
 msgstr "km entfernt"
 
@@ -301,14 +293,14 @@ msgstr "Anmelden in bestehenden Account"
 msgid "email"
 msgstr "e-Mail"
 
+#: fh/templates/fh/modals/login.html:12
+msgid "login_transkribus"
+msgstr "Mit einem bestehenden Transkribus-Account anmelden"
+
 #: fh/templates/fh/modals/login.html:15 fh/templates/fh/modals/register.html:6
 #: fh/templates/fh/modals/register.html:16
 msgid "register"
-msgstr "Registrieren"
-
-#: fh/templates/fh/modals/login.html:15
-msgid "forgot_password"
-msgstr "Passwort"
+msgstr "Auf transkribus.eu Registrieren"
 
 #: fh/templates/fh/modals/register.html:10
 msgid "first_name"
@@ -370,7 +362,7 @@ msgstr "Sterbeort"
 
 #: fh/templates/fh/search.html:51 fh/templates/fh/search.html:60
 msgid "date_of_birth"
-msgstr "Geburtsort"
+msgstr "Geburtdatum"
 
 #: fh/templates/fh/search.html:52 fh/templates/fh/search.html:61
 msgid "date_of_death"
@@ -427,6 +419,15 @@ msgstr "Titel"
 #: fh/templates/fh/upload_handwriting.html:152
 msgid "upload"
 msgstr "Hochladen"
+
+#~ msgid "startpage_text_1"
+#~ msgstr "Willkommen! "
+
+#~ msgid "startpage_text_4"
+#~ msgstr "Viel Vergnügen - das Transkribus Team"
+
+#~ msgid "forgot_password"
+#~ msgstr "Passwort"
 
 #~ msgid "create_entry"
 #~ msgstr "Neuen Eintrag erstellen"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-19 10:47+0000\n"
+"POT-Creation-Date: 2017-10-29 19:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,79 +37,79 @@ msgstr "Show All Entries"
 msgid "detail_view"
 msgstr "Detail View"
 
-#: fh/templates/fh/detail.html:25 fh/templates/fh/longsearch.html:26
-#: fh/templates/fh/maps.html:167
+#: fh/templates/fh/detail.html:32 fh/templates/fh/longsearch.html:26
+#: fh/templates/fh/maps.html:181
 msgid "entity_image"
 msgstr "Entity image"
 
-#: fh/templates/fh/detail.html:27 fh/templates/fh/longsearch.html:31
+#: fh/templates/fh/detail.html:34 fh/templates/fh/longsearch.html:31
 msgid "Personal Details"
 msgstr "Personal Details"
 
-#: fh/templates/fh/detail.html:28
+#: fh/templates/fh/detail.html:35
 msgid "  Lived from the "
 msgstr "  Born on "
 
-#: fh/templates/fh/detail.html:30 fh/templates/fh/longsearch.html:32
+#: fh/templates/fh/detail.html:37 fh/templates/fh/longsearch.html:32
 msgid " to the"
 msgstr " Died on "
 
-#: fh/templates/fh/detail.html:31 fh/templates/fh/longsearch.html:33
+#: fh/templates/fh/detail.html:38 fh/templates/fh/longsearch.html:33
 msgid "Reached the age of"
 msgstr "Reached the age of"
 
-#: fh/templates/fh/detail.html:35
+#: fh/templates/fh/detail.html:42
 msgid "Born in"
 msgstr "Born in"
 
-#: fh/templates/fh/detail.html:37
+#: fh/templates/fh/detail.html:44
 msgid "Died in"
 msgstr "Died in"
 
-#: fh/templates/fh/detail.html:40
+#: fh/templates/fh/detail.html:47
 msgid "  Native language: "
 msgstr "  Native language: "
 
-#: fh/templates/fh/detail.html:44
+#: fh/templates/fh/detail.html:51
 msgid "country_citizenship"
 msgstr "Citizenship"
 
-#: fh/templates/fh/detail.html:46 fh/templates/fh/longsearch.html:37
+#: fh/templates/fh/detail.html:53 fh/templates/fh/longsearch.html:37
 msgid "Link to the WikiData Site of"
 msgstr "Link to the WikiData Site of"
 
-#: fh/templates/fh/detail.html:50
-msgid "goto_image_gallery"
-msgstr "Go to image gallery"
-
-#: fh/templates/fh/detail.html:54 fh/templates/fh/includes/navbar.html:14
+#: fh/templates/fh/detail.html:59 fh/templates/fh/includes/navbar.html:27
 #: fh/templates/fh/upload_handwriting.html:7
 msgid "upload_handwriting"
 msgstr "Upload Handwriting"
 
-#: fh/templates/fh/detail.html:74 fh/templates/fh/index.html:163
+#: fh/templates/fh/detail.html:81 fh/templates/fh/index.html:183
 #: fh/templates/fh/search.html:34
 msgid "previous"
 msgstr "Previous"
 
-#: fh/templates/fh/detail.html:78 fh/templates/fh/index.html:167
+#: fh/templates/fh/detail.html:85 fh/templates/fh/index.html:187
 #: fh/templates/fh/search.html:33
 msgid "next"
 msgstr "Next"
 
-#: fh/templates/fh/detail.html:98
+#: fh/templates/fh/detail.html:90
+msgid "goto_image_gallery"
+msgstr "Show all Documents"
+
+#: fh/templates/fh/detail.html:107
 msgid "born"
 msgstr "Born"
 
-#: fh/templates/fh/detail.html:123 fh/templates/fh/index.html:119
+#: fh/templates/fh/detail.html:132 fh/templates/fh/index.html:133
 msgid "death"
 msgstr "Death"
 
-#: fh/templates/fh/detail.html:159
+#: fh/templates/fh/detail.html:168
 msgid "Summary"
 msgstr "Summary"
 
-#: fh/templates/fh/detail.html:162
+#: fh/templates/fh/detail.html:171
 msgid "  ....More"
 msgstr "  ....More"
 
@@ -117,47 +117,47 @@ msgstr "  ....More"
 msgid "image_gallery"
 msgstr "image gallery"
 
-#: fh/templates/fh/image_gallery.html:32
+#: fh/templates/fh/image_gallery.html:40
 msgid "back"
 msgstr "back"
 
-#: fh/templates/fh/includes/navbar.html:10
+#: fh/templates/fh/includes/navbar.html:23
 msgid "famous_hands"
 msgstr "Famous Hands"
 
-#: fh/templates/fh/includes/navbar.html:17 fh/templates/fh/maps.html:6
+#: fh/templates/fh/includes/navbar.html:30 fh/templates/fh/maps.html:7
 msgid "maps"
 msgstr "Maps"
 
-#: fh/templates/fh/includes/navbar.html:18
+#: fh/templates/fh/includes/navbar.html:31
 #: fh/templates/fh/includes/timeline_head.html:7
 #: fh/templates/fh/timeline.html:9
 msgid "timeline"
 msgstr "Timeline"
 
-#: fh/templates/fh/includes/navbar.html:19
+#: fh/templates/fh/includes/navbar.html:32
 msgid "all_entries"
 msgstr "Show All Entries"
 
-#: fh/templates/fh/includes/navbar.html:38
+#: fh/templates/fh/includes/navbar.html:51
 msgid "Search(date:DD/MM/JJJJ)"
 msgstr "Search(date:DD/MM/JJJJ)"
 
-#: fh/templates/fh/includes/navbar.html:39 fh/templates/fh/search.html:7
+#: fh/templates/fh/includes/navbar.html:52 fh/templates/fh/search.html:7
 #: fh/templates/fh/search.html:29 fh/templates/fh/upload_handwriting.html:51
 #: fh/templates/fh/upload_handwriting.html:145
 msgid "search"
 msgstr "Search"
 
-#: fh/templates/fh/includes/navbar.html:53
+#: fh/templates/fh/includes/navbar.html:66
 msgid "admin_page"
 msgstr "Administrator Page"
 
-#: fh/templates/fh/includes/navbar.html:55
+#: fh/templates/fh/includes/navbar.html:68
 msgid "logout"
 msgstr "Logout"
 
-#: fh/templates/fh/includes/navbar.html:59 fh/templates/fh/modals/login.html:12
+#: fh/templates/fh/includes/navbar.html:72
 msgid "login"
 msgstr "Login"
 
@@ -186,39 +186,31 @@ msgstr "Filter"
 msgid "startpage"
 msgstr "Home"
 
-#: fh/templates/fh/index.html:98
+#: fh/templates/fh/index.html:112
 msgid "birth"
 msgstr "Birth"
 
-#: fh/templates/fh/index.html:185
-msgid "startpage_text_1"
-msgstr "Welcome, welcome! "
-
-#: fh/templates/fh/index.html:186
+#: fh/templates/fh/index.html:207
 msgid "startpage_text_2"
 msgstr ""
 "With <b>Famous hands</b> you can read and explore the manuscripts of famous "
 "personalities from all times and countries. Click on the picture gallery or "
 "the timeline to find out more."
 
-#: fh/templates/fh/index.html:187
+#: fh/templates/fh/index.html:208
+msgid "number_of_personality"
+msgstr "Number of Personality"
+
+#: fh/templates/fh/index.html:208
+msgid "number_of_handwritings"
+msgstr "Number of uploaded Handwritings"
+
+#: fh/templates/fh/index.html:211
 msgid "startpage_text_3"
 msgstr ""
 "But that's not all: you can also upload your own images of manuscripts of "
 "famous personalities, add a Wikipedia link to them and help complete the "
 "collection."
-
-#: fh/templates/fh/index.html:188
-msgid "startpage_text_4"
-msgstr "Have fun - Transkribus team!"
-
-#: fh/templates/fh/index.html:189
-msgid "number_of_personality"
-msgstr "Number of Personality"
-
-#: fh/templates/fh/index.html:189
-msgid "number_of_handwritings"
-msgstr "Upload Handwriting"
 
 #: fh/templates/fh/longsearch.html:7
 msgid "longsearch"
@@ -254,23 +246,23 @@ msgstr "Link to the Wikipedia Site of"
 msgid "detail_site"
 msgstr "Detailes search"
 
-#: fh/templates/fh/maps.html:78
+#: fh/templates/fh/maps.html:89
 msgid "center"
 msgstr "Starting point"
 
-#: fh/templates/fh/maps.html:154
+#: fh/templates/fh/maps.html:168
 msgid "People found"
 msgstr "People found"
 
-#: fh/templates/fh/maps.html:168
+#: fh/templates/fh/maps.html:182
 msgid "born_in"
 msgstr "Born in"
 
-#: fh/templates/fh/maps.html:168
+#: fh/templates/fh/maps.html:182
 msgid "died_in"
 msgstr "Died in"
 
-#: fh/templates/fh/maps.html:168
+#: fh/templates/fh/maps.html:182
 msgid "km_away"
 msgstr "km away"
 
@@ -302,14 +294,14 @@ msgstr "Login"
 msgid "email"
 msgstr "e-mail"
 
+#: fh/templates/fh/modals/login.html:12
+msgid "login_transkribus"
+msgstr "Login with an existing Transkribus-Account"
+
 #: fh/templates/fh/modals/login.html:15 fh/templates/fh/modals/register.html:6
 #: fh/templates/fh/modals/register.html:16
 msgid "register"
-msgstr "Register"
-
-#: fh/templates/fh/modals/login.html:15
-msgid "forgot_password"
-msgstr "forgot password?"
+msgstr "Register at transkribus.eu"
 
 #: fh/templates/fh/modals/register.html:10
 msgid "first_name"
@@ -428,6 +420,15 @@ msgstr "Title"
 #: fh/templates/fh/upload_handwriting.html:152
 msgid "upload"
 msgstr "Upload"
+
+#~ msgid "startpage_text_1"
+#~ msgstr "Welcome, welcome! "
+
+#~ msgid "startpage_text_4"
+#~ msgstr "Have fun - Transkribus team!"
+
+#~ msgid "forgot_password"
+#~ msgstr "forgot password?"
 
 #~ msgid "create_entry"
 #~ msgstr "create new entry"
