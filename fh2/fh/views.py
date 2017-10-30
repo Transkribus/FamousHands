@@ -282,14 +282,15 @@ def upload_handwriting_process_imgs(request):
     file = request.FILES['file']
     fname = str(uuid.uuid4()) + "." + os.path.splitext(str(file))[1][1:].strip() 
     
-    fnames = []
-    if 'fnames' in request.session:
-        print("fnames found in session")
-        fnames = request.session["fnames"]
+    fnames = request.session.get("fnames", [])
+#     if 'fnames' in request.session:
+#         print("fnames found in session")
+# 
+#         print("FNAMES_BEFORE:", fnames)
     
     fnames.append(fname)
     request.session["fnames"] = fnames
-    
+    request.session.modified = True
     print("FNAMES:", fnames)
 
     path = default_storage.save(settings.IMG_DIR + '/tmp/' + fname, ContentFile(file.read()))
