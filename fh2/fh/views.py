@@ -291,7 +291,7 @@ def upload_handwriting_process_imgs(request):
     fnames.append(fname)
     request.session["fnames"] = fnames
     request.session.modified = True
-    print("FNAMES:", fnames)
+#    print("FNAMES:", fnames)
 
     path = default_storage.save(settings.IMG_DIR + '/tmp/' + fname, ContentFile(file.read()))
     
