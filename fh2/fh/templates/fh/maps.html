@@ -9,8 +9,12 @@
     <meta charset="utf-8">
     {% include "fh/includes/head.html" %} 
     <link rel="stylesheet" type="text/css" href="{% static 'fh/maps.css' %}"/>
-    <script src="{% static 'fh/fh.js' %}"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script defer src="{% static 'fh/fh.js' %}"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGqJazDaAYPXovs-mb3HBeL1eAX7i5rE&amp;callback=initMap&amp;libraries=geometry"
+                     defer>     
+                </script>
+    <script defer src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   </head>
   <body>
@@ -210,9 +214,7 @@
                         
                     });  
                 </script>    
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGqJazDaAYPXovs-mb3HBeL1eAX7i5rE&amp;callback=initMap&amp;libraries=geometry"
-                    async defer>     
-                </script>
+               
                 
             </div>     
         </div>  
