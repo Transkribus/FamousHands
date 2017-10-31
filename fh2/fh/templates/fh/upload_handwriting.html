@@ -49,6 +49,7 @@
                     {    
 
                         $("#search").html('{% trans 'search' %}');
+                        var first = true;
                         for (k in data)
                         {
                             $('#entries').append($('<option>',
@@ -56,17 +57,20 @@
                                 value: k,
                                 text : data[k]
                             }));    
-                            
-                            $("#wikidata_id").val(k);
-                            $("#title").val(data[k]);                        
+                            if (first)
+                            {
+                                $("#wikidata_id").val(k);
+                                $("#title").val(data[k]);
+                                first = false;
+                            }    
                         }
+                       
                     });
                 });
                 
                 
                 $("#entries").change(function()
                 {
-                    console.log('change');
                     $("#wikidata_id").val($(this).val());
                     $("#title").val($("#entries :selected").text());    
                 
@@ -86,7 +90,6 @@
                         var img = file.xhr.responseText;
                         img = img.replace(/"/g,"");
                         img_form = img_templ.replace(/@link/g, img);
-                        console.log(img_form);
                         $("#img_container").append(img_form);
                         id++;
                         
@@ -100,7 +103,6 @@
                     
                     /* Called after the file is uploaded and sucessful */
                     this.on("sucess", function(file){
-                      //  console.log("success");
                       //  console.log(file);
                     });
                     
