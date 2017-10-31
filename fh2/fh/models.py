@@ -28,7 +28,7 @@ class ENTRY(models.Model):
     description = models.CharField(max_length=128)
     image = models.FilePathField(max_length=512) #Stored in file system
     country_citizenship = models.CharField(max_length=128)
-    place_of_birth = models.ForeignKey(LOCATION, related_name='%(class)s_requests_created', on_delete=models.CASCADE)  # models.CharField(max_length=255) no location, just the name
+    place_of_birth = models.ForeignKey(LOCATION, related_name='%(class)s_requests_created', on_delete=models.CASCADE, null=True)  # models.CharField(max_length=255) no location, just the name
     #date_of_birth = models.DateField(auto_now=False, auto_now_add=False)
     day_of_birth = models.IntegerField(null=True)
     month_of_birth = models.IntegerField(null=True)
