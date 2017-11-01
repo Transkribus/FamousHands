@@ -134,7 +134,7 @@ def upload_handwriting(request):
     
 def admin(request):
     
-    if  'user' in request.session and request.session['user']['isAdmin']:
+    if  'user' in request.session and request.session['user']['isAdmin'] == 'true':
         template = loader.get_template('fh/admin.html')
         context = {
             'entries' : m.ENTRY.objects.all().order_by('description'),
@@ -226,6 +226,8 @@ def login_process(request):
     try:
         request.session['user'] = s.Login(e,p)['trpUserLogin']
         request.session.modified = True 
+        
+        print(request.session.get('user'))
     except:
         messages.warning(request, "login_failed")
      
