@@ -50,7 +50,7 @@
                             <img src="static/fh/img/upload/{{img.link}}" class="img-responsive">
                             {{img.description}}
                         </a>
-                        {% if request.session.user.isAdmin  %} 
+                        {% if request.session.user.isAdmin  == 'true' %} 
                             <div class="material-switch  pull-right">
                                 <input id="{{img.id}}" class="boxes" name="{{e.wiki_link}}" type="checkbox" 
                                     {% if img.on %} checked="checked" {% endif    %} 
