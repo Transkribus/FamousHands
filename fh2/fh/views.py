@@ -227,7 +227,6 @@ def login_process(request):
         request.session['user'] = s.Login(e,p)['trpUserLogin']
         request.session.modified = True 
         
-        print(request.session.get('user'))
     except:
         messages.warning(request, "login_failed")
      
